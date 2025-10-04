@@ -1,0 +1,228 @@
+.openmct-mission-control {
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a3a 50%, #2a2a4a 100%);
+  color: #ffffff;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
+}
+
+.mission-control-header {
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #00ff88;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.mission-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nasa-badge {
+  background: linear-gradient(45deg, #0074d9, #001f3f);
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+  font-size: 1.2rem;
+  border: 1px solid #00ff88;
+}
+
+.mission-subtitle {
+  font-size: 1rem;
+  color: #00ff88;
+  margin: 0.5rem 0 0 0;
+  font-weight: 300;
+}
+
+.mission-control-content {
+  height: calc(100vh - 180px);
+  padding: 1rem;
+}
+
+.openmct-container {
+  height: 100%;
+  width: 100%;
+  border: 2px solid #333355;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.mission-control-status {
+  background: rgba(0, 0, 0, 0.9);
+  border-top: 2px solid #333355;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online .status-dot {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.telemetry-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.telemetry-label {
+  color: #8888ff;
+  font-size: 0.9rem;
+}
+
+.telemetry-value {
+  background: #00ff88;
+  color: #000;
+  padding: 0.2rem 0.8rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.telemetry-value.active {
+  background: #00ff88;
+  animation: blink 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* OpenMCT theme customization */
+.openmct-container .l-shell__pane-container {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.openmct-container .c-pane {
+  border: 1px solid #333355 !important;
+}
+
+.openmct-container .c-tree__item {
+  color: #ffffff !important;
+}
+
+.openmct-container .c-tree__item:hover {
+  background: rgba(0, 255, 136, 0.2) !important;
+}
+
+.openmct-container .c-telemetry-table__row {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.openmct-container .c-telemetry-table__row:hover {
+  background: rgba(0, 255, 136, 0.1) !important;
+}
+
+.openmct-container .c-plot__series-path {
+  stroke: #00ff88 !important;
+}
+
+.openmct-container .c-bar-chart__bar {
+  fill: #0074d9 !important;
+}
+
+.openmct-container .c-heatmap__cell {
+  border: 1px solid #333355 !important;
+}
+
+.mission-control-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #00ff88;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.view-details-btn {
+  background: linear-gradient(45deg, #0074d9, #001f3f);
+  color: #ffffff;
+  border: 1px solid #00ff88;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.view-details-btn:hover {
+  background: linear-gradient(45deg, #0088ff, #003366);
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  transform: translateY(-1px);
+}
+
+.view-details-btn:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .mission-title {
+    font-size: 1.5rem;
+  }
+
+  .mission-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .mission-control-status {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+}

@@ -1,0 +1,262 @@
+/* Seismic Data and Risk Assessment Styles */
+
+/* Detail Sections */
+.detail-section {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.detail-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  color: #60a5fa;
+  font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Activity Level Indicators */
+.activity-low {
+  color: #10b981 !important;
+  font-weight: 600;
+}
+
+.activity-moderate {
+  color: #f59e0b !important;
+  font-weight: 600;
+}
+
+.activity-high {
+  color: #ef4444 !important;
+  font-weight: 600;
+}
+
+.activity-extreme {
+  color: #dc2626 !important;
+  font-weight: 600;
+  animation: pulse-red 2s infinite;
+}
+
+.activity-unknown {
+  color: #6b7280 !important;
+  font-weight: 600;
+}
+
+/* Risk Level Indicators */
+.risk-low {
+  color: #10b981 !important;
+  font-weight: 600;
+}
+
+.risk-moderate {
+  color: #f59e0b !important;
+  font-weight: 600;
+}
+
+.risk-high {
+  color: #ef4444 !important;
+  font-weight: 600;
+}
+
+.risk-critical {
+  color: #dc2626 !important;
+  font-weight: 600;
+  animation: pulse-red 2s infinite;
+}
+
+/* Events List */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border-left: 3px solid #60a5fa;
+}
+
+.event-type {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #60a5fa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  min-width: 80px;
+}
+
+.event-description {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  flex: 1;
+}
+
+/* Map Controls Enhancement */
+.map-controls {
+  position: relative;
+  z-index: 1000;
+}
+
+.overlay-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.overlay-btn {
+  padding: 0.4rem 0.8rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.overlay-btn:hover {
+  background: rgba(96, 165, 250, 0.2);
+  border-color: #60a5fa;
+  transform: translateY(-1px);
+}
+
+.overlay-btn.active {
+  background: rgba(96, 165, 250, 0.3);
+  border-color: #60a5fa;
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* Connection Status */
+.connection-status {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-indicator {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.status-indicator.connected {
+  color: #10b981;
+}
+
+.status-indicator.disconnected {
+  color: #ef4444;
+}
+
+/* Animations */
+@keyframes pulse-red {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-green {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .detail-section {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-section h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .overlay-controls {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .overlay-btn {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  .event-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .event-type {
+    min-width: auto;
+  }
+}
+
+/* Dark Theme Enhancements */
+@media (prefers-color-scheme: dark) {
+  .detail-section {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(96, 165, 250, 0.3);
+  }
+
+  .overlay-btn {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .connection-status {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .detail-section {
+    border-width: 2px;
+    border-color: #60a5fa;
+  }
+
+  .overlay-btn {
+    border-width: 2px;
+  }
+
+  .overlay-btn.active {
+    background: #60a5fa;
+    color: #000;
+  }
+
+  .activity-high,
+  .risk-high {
+    color: #ff0000 !important;
+  }
+
+  .activity-low,
+  .risk-low {
+    color: #00ff00 !important;
+  }
+}

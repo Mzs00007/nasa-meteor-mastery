@@ -1,0 +1,381 @@
+.iss-tracking-visualization {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  font-family: "Orbitron", "Segoe UI", sans-serif;
+}
+
+.visualization-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.visualization-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #00ff88, #00ccff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.tracking-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.view-mode-controls,
+.tracking-mode-controls,
+.display-controls {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.control-btn:hover {
+  background: rgba(0, 255, 136, 0.2);
+  border-color: rgba(0, 255, 136, 0.4);
+  color: #e2e8f0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 255, 136, 0.2);
+}
+
+.control-btn.active {
+  background: linear-gradient(135deg, #00ff88, #00ccff);
+  border-color: transparent;
+  color: #0f0f23;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 255, 136, 0.4);
+}
+
+.visualization-content {
+  display: flex;
+  height: 600px;
+  position: relative;
+}
+
+.iss-3d-view {
+  flex: 1;
+  position: relative;
+  background: radial-gradient(circle at center, #1a1a2e 0%, #0f0f23 100%);
+}
+
+.iss-3d-view canvas {
+  display: block;
+  border-radius: 0 0 0 12px;
+}
+
+.iss-telemetry-panel {
+  width: 320px;
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+}
+
+.telemetry-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.telemetry-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #00ff88;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+  padding-bottom: 0.5rem;
+}
+
+.telemetry-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.telemetry-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  border-left: 3px solid rgba(0, 255, 136, 0.5);
+}
+
+.telemetry-item .label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.telemetry-item .value {
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+  text-align: right;
+}
+
+.visibility-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.visibility-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+.visibility-item .label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.visible {
+  background: rgba(0, 255, 136, 0.2);
+  color: #00ff88;
+  border: 1px solid rgba(0, 255, 136, 0.4);
+}
+
+.status.not-visible {
+  background: rgba(255, 100, 100, 0.2);
+  color: #ff6464;
+  border: 1px solid rgba(255, 100, 100, 0.4);
+}
+
+.next-pass {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(0, 204, 255, 0.1);
+  border-radius: 4px;
+  border-left: 3px solid rgba(0, 204, 255, 0.5);
+}
+
+.next-pass .label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.next-pass .value {
+  font-size: 0.8rem;
+  color: #00ccff;
+  font-weight: 600;
+  font-family: "Courier New", monospace;
+}
+
+.connection-status {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.indicator-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.connected {
+  color: #00ff88;
+}
+
+.status-indicator.connected .indicator-dot {
+  background: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
+}
+
+.status-indicator.disconnected {
+  color: #ff6464;
+}
+
+.status-indicator.disconnected .indicator-dot {
+  background: #ff6464;
+  box-shadow: 0 0 10px rgba(255, 100, 100, 0.6);
+}
+
+.last-update {
+  font-size: 0.75rem;
+  color: #64748b;
+  font-family: "Courier New", monospace;
+}
+
+.visualization-instructions {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.visualization-instructions p {
+  margin: 0.25rem 0;
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .visualization-content {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .iss-3d-view {
+    height: 400px;
+  }
+
+  .iss-telemetry-panel {
+    width: 100%;
+    max-height: 300px;
+  }
+
+  .tracking-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .view-mode-controls,
+  .tracking-mode-controls,
+  .display-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .visualization-header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .visualization-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .iss-3d-view {
+    height: 300px;
+  }
+
+  .iss-telemetry-panel {
+    padding: 1rem;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .iss-tracking-visualization {
+    border: 2px solid #ffffff;
+    background: #000000;
+  }
+
+  .control-btn {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+  }
+
+  .control-btn.active {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .telemetry-item {
+    border-left: 4px solid #ffffff;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .control-btn,
+  .indicator-dot {
+    transition: none;
+    animation: none;
+  }
+
+  .control-btn:hover {
+    transform: none;
+  }
+}

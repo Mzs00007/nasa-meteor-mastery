@@ -1,0 +1,236 @@
+/* Theme CSS for Meteor Madness - Colorblind Friendly */
+
+:root {
+  /* Colorblind-friendly color palette */
+  --cb-blue: #0066cc; /* Safe for most color deficiencies */
+  --cb-orange: #ff6600; /* Distinct from blue for protanopia/deuteranopia */
+  --cb-green: #00cc66; /* Distinct from red/green deficiencies */
+  --cb-purple: #9933cc; /* Good contrast for all types */
+  --cb-yellow: #ffcc00; /* Visible to most colorblind users */
+
+  /* Neutral colors */
+  --cb-dark: #1a1a2e;
+  --cb-darker: #0f0f1a;
+  --cb-light: #f8f9fa;
+  --cb-lighter: #ffffff;
+
+  /* Semantic colors */
+  --primary: var(--cb-blue);
+  --secondary: var(--cb-orange);
+  --success: var(--cb-green);
+  --warning: var(--cb-yellow);
+  --danger: #cc3333; /* Red that's distinguishable */
+  --info: var(--cb-purple);
+}
+
+/* Colorblind-friendly theme classes */
+.theme-colorblind {
+  --primary-color: var(--cb-blue);
+  --secondary-color: var(--cb-orange);
+  --accent-color: var(--cb-green);
+  --warning-color: var(--cb-yellow);
+  --danger-color: #cc3333;
+  --info-color: var(--cb-purple);
+}
+
+/* High contrast theme */
+.theme-high-contrast {
+  --primary-color: #000000;
+  --secondary-color: #ffffff;
+  --accent-color: #ffff00;
+  --warning-color: #ff0000;
+  --danger-color: #ff0000;
+  --info-color: #0000ff;
+
+  background: #ffffff !important;
+  color: #000000 !important;
+}
+
+.theme-high-contrast .card,
+.theme-high-contrast .section {
+  background: #ffffff !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+}
+
+.theme-high-contrast .btn {
+  border: 2px solid #000000 !important;
+}
+
+/* Protanopia (red-blind) friendly */
+.theme-protanopia {
+  --primary-color: #3366cc; /* Blue */
+  --secondary-color: #669900; /* Green */
+  --accent-color: #cc6633; /* Orange-brown */
+  --warning-color: #ffcc00; /* Yellow */
+  --danger-color: #cc3366; /* Magenta */
+}
+
+/* Deuteranopia (green-blind) friendly */
+.theme-deuteranopia {
+  --primary-color: #3366cc; /* Blue */
+  --secondary-color: #cc6633; /* Orange */
+  --accent-color: #669900; /* Green */
+  --warning-color: #ffcc00; /* Yellow */
+  --danger-color: #cc3366; /* Magenta */
+}
+
+/* Tritanopia (blue-blind) friendly */
+.theme-tritanopia {
+  --primary-color: #cc3366; /* Magenta */
+  --secondary-color: #33cc66; /* Green */
+  --accent-color: #ff6600; /* Orange */
+  --warning-color: #ffcc00; /* Yellow */
+  --danger-color: #cc0000; /* Red */
+}
+
+/* Utility classes for colorblind users */
+.cb-text-primary {
+  color: var(--cb-blue) !important;
+}
+.cb-text-secondary {
+  color: var(--cb-orange) !important;
+}
+.cb-text-success {
+  color: var(--cb-green) !important;
+}
+.cb-text-warning {
+  color: var(--cb-yellow) !important;
+}
+.cb-text-danger {
+  color: var(--danger-color) !important;
+}
+.cb-text-info {
+  color: var(--cb-purple) !important;
+}
+
+.cb-bg-primary {
+  background-color: var(--cb-blue) !important;
+}
+.cb-bg-secondary {
+  background-color: var(--cb-orange) !important;
+}
+.cb-bg-success {
+  background-color: var(--cb-green) !important;
+}
+.cb-bg-warning {
+  background-color: var(--cb-yellow) !important;
+}
+.cb-bg-danger {
+  background-color: var(--danger-color) !important;
+}
+.cb-bg-info {
+  background-color: var(--cb-purple) !important;
+}
+
+/* Pattern fills for additional distinction */
+.pattern-dots {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.pattern-lines {
+  background-image: repeating-linear-gradient(
+    45deg,
+    currentColor,
+    currentColor 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+.pattern-checker {
+  background-image:
+    linear-gradient(45deg, currentColor 25%, transparent 25%),
+    linear-gradient(-45deg, currentColor 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, currentColor 75%),
+    linear-gradient(-45deg, transparent 75%, currentColor 75%);
+  background-size: 8px 8px;
+}
+
+/* Accessibility features */
+.accessible-focus {
+  outline: 3px solid var(--cb-yellow) !important;
+  outline-offset: 2px !important;
+}
+
+.accessible-focus:focus {
+  outline: 3px solid var(--cb-yellow) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .visualization-container {
+    transition: none !important;
+  }
+}
+
+/* Screen reader enhancements */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .card,
+  .section {
+    background: white !important;
+    border: 1px solid black !important;
+    color: black !important;
+  }
+}
+
+/* Theme switcher component */
+.theme-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.theme-switcher:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.theme-switcher i {
+  font-size: 1.5rem;
+  color: var(--text-light);
+}

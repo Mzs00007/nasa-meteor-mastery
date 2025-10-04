@@ -1,0 +1,355 @@
+/* Modern UI Improvements - Visual Hierarchy and Spacing */
+
+/* Impact Map Page Layout Improvements */
+.impact-map-page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.impact-map-layout {
+  min-height: calc(100vh - 2rem);
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+/* Map Section Improvements */
+.map-section {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Map Overlay Controls */
+.map-overlay-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.view-mode-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Simulation Timeline */
+.simulation-timeline {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.timeline-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline-progress {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.timeline-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00d4ff, #0099cc);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.timeline-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Mobile Timeline */
+.mobile-only {
+  display: none;
+}
+
+/* Sidebar Improvements */
+.modern-sidebar {
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.modern-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modern-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modern-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.modern-sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Section Headers */
+.modern-section .section-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modern-section .section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+}
+
+/* Panel Content Spacing */
+.modern-panel .panel-content {
+  padding: 1.5rem;
+}
+
+.modern-panel.size-compact .panel-content {
+  padding: 1rem;
+}
+
+.modern-panel.size-spacious .panel-content {
+  padding: 2rem;
+}
+
+/* Form Elements Spacing */
+.modern-input + .modern-input,
+.modern-slider + .modern-slider,
+.modern-select + .modern-select,
+.modern-toggle + .modern-toggle {
+  margin-top: 1rem;
+}
+
+/* Button Groups */
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.button-group .modern-button {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Grid Improvements */
+.composition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+/* Statistics Cards */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .impact-map-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+  }
+
+  .modern-sidebar {
+    max-height: none;
+    order: 2;
+  }
+
+  .modern-main {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .impact-map-layout {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+
+  .map-overlay-controls {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .view-mode-controls {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .simulation-timeline {
+    bottom: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .mobile-only {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .timeline-info {
+    font-size: 0.75rem;
+  }
+
+  .composition-grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .button-group .modern-button {
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-map-layout {
+    padding: 0.25rem;
+  }
+
+  .modern-panel.size-normal .panel-content {
+    padding: 1rem;
+  }
+
+  .modern-section .section-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .view-mode-controls .modern-button {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .composition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Dark Theme Enhancements */
+@media (prefers-color-scheme: dark) {
+  .stat-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .timeline-progress {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .modern-section .section-header {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Animation Improvements */
+.modern-panel,
+.modern-section,
+.stat-card {
+  transition: all 0.3s ease;
+}
+
+.modern-panel:hover,
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modern-section.collapsible .section-content {
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+/* Focus and Accessibility */
+.modern-button:focus,
+.modern-input:focus,
+.modern-select:focus {
+  outline: 2px solid #00d4ff;
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  border-radius: inherit;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

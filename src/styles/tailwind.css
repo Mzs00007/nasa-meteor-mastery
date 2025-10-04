@@ -1,0 +1,399 @@
+/* Tailwind CSS v3 Integration */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import existing styles */
+@import "./main.css";
+@import "./theme.css";
+@import "./design-guide.css";
+@import "./modern-ui.css";
+@import "./components.css";
+@import "./navbar.css";
+@import "./responsive.css";
+@import "./auth.css";
+
+/* Bootstrap 5 Integration */
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+/* W3.CSS Integration */
+@import "./w3.css";
+
+/* Custom Base Styles */
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 min-h-screen text-white font-roboto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-orbitron font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  /* Improved focus styles for accessibility */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-4 ring-cb-yellow ring-offset-2 ring-offset-gray-900;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      box-shadow: 0 0 5px theme("colors.nasa-blue");
+    }
+    50% {
+      box-shadow:
+        0 0 20px theme("colors.nasa-blue"),
+        0 0 30px theme("colors.nasa-red");
+    }
+  }
+
+  @keyframes meteor {
+    0% {
+      transform: translateX(-100%) rotate(45deg);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100vw) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(50px) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(50px) rotate(-360deg);
+    }
+  }
+}
+
+/* Custom Tailwind Components */
+@layer components {
+  /* NASA Themed Components */
+  .btn-nasa {
+    @apply bg-nasa-blue hover:bg-nasa-red text-white font-orbitron font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-nasa-blue/50;
+  }
+
+  .btn-nasa-secondary {
+    @apply bg-nasa-red hover:bg-nasa-blue text-white font-orbitron font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-nasa-red/50;
+  }
+
+  .card-nasa {
+    @apply bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-md border border-white/10 rounded-xl p-6 shadow-2xl;
+  }
+
+  .panel-nasa {
+    @apply bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-lg p-6 shadow-xl;
+  }
+
+  /* Accessibility Focus Styles */
+  .focus-accessible {
+    @apply focus:outline-none focus:ring-4 focus:ring-cb-yellow focus:ring-offset-2 focus:ring-offset-gray-900;
+  }
+
+  /* Colorblind Friendly Utilities */
+  .cb-text-primary {
+    @apply text-cb-blue;
+  }
+  .cb-text-secondary {
+    @apply text-cb-orange;
+  }
+  .cb-text-success {
+    @apply text-cb-green;
+  }
+  .cb-text-warning {
+    @apply text-cb-yellow;
+  }
+  .cb-text-danger {
+    @apply text-red-500;
+  }
+  .cb-text-info {
+    @apply text-cb-purple;
+  }
+
+  .cb-bg-primary {
+    @apply bg-cb-blue;
+  }
+  .cb-bg-secondary {
+    @apply bg-cb-orange;
+  }
+  .cb-bg-success {
+    @apply bg-cb-green;
+  }
+  .cb-bg-warning {
+    @apply bg-cb-yellow;
+  }
+  .cb-bg-danger {
+    @apply bg-red-500;
+  }
+  .cb-bg-info {
+    @apply bg-cb-purple;
+  }
+
+  /* Animation Utilities */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-meteor {
+    animation: meteor 5s linear infinite;
+  }
+
+  .animate-orbit {
+    animation: orbit 10s linear infinite;
+  }
+
+  /* Responsive Grid System */
+  .grid-nasa {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  /* Modern Card Components */
+  .card-glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg;
+  }
+
+  .card-space {
+    @apply bg-gradient-to-br from-nasa-blue/20 to-nasa-red/20 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-xl;
+  }
+
+  .card-nebula {
+    @apply bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-nasa-blue/40 backdrop-blur-lg border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden;
+  }
+
+  .card-nebula::before {
+    content: "";
+    @apply absolute inset-0 bg-black/20 backdrop-blur-sm;
+  }
+
+  /* Form Components */
+  .input-nasa {
+    @apply bg-gray-800/50 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent transition-all duration-200;
+  }
+
+  .select-nasa {
+    @apply bg-gray-800/50 border border-white/20 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgOUwxMiAxNUwxOCA5IiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=')] bg-no-repeat bg-[center_right_1rem] bg-[length:16px_16px];
+  }
+
+  /* Navigation Components */
+  .nav-item-nasa {
+    @apply px-4 py-2 text-white hover:bg-white/10 rounded-lg transition-all duration-200 focus-accessible;
+  }
+
+  .nav-item-active {
+    @apply bg-nasa-blue text-white;
+  }
+
+  /* Modern Button Variants */
+  .btn-space {
+    @apply bg-gradient-to-r from-nasa-blue via-purple-600 to-nasa-red hover:from-nasa-red hover:via-purple-700 hover:to-nasa-blue text-white font-orbitron font-bold py-4 px-8 rounded-full transition-all duration-300 transform hover:scale-105 focus-accessible;
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  .btn-cosmic {
+    @apply bg-transparent border-2 border-nasa-blue text-nasa-blue hover:bg-nasa-blue hover:text-white font-orbitron font-bold py-3 px-6 rounded-lg transition-all duration-300 focus-accessible;
+    box-shadow: 0 0 20px rgba(theme("colors.nasa-blue"), 0.3);
+  }
+
+  /* Loading Spinners */
+  .spinner-cosmic {
+    @apply w-8 h-8 border-4 border-nasa-blue border-t-transparent rounded-full animate-spin;
+  }
+
+  .spinner-nasa {
+    @apply w-12 h-12 border-4 border-nasa-red border-t-nasa-blue border-r-transparent rounded-full;
+    animation: spin 1.5s linear infinite;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-nasa-blue to-nasa-red bg-clip-text text-transparent;
+  }
+
+  .text-gradient-space {
+    @apply bg-gradient-to-r from-nasa-blue via-purple-600 to-nasa-red bg-clip-text text-transparent;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .space-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(11, 61, 145, 0.8) 0%,
+      rgba(252, 61, 33, 0.6) 50%,
+      rgba(155, 51, 204, 0.8) 100%
+    );
+  }
+
+  /* Modern Utility Classes */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-space::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  .scrollbar-space::-webkit-scrollbar-track {
+    @apply bg-gray-800/50 rounded-full;
+  }
+
+  .scrollbar-space::-webkit-scrollbar-thumb {
+    @apply bg-nasa-blue rounded-full hover:bg-nasa-red;
+  }
+
+  /* Gradient animation */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+  }
+
+  /* Custom animation for spin */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .card-nasa,
+  .panel-nasa {
+    @apply bg-black border-2 border-white;
+  }
+
+  .btn-nasa,
+  .btn-nasa-secondary {
+    @apply bg-black border-2 border-white text-white;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    @apply hidden;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  .card-nasa,
+  .panel-nasa {
+    @apply bg-white border border-gray-300 text-black shadow-none;
+  }
+}

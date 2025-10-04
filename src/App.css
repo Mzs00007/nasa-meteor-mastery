@@ -1,0 +1,365 @@
+/* App.css - Responsive styles for Meteor Madness application */
+
+/* Base responsive typography */
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Responsive main content */
+.main-content {
+  padding-top: 50px;
+  min-height: calc(100vh - 50px);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .main-content {
+    padding-top: 60px;
+    min-height: calc(100vh - 60px);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-content {
+    padding-top: 70px;
+    min-height: calc(100vh - 70px);
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Responsive panels */
+.visualization-panel {
+  margin: 0.25rem;
+  padding: 0.75rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .visualization-panel {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .visualization-panel {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.control-panel {
+  margin: 0.25rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .control-panel {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .control-panel {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+.panel-title {
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .panel-title {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .panel-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+.interception-controls {
+  margin: 0.25rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .interception-controls {
+    margin: 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .interception-controls {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Responsive button styles */
+.btn-responsive {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+  min-height: 44px; /* Touch-friendly minimum */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .btn-responsive {
+    padding: 0.625rem 1.25rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .btn-responsive {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+    min-height: 52px;
+  }
+}
+
+/* Responsive grid layouts */
+.responsive-grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .responsive-grid {
+    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid {
+    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Responsive flex layouts */
+.responsive-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-flex {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* Responsive text sizes */
+.text-responsive-sm {
+  font-size: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-sm {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-sm {
+    font-size: 1rem;
+  }
+}
+
+.text-responsive-base {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-base {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-base {
+    font-size: 1.125rem;
+  }
+}
+
+.text-responsive-lg {
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-lg {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-lg {
+    font-size: 1.5rem;
+  }
+}
+
+.text-responsive-xl {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-xl {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-xl {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile-first navigation */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mobile-nav {
+    padding: 1rem 2rem;
+  }
+}
+
+/* Responsive containers */
+.container-responsive {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container-responsive {
+    max-width: 1536px;
+  }
+}
+
+/* Touch-friendly interactions */
+@media (hover: none) and (pointer: coarse) {
+  .btn-responsive:hover {
+    transform: none;
+  }
+  
+  .btn-responsive:active {
+    transform: scale(0.95);
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-text {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark mode responsive adjustments */
+@media (prefers-color-scheme: dark) {
+  .auto-dark {
+    background-color: #0f172a;
+    color: #f1f5f9;
+  }
+}

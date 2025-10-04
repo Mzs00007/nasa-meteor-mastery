@@ -1,0 +1,749 @@
+/* Cosmic Landing Page Styles */
+
+.cosmic-landing-container {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  color: white;
+  font-family: "Orbitron", "Roboto", sans-serif;
+}
+
+/* Cosmic Background */
+.cosmic-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.animated-starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+    radial-gradient(
+      2px 2px at 40px 70px,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    ),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(
+      1px 1px at 130px 80px,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    ),
+    radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
+    linear-gradient(
+      135deg,
+      #0c0c0c 0%,
+      #1a1a2e 25%,
+      #16213e 50%,
+      #0f3460 75%,
+      #0e1b3c 100%
+    );
+  background-repeat: repeat;
+  background-size:
+    200px 100px,
+    300px 150px,
+    250px 120px,
+    180px 90px,
+    220px 110px,
+    100% 100%;
+  animation: starfield-move 20s linear infinite;
+}
+
+@keyframes starfield-move {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}
+
+.meteor-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 2s ease;
+  pointer-events: none;
+}
+
+.cosmic-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(11, 61, 145, 0.8) 0%,
+    rgba(0, 0, 0, 0.9) 50%,
+    rgba(252, 61, 33, 0.7) 100%
+  );
+  backdrop-filter: blur(2px);
+}
+
+/* Main Content */
+.cosmic-content {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Header Styles */
+.cosmic-header {
+  text-align: center;
+  margin-top: 4rem;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.cosmic-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, #fc3d21 0%, #0b3d91 50%, #4bb543 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    gradientShift 3s ease infinite,
+    glowPulse 2s ease-in-out infinite alternate;
+  text-shadow:
+    0 0 20px rgba(252, 61, 33, 0.5),
+    0 0 40px rgba(11, 61, 145, 0.3),
+    0 0 60px rgba(75, 181, 67, 0.2);
+}
+
+.glitch-text {
+  position: relative;
+  animation: glitch 2s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-text::before {
+  animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+    infinite;
+  color: #fc3d21;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-effect 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) reverse
+    both infinite;
+  color: #0b3d91;
+  z-index: -2;
+}
+
+.cosmic-subtitle {
+  font-size: clamp(1rem, 3vw, 1.8rem);
+  font-weight: 300;
+  margin: 1rem 0 0 0;
+  opacity: 0.9;
+  animation: fadeInUp 2s ease-out 0.5s both;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.pulse-text {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+  animation: fadeInUp 2s ease-out 1s both;
+}
+
+.cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 2.5rem;
+  min-height: 44px; /* Touch-friendly minimum */
+  min-width: 120px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
+}
+
+.cta-btn.primary {
+  background: linear-gradient(135deg, #fc3d21, #ff6b35);
+  color: white;
+  box-shadow:
+    0 4px 15px rgba(252, 61, 33, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cta-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 4px 15px rgba(255, 255, 255, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced hover effects */
+.cta-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 15px 35px rgba(252, 61, 33, 0.4),
+    0 5px 25px rgba(255, 255, 255, 0.2),
+    0 0 30px rgba(252, 61, 33, 0.3);
+}
+
+.cta-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 15px 35px rgba(255, 255, 255, 0.2),
+    0 5px 25px rgba(0, 0, 0, 0.1),
+    0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced active states */
+.cta-btn:active {
+  transform: translateY(-1px) scale(1.02);
+  transition: all 0.1s ease;
+}
+
+/* Focus states for accessibility */
+.cta-btn:focus {
+  outline: 2px solid rgba(252, 61, 33, 0.5);
+  outline-offset: 2px;
+}
+
+.cta-btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cosmic-glow {
+  box-shadow:
+    0 0 20px rgba(252, 61, 33, 0.3),
+    0 0 40px rgba(11, 61, 145, 0.2),
+    0 0 60px rgba(75, 181, 67, 0.1);
+}
+
+.btn-icon {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.cta-btn:hover .btn-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.btn-sparkle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.8) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: sparkle 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Feature Cards */
+.cosmic-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 4rem 0;
+  animation: fadeInUp 2s ease-out 1.5s both;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(252, 61, 33, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.glow-card {
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 0 15px rgba(11, 61, 145, 0.3);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin: 0 0 1rem 0;
+  color: #fc3d21;
+  font-weight: 600;
+}
+
+.feature-card p {
+  margin: 0;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+/* Footer */
+.cosmic-footer {
+  margin-top: auto;
+  padding: 2rem 0;
+  animation: fadeInUp 2s ease-out 2s both;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nasa-badge {
+  background: linear-gradient(135deg, #0b3d91, #fc3d21);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(11, 61, 145, 0.4);
+}
+
+.nasa-text {
+  font-size: 2rem;
+  font-weight: 900;
+  display: block;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.partner-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.footer-links a:hover {
+  color: #fc3d21;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.credits p {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+/* Parallax Elements */
+.parallax-stars,
+.parallax-nebula {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.parallax-stars {
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="0.5" fill="white"/><circle cx="80" cy="40" r="0.3" fill="white"/><circle cx="40" cy="80" r="0.4" fill="white"/><circle cx="60" cy="60" r="0.2" fill="white"/><circle cx="10" cy="90" r="0.5" fill="white"/></svg>')
+    repeat;
+  animation: parallaxStars 20s linear infinite;
+}
+
+.parallax-nebula {
+  background:
+    radial-gradient(
+      ellipse at 30% 40%,
+      rgba(11, 61, 145, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse at 70% 60%,
+      rgba(252, 61, 33, 0.2) 0%,
+      transparent 50%
+    );
+  animation: parallaxNebula 15s ease-in-out infinite alternate;
+}
+
+/* Dynamic Lighting */
+.dynamic-lighting {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.light-source {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(252, 61, 33, 0.1) 0%,
+    transparent 70%
+  );
+  animation: floatLight 8s ease-in-out infinite;
+}
+
+.light-source:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.light-source:nth-child(2) {
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.light-source:nth-child(3) {
+  bottom: 30%;
+  left: 25%;
+  animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes glowPulse {
+  from {
+    text-shadow:
+      0 0 20px rgba(252, 61, 33, 0.5),
+      0 0 40px rgba(11, 61, 145, 0.3);
+  }
+  to {
+    text-shadow:
+      0 0 30px rgba(252, 61, 33, 0.8),
+      0 0 60px rgba(11, 61, 145, 0.5);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-2px);
+  }
+  20% {
+    transform: translateX(2px);
+  }
+  30% {
+    transform: translateX(-2px);
+  }
+  40% {
+    transform: translateX(2px);
+  }
+  50% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  70% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  90% {
+    transform: translateX(-2px);
+  }
+}
+
+@keyframes glitch-effect {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(-5px, -5px);
+  }
+  60% {
+    transform: translate(5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes parallaxStars {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100px);
+  }
+}
+
+@keyframes parallaxNebula {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@keyframes floatLight {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.2);
+    opacity: 0.6;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .cta-btn:hover {
+    transform: none;
+    box-shadow:
+      0 4px 15px rgba(252, 61, 33, 0.3),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 4px 15px rgba(255, 255, 255, 0.1),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .cta-btn:active {
+    transform: scale(0.98);
+    transition: all 0.1s ease;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cosmic-content {
+    padding: 1rem;
+  }
+
+  .cosmic-title {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .cta-btn {
+    width: 100%;
+    max-width: 320px;
+    min-height: 48px; /* Larger touch target on mobile */
+    justify-content: center;
+    padding: 1.25rem 2rem;
+  }
+
+  .cosmic-features {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cosmic-title {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+
+  .cosmic-subtitle {
+    font-size: clamp(0.9rem, 4vw, 1.2rem);
+  }
+
+  .cta-btn {
+    padding: 1.25rem 1.75rem;
+    font-size: 1rem;
+    min-height: 50px; /* Even larger touch target on small screens */
+    max-width: 280px;
+  }
+
+  .feature-card {
+    padding: 1.5rem;
+  }
+
+  .nasa-badge {
+    padding: 0.75rem 1.5rem;
+  }
+
+  .nasa-text {
+    font-size: 1.5rem;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-title,
+  .cosmic-subtitle,
+  .cta-buttons,
+  .cosmic-features,
+  .cosmic-footer {
+    animation: none;
+  }
+
+  .glitch-text,
+  .pulse-text,
+  .btn-sparkle,
+  .parallax-stars,
+  .parallax-nebula,
+  .light-source {
+    animation: none;
+  }
+
+  .cta-btn:hover {
+    transform: none;
+  }
+
+  .feature-card:hover {
+    transform: none;
+  }
+}
+
+/* Loading state */
+.background-video:not([src]) {
+  background: linear-gradient(135deg, #0b3d91, #000000, #fc3d21);
+  animation: gradientShift 3s ease infinite;
+}

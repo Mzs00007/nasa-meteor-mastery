@@ -1,0 +1,86 @@
+/* Modern UI Styles for Meteor Madness */
+:root {
+  --primary-color: #1e3a8a;
+  --secondary-color: #3b82f6;
+  --accent-color: #f97316;
+  --background-dark: #0f172a;
+  --text-light: #f1f5f9;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-dark);
+  color: var(--text-light);
+}
+
+.text-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--accent-color),
+    var(--secondary-color)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.loading-progress {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-top: 1.5rem;
+}
+
+.loading-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--accent-color)
+  );
+  animation: loading 1.5s ease-in-out;
+}
+
+.control-panel {
+  background-color: rgba(15, 23, 42, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+.visualization-panel {
+  height: calc(100vh - 60px);
+  background-color: rgba(15, 23, 42, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.interception-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(15, 23, 42, 0.95);
+  padding: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+}
+
+.interception-options {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .control-panel,
+  .visualization-panel {
+    height: auto;
+    min-height: 50vh;
+  }
+}

@@ -1,0 +1,117 @@
+/* 
+ * Responsive Design for Meteor Mastery Application
+ * Optimized for cross-platform compatibility: mobile, tablet, laptop, desktop
+ * OS-specific adjustments for iOS, Android, and Windows
+ */
+
+/* Base responsive settings */
+* {
+  box-sizing: border-box;
+}
+
+/* Mobile Phones (Portrait) */
+@media only screen and (max-width: 600px) {
+  .visualization-panel {
+    height: 300px;
+    margin-bottom: 15px;
+  }
+
+  .control-panel {
+    padding: 10px;
+  }
+
+  .interception-controls button {
+    margin-bottom: 8px;
+    width: 100%;
+  }
+}
+
+/* Mobile Phones (Landscape) */
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+  .visualization-panel {
+    height: 250px;
+  }
+}
+
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+  .visualization-panel {
+    height: 400px;
+  }
+}
+
+/* Laptops/Desktops */
+@media only screen and (min-width: 993px) {
+  .visualization-panel {
+    height: 500px;
+  }
+}
+
+/* Large Screens */
+@media only screen and (min-width: 1200px) {
+  .visualization-panel {
+    height: 600px;
+  }
+}
+
+/* iOS-specific adjustments */
+@media screen and (-webkit-min-device-pixel-ratio: 2) {
+  button,
+  input,
+  select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+  }
+
+  .w3-button {
+    padding: 12px 16px;
+  }
+}
+
+/* Android-specific adjustments */
+@media screen and (max-width: 767px) and (-webkit-device-pixel-ratio: 1.5) {
+  input,
+  select {
+    font-size: 16px; /* Prevents zoom on focus */
+  }
+
+  .control-panel {
+    padding: 8px;
+  }
+}
+
+/* Windows-specific adjustments */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .w3-button {
+    transition: background-color 0.2s;
+  }
+
+  .visualization-panel {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .w3-button:hover {
+    background-color: inherit !important;
+  }
+
+  .w3-button:active {
+    opacity: 0.8;
+  }
+}
+
+/* Print media */
+@media print {
+  .control-panel,
+  .interception-controls {
+    display: none !important;
+  }
+
+  .visualization-panel {
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+  }
+}

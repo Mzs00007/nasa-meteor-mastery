@@ -1,0 +1,371 @@
+/* Advanced Simulation Page Styles - NASA Inspired Design */
+
+.advanced-simulation {
+  background: linear-gradient(
+    135deg,
+    #0a0a2a 0%,
+    #1a1a3a 25%,
+    #2a2a4a 50%,
+    #1a1a3a 75%,
+    #0a0a2a 100%
+  );
+  background-size: 400% 400%;
+  animation: cosmicFlow 15s ease infinite;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.advanced-simulation::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(0, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 0, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 60%,
+      rgba(0, 128, 255, 0.1) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
+
+@keyframes cosmicFlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Enhanced Header with Glassmorphism */
+.advanced-header {
+  background: rgba(0, 0, 0, 0.8) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Advanced Navigation Buttons */
+.nav-button-advanced {
+  background: linear-gradient(135deg, #0074d9 0%, #001f3f 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 4px 15px rgba(0, 116, 217, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button-advanced::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.nav-button-advanced:hover::before {
+  left: 100%;
+}
+
+.nav-button-advanced:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(0, 116, 217, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced Sidebar */
+.advanced-sidebar {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(15px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 5px 0 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Futuristic Sliders */
+.advanced-slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #0074d9, #00d4ff);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.advanced-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #0074d9);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.advanced-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 1);
+}
+
+.advanced-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #00d4ff, #0074d9);
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+/* Enhanced Input Fields */
+.advanced-input {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.advanced-input:focus {
+  border-color: #0074d9 !important;
+  box-shadow: 0 0 15px rgba(0, 116, 217, 0.4) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.advanced-input::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Material Selection Buttons */
+.material-button {
+  background: linear-gradient(135deg, #2c3e50, #34495e) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.material-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.material-button:hover::before {
+  opacity: 1;
+}
+
+.material-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Run Simulation Button */
+.run-simulation-btn {
+  background: linear-gradient(135deg, #00b894, #00d4ff) !important;
+  border: none;
+  box-shadow:
+    0 4px 15px rgba(0, 184, 148, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.run-simulation-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.run-simulation-btn:hover::before {
+  left: 100%;
+}
+
+.run-simulation-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(0, 184, 148, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* View Toggle Buttons */
+.view-toggle-btn {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.view-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+}
+
+/* Results Panel */
+.results-panel {
+  background: rgba(0, 0, 0, 0.6) !important;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+
+/* NASA Data Loading Animation */
+.nasa-loading {
+  position: relative;
+  color: #ffd700 !important;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.nasa-loading::after {
+  content: "🛰️";
+  animation: satelliteOrbit 2s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+@keyframes satelliteOrbit {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+}
+
+/* Hazardous Asteroid Warning */
+.hazard-warning {
+  color: #ff6b6b !important;
+  text-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
+  animation: pulseWarning 2s infinite;
+}
+
+@keyframes pulseWarning {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+  .advanced-simulation {
+    background-size: 200% 200%;
+  }
+
+  .advanced-sidebar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Floating Particles Background */
+.floating-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+  }
+}
+
+/* Glassmorphism Card Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Neon Glow Effects */
+.neon-glow {
+  text-shadow:
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 15px currentColor;
+  animation: neonPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonPulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.8;
+  }
+}

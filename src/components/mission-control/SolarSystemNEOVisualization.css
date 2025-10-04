@@ -1,0 +1,341 @@
+.neo-visualization-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a2a 0%, #1a1a4a 50%, #2a2a6a 100%);
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.neo-visualization-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 10, 42, 0.9);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.neo-visualization-header h2 {
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 300;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.neo-controls-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control-group label {
+  color: #ffffff;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.control-group input[type="checkbox"] {
+  margin: 0;
+  accent-color: #00ffff;
+}
+
+.control-group input[type="range"] {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #00ffff;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.control-group input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #00ffff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.neo-stats {
+  display: flex;
+  gap: 1.5rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.neo-stats span {
+  padding: 0.3rem 0.8rem;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+.neo-visualization-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.neo-visualization-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  text-align: center;
+  color: #ffffff;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #00ffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-overlay p {
+  margin: 0;
+  font-size: 1.1rem;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.neo-info-panel {
+  position: absolute;
+  right: 2rem;
+  top: 12rem;
+  width: 300px;
+  max-height: 60vh;
+  background: rgba(10, 10, 42, 0.9);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  z-index: 1000;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.neo-info-panel h3 {
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.neo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.neo-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.neo-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.3);
+  transform: translateX(-2px);
+}
+
+.neo-color-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 0.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.neo-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.neo-details strong {
+  color: #ffffff;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+}
+
+.neo-details span {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .neo-controls-panel {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  .neo-info-panel {
+    width: 250px;
+    right: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .neo-visualization-header {
+    padding: 1rem;
+  }
+
+  .neo-controls-panel {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .neo-stats {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .neo-info-panel {
+    position: relative;
+    width: auto;
+    right: auto;
+    top: auto;
+    margin: 1rem;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  .neo-visualization-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .neo-controls-panel {
+    gap: 0.6rem;
+  }
+
+  .control-group label {
+    font-size: 0.85rem;
+  }
+
+  .neo-stats {
+    font-size: 0.8rem;
+  }
+
+  .neo-info-panel {
+    margin: 0.5rem;
+    padding: 0.8rem;
+  }
+
+  .neo-info-panel h3 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Scrollbar styling */
+.neo-info-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.neo-info-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.neo-info-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.neo-info-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 255, 0.5);
+}
+
+/* Animation for NEO items */
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
+.neo-item.hazardous {
+  animation: pulse 2s ease-in-out infinite;
+  border-color: rgba(255, 51, 51, 0.5) !important;
+}
+
+/* Focus states for accessibility */
+.control-group input:focus {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}
+
+.neo-item:focus-within {
+  outline: 2px solid #00ffff;
+  outline-offset: 2px;
+}

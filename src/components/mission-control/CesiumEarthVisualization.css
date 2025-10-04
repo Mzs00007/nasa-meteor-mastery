@@ -1,0 +1,422 @@
+/* CesiumEarthVisualization.css */
+
+.cesium-earth-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.cesium-viewer {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* Loading State */
+.cesium-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  color: #ffffff;
+  z-index: 1000;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Interactive Controls */
+.zoom-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.zoom-btn {
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.zoom-btn:hover {
+  background: linear-gradient(135deg, #357abd 0%, #2968a3 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.zoom-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+}
+
+.layer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.checkbox-label:hover {
+  color: #4a90e2;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4a90e2;
+  cursor: pointer;
+}
+
+.fly-to-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20923a 100%);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.fly-to-btn:hover {
+  background: linear-gradient(135deg, #20923a 0%, #1e7e34 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.fly-to-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(40, 167, 69, 0.3);
+}
+
+.cesium-loading p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #b0b0b0;
+  margin: 0;
+}
+
+/* Error State */
+.cesium-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #2c1810 0%, #4a1a1a 50%, #3d1a1a 100%);
+  border-radius: 12px;
+}
+
+.error-content {
+  text-align: center;
+  color: #ffffff;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.error-content h3 {
+  color: #ff6b6b;
+  margin-bottom: 16px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.error-content p {
+  color: #b0b0b0;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.error-content button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error-content button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+/* Control Panel */
+.cesium-controls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  min-width: 250px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 1000;
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group label {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.control-group select:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.control-group select option {
+  background: #1a1a2e;
+  color: #ffffff;
+  padding: 8px;
+}
+
+/* Location Info */
+.location-info {
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.3);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.location-info h4 {
+  color: #4a90e2;
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.location-info p {
+  color: #ffffff;
+  margin: 4px 0;
+  font-size: 14px;
+  font-family: "Courier New", monospace;
+}
+
+/* Connection Status */
+.connection-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-indicator {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator.connected {
+  color: #4caf50;
+}
+
+.status-indicator.disconnected {
+  color: #f44336;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cesium-controls {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+    padding: 16px;
+  }
+
+  .cesium-earth-container {
+    min-height: 400px;
+    border-radius: 8px;
+  }
+
+  .error-content {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .error-content h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cesium-controls {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin: 10px;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .cesium-earth-container {
+    min-height: 300px;
+  }
+}
+
+/* Custom Cesium Widget Overrides */
+.cesium-viewer .cesium-widget-credits {
+  display: none !important;
+}
+
+.cesium-viewer .cesium-viewer-bottom {
+  display: none !important;
+}
+
+.cesium-viewer .cesium-viewer-toolbar {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 8px !important;
+  margin: 10px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.cesium-viewer .cesium-button {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.cesium-viewer .cesium-button:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-color: #4a90e2 !important;
+}
+
+.cesium-viewer .cesium-viewer-geocoderContainer {
+  background: rgba(0, 0, 0, 0.6) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Animation for smooth transitions */
+.cesium-earth-container * {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Accessibility */
+.cesium-controls:focus-within {
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+}
+
+.control-group select:focus,
+.error-content button:focus {
+  outline: 2px solid #4a90e2;
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cesium-controls {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #ffffff;
+  }
+
+  .control-group select {
+    border: 2px solid #ffffff;
+  }
+
+  .location-info {
+    border: 2px solid #4a90e2;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .loading-spinner {
+    animation: none;
+  }
+
+  .cesium-earth-container *,
+  .control-group select,
+  .error-content button {
+    transition: none;
+  }
+}

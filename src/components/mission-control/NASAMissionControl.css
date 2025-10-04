@@ -1,0 +1,828 @@
+/* NASA Mission Control Center Styles */
+.nasa-mission-control {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #0a0a2a 0%,
+    #1a1a3a 30%,
+    #2a2a4a 70%,
+    #1a1a3a 100%
+  );
+  color: #ffffff;
+  font-family: "Courier New", "Monaco", "Menlo", monospace;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.nasa-mission-control::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(0, 255, 136, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(0, 116, 217, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(255, 136, 0, 0.05) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Mission Header */
+.mission-header {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  border-bottom: 3px solid #00ff88;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nasa-logo {
+  background: linear-gradient(45deg, #0074d9, #001f3f);
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.mission-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.mission-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+}
+
+.mission-subtitle {
+  font-size: 1rem;
+  color: #8888ff;
+  margin: 0.3rem 0 0 0;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+}
+
+.mission-clock {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #00ff88;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: inset 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.time-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #8888ff;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.time-value {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00ff88;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mission-status,
+.alert-level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.status-display,
+.alert-display {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #333355;
+  border-radius: 8px;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  min-width: 120px;
+}
+
+.status-label,
+.alert-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #8888ff;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+
+.status-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-value.nominal {
+  color: #00ff88;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+}
+
+.status-value.caution {
+  color: #ffff00;
+  text-shadow: 0 0 8px rgba(255, 255, 0, 0.8);
+}
+
+.status-value.critical {
+  color: #ff0000;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.8);
+  animation: pulse 1s infinite;
+}
+
+.alert-indicator {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #000000;
+  text-shadow: none;
+  letter-spacing: 1px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Layout Controls */
+.layout-controls {
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid #333355;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.control-group label {
+  color: #8888ff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.layout-selector {
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #333355;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.layout-selector:hover {
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.layout-selector:focus {
+  outline: none;
+  border-color: #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.connection-status {
+  display: flex;
+  align-items: center;
+}
+
+.connection-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.connection-indicator.connected {
+  background: rgba(0, 255, 136, 0.2);
+  border: 1px solid #00ff88;
+  color: #00ff88;
+}
+
+.connection-indicator.disconnected {
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid #ff0000;
+  color: #ff0000;
+}
+
+.connection-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.connection-indicator.connected .connection-dot {
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.connection-indicator.disconnected .connection-dot {
+  background: #ff0000;
+  box-shadow: 0 0 10px #ff0000;
+}
+
+/* Mission Content */
+.mission-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 5;
+  min-height: calc(100vh - 300px);
+}
+
+/* Systems Grid */
+.systems-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Layout Variations */
+.mission-content.multi-monitor .systems-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.mission-content.single-screen .systems-grid {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.mission-content.compact .systems-grid {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.mission-content.overview .systems-grid {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr;
+}
+
+/* System Panels */
+.system-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  border: 2px solid #333355;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.system-panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 0%,
+    rgba(0, 255, 136, 0.05) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.system-panel:hover {
+  border-color: #00ff88;
+  box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+  transform: translateY(-2px);
+}
+
+.system-panel:hover::before {
+  opacity: 1;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.panel-title {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.panel-icon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+}
+
+.panel-title h3 {
+  margin: 0;
+  color: #00ff88;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.panel-status {
+  display: flex;
+  align-items: center;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.status-indicator.online {
+  color: #00ff88;
+}
+
+.status-indicator.offline {
+  color: #ff4444;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.online .status-dot {
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+}
+
+.status-indicator.offline .status-dot {
+  background: #ff4444;
+  box-shadow: 0 0 8px #ff4444;
+}
+
+.panel-content {
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.data-display,
+.data-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.data-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-item .label {
+  color: #8888ff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.data-item .value {
+  color: #00ff88;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.5);
+}
+
+.no-data {
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.panel-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.detail-btn {
+  background: linear-gradient(45deg, #0074d9, #001f3f);
+  color: #ffffff;
+  border: 1px solid #00ff88;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  width: 100%;
+}
+
+.detail-btn:hover {
+  background: linear-gradient(45deg, #0088ff, #003366);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Telemetry Panel Special Styling */
+.telemetry-panel {
+  grid-column: span 2;
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.telemetry-section {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #333355;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.telemetry-section h4 {
+  margin: 0 0 1rem 0;
+  color: #8888ff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #333355;
+  padding-bottom: 0.5rem;
+}
+
+/* Alerts Panel */
+.alerts-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  border: 2px solid #ff4444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 20px rgba(255, 68, 68, 0.3);
+}
+
+.alerts-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #ff4444;
+}
+
+.alerts-header h3 {
+  margin: 0;
+  color: #ff4444;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.alert-count {
+  background: #ff4444;
+  color: #000000;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.alert-item {
+  background: rgba(0, 0, 0, 0.6);
+  border-left: 4px solid;
+  border-radius: 6px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.alert-item.critical {
+  border-left-color: #ff0000;
+  background: rgba(255, 0, 0, 0.1);
+}
+
+.alert-item.warning {
+  border-left-color: #ff8800;
+  background: rgba(255, 136, 0, 0.1);
+}
+
+.alert-item.caution {
+  border-left-color: #ffff00;
+  background: rgba(255, 255, 0, 0.1);
+}
+
+.alert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.alert-system {
+  color: #8888ff;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.alert-level {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.alert-item.critical .alert-level {
+  background: #ff0000;
+  color: #ffffff;
+}
+
+.alert-item.warning .alert-level {
+  background: #ff8800;
+  color: #ffffff;
+}
+
+.alert-item.caution .alert-level {
+  background: #ffff00;
+  color: #000000;
+}
+
+.alert-time {
+  color: #666;
+  font-size: 0.8rem;
+  font-family: "Courier New", monospace;
+}
+
+.alert-message {
+  color: #ffffff;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Mission Footer */
+.mission-footer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.7) 50%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  border-top: 2px solid #333355;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  font-size: 0.9rem;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-item {
+  color: #8888ff;
+}
+
+.footer-item strong {
+  color: #00ff88;
+  margin-right: 0.5rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .mission-content.multi-monitor .systems-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .mission-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .header-left,
+  .header-center,
+  .header-right {
+    justify-content: center;
+  }
+
+  .systems-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .telemetry-panel {
+    grid-column: span 2;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mission-header {
+    padding: 1rem;
+  }
+
+  .mission-title {
+    font-size: 1.4rem;
+  }
+
+  .layout-controls {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .systems-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .telemetry-panel {
+    grid-column: span 1;
+  }
+
+  .mission-footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-center,
+  .footer-right {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .nasa-mission-control {
+    background: #000000;
+  }
+
+  .system-panel {
+    border-color: #ffffff;
+    background: #000000;
+  }
+
+  .data-item .label {
+    color: #ffffff;
+  }
+
+  .data-item .value {
+    color: #ffffff;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .system-panel,
+  .detail-btn,
+  .status-dot,
+  .connection-dot {
+    transition: none;
+    animation: none;
+  }
+
+  .system-panel:hover {
+    transform: none;
+  }
+
+  .detail-btn:hover {
+    transform: none;
+  }
+}

@@ -1,0 +1,100 @@
+# Dependabot Configuration for Meteor Madness
+# Automated dependency updates with security monitoring
+
+version: 2
+updates:
+  # NPM (JavaScript/React) dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "ZAID-SIDDIQUI"
+    assignees:
+      - "ZAID-SIDDIQUI"
+    labels:
+      - "dependencies"
+      - "security"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    ignore:
+      # react-scripts requires manual migration due to breaking changes
+      - dependency-name: "react-scripts"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      
+      # React 19 has breaking changes, require manual review
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+
+  # Python backend dependencies
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "tuesday"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 5
+    reviewers:
+      - "ZAID-SIDDIQUI"
+    assignees:
+      - "ZAID-SIDDIQUI"
+    labels:
+      - "dependencies"
+      - "python"
+      - "security"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+
+  # Docker dependencies
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+      day: "first"
+      time: "09:00"
+      timezone: "America/New_York"
+    open-pull-requests-limit: 3
+    reviewers:
+      - "ZAID-SIDDIQUI"
+    assignees:
+      - "ZAID-SIDDIQUI"
+    labels:
+      - "dependencies"
+      - "docker"
+      - "security"
+
+# Security update preferences
+allow:
+  - dependency-type: "direct"
+  - dependency-type: "indirect"
+
+# Vulnerability alerts configuration
+vulnerability-alerts:
+  enabled: true
+  assignees:
+    - "ZAID-SIDDIQUI"
+  labels:
+    - "security"
+    - "critical"
+
+# Rate limiting configuration
+rebase-strategy: "auto"
+versioning-strategy: "increase"
+
+# Notification preferences
+notifications:
+  - type: "pull_request"
+    ignore:
+      - dependency-name: "react-scripts"
+        update-types: ["version-update:semver-major"]

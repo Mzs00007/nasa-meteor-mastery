@@ -1,0 +1,46 @@
+{
+  "app": {
+    "title": "Meteor Madness",
+    "subtitle": "NASA/USGS Asteroid Impact Simulator"
+  },
+  "navigation": {
+    "home": "Home",
+    "simulation": "Simulation",
+    "impact": "Impact",
+    "history": "History"
+  },
+  "landing": {
+    "start": "Start Simulation",
+    "about": "About",
+    "team": "Team"
+  },
+  "simulation": {
+    "title": "Simulation Setup",
+    "run": "Run Simulation",
+    "parameters": {
+      "diameter": "Diameter",
+      "velocity": "Velocity",
+      "angle": "Angle",
+      "density": "Density",
+      "composition": "Composition"
+    },
+    "presets": {
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "dinosaur": "Dinosaur Killer"
+    }
+  },
+  "impact": {
+    "title": "Impact Results",
+    "energy": "Impact Energy",
+    "crater": "Crater Size",
+    "blast": "Blast Radius",
+    "thermal": "Thermal Radius"
+  },
+  "map": {
+    "standard": "Standard",
+    "satellite": "Satellite",
+    "terrain": "Terrain"
+  }
+}
