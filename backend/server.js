@@ -3,6 +3,9 @@ const cors = require('cors');
 const path = require('path');
 const meteorRoutes = require('./routes/meteorRoutes');
 const simulationRoutes = require('./routes/simulationRoutes');
+const neoRoutes = require('./routes/neoRoutes');
+const donkiRoutes = require('./routes/donkiRoutes');
+const epicRoutes = require('./routes/epicRoutes');
 
 // Initialize express app
 const app = express();
@@ -16,6 +19,9 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api/meteors', meteorRoutes);
 app.use('/api/simulations', simulationRoutes);
+app.use('/api/neo', neoRoutes);
+app.use('/api/donki', donkiRoutes);
+app.use('/api/epic', epicRoutes);
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

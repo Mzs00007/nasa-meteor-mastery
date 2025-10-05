@@ -134,39 +134,39 @@ const LandingPage = () => {
           <div className='cta-buttons'>
             <Link
               to='/simulation'
-              className='cta-btn primary cosmic-glow'
+              className='cta-btn primary cosmic-glow enhanced-btn enhanced-focus enhanced-glow'
               title='Launch advanced asteroid impact simulation with real NASA data and physics modeling'
             >
-              <span className='btn-icon'>🚀</span>
+              <span className='btn-icon enhanced-icon'>🚀</span>
               Start Simulation
               <div className='btn-sparkle' />
             </Link>
 
             <button
-              className='cta-btn secondary cosmic-glow'
+              className='cta-btn secondary cosmic-glow enhanced-btn enhanced-focus enhanced-pulse'
               title='Discover more about asteroid science, planetary defense, and simulation capabilities'
             >
-              <span className='btn-icon'>🌌</span>
+              <span className='btn-icon enhanced-icon'>🌌</span>
               Learn More
               <div className='btn-sparkle' />
             </button>
           </div>
 
           <div className='cosmic-features'>
-            <div className='feature-card glow-card'>
-              <div className='feature-icon'>☄️</div>
+            <div className='feature-card glow-card enhanced-card enhanced-focus'>
+              <div className='feature-icon enhanced-icon'>☄️</div>
               <h3>Real-time Impact Simulation</h3>
               <p>Advanced physics-based asteroid impact modeling</p>
             </div>
 
-            <div className='feature-card glow-card'>
-              <div className='feature-icon'>🌍</div>
+            <div className='feature-card glow-card enhanced-card enhanced-focus'>
+              <div className='feature-icon enhanced-icon'>🌍</div>
               <h3>Global Impact Analysis</h3>
               <p>Comprehensive Earth impact visualization</p>
             </div>
 
-            <div className='feature-card glow-card'>
-              <div className='feature-icon'>📊</div>
+            <div className='feature-card glow-card enhanced-card enhanced-focus'>
+              <div className='feature-icon enhanced-icon'>📊</div>
               <h3>Scientific Data</h3>
               <p>NASA-approved scientific models and data</p>
             </div>

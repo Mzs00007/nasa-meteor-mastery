@@ -58,7 +58,7 @@ const AccessibleButton = ({
       {...props}
     >
       {loading && (
-        <span className='btn-spinner' aria-hidden='true'>
+        <span className='btn-spinner' aria-hidden={true}>
           <span className='spinner-cosmic' />
         </span>
       )}

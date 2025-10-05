@@ -27,14 +27,14 @@ export const NASA_API_CONFIG = {
 
     // Near Earth Object Web Service
     NEOWS: {
-      BASE_URL: 'https://api.nasa.gov/neo/rest/v1',
+      BASE_URL: process.env.NODE_ENV === 'development' ? 'http://localhost:5000/api/neo' : 'https://api.nasa.gov/neo/rest/v1',
       DESCRIPTION: 'Real-time asteroid orbits, impact risk, trajectory',
-      REQUIRES_API_KEY: true,
+      REQUIRES_API_KEY: process.env.NODE_ENV === 'development' ? false : true,
       CACHE_TTL: 15 * 60 * 1000, // 15 minutes
       ENDPOINTS: {
         FEED: '/feed',
-        BROWSE: '/neo/browse',
-        LOOKUP: '/neo/{asteroid_id}',
+        BROWSE: '/browse',
+        LOOKUP: '/{asteroid_id}',
         STATS: '/stats',
       },
     },

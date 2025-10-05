@@ -4,7 +4,7 @@ const CONFIG = {
   // NASA API Configuration
   NASA: {
     NEO_API_KEY: process.env.NASA_API_KEY || 'DEMO_KEY',
-    NEO_BASE_URL: 'https://api.nasa.gov/neo/rest/v1',
+    NEO_BASE_URL: process.env.REACT_APP_NEO_BASE_URL || 'http://localhost:5000/api/neo',
     DONKI_BASE_URL: 'https://api.nasa.gov/DONKI',
     EONET_BASE_URL: 'https://eonet.gsfc.nasa.gov/api/v2.1',
   },
@@ -101,7 +101,12 @@ const getEnv = () => ({
     ('ontouchstart' in window || navigator.maxTouchPoints > 0),
 });
 
+// API URL Configuration
+export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+
 // Export configuration
+export default CONFIG;
+
 if (typeof window !== 'undefined') {
   window.MeteorMadnessConfig = CONFIG;
   window.MeteorMadnessEnv = getEnv();

@@ -284,11 +284,12 @@ class NASAService {
 
   async executeRequest(requestFn, cacheKey, maxRetries = 3) {
     let lastError;
+    console.log(`[nasaService] executeRequest called with cacheKey: ${cacheKey}, maxRetries: ${maxRetries}`);
 
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         console.log(
-          `Making API request for ${cacheKey} (attempt ${attempt + 1}/${maxRetries + 1})`
+          `[nasaService] Making API request for ${cacheKey} (attempt ${attempt + 1}/${maxRetries + 1})`
         );
         this.lastRequestTime = Date.now();
         this.hourlyRequestCount++;
@@ -333,7 +334,8 @@ class NASAService {
         }
 
         // If we've exhausted retries, throw the last error
-        console.error(`Request failed after ${maxRetries + 1} attempts`);
+        console.error(`[nasaService] Request failed after ${maxRetries + 1} attempts for cacheKey: ${cacheKey}`);
+        console.error(`[nasaService] Final error:`, error);
         throw error;
       }
     }
@@ -615,20 +617,27 @@ class NASAService {
   }
 
   handleErrorWithFallback(error, context, fallbackData) {
-    console.error(`${context} Error:`, error);
-
+    // Handle rate limit errors more gracefully
     if (error.response?.status === 429) {
-      console.warn(`${context}: Rate limit exceeded, using fallback data`);
+      // Only log rate limit errors at debug level to reduce console noise
+      console.debug(`${context}: Rate limit exceeded, using cached/demo data`);
       return fallbackData;
     }
 
+    // Handle demo key limitations gracefully
     if (this.isDemoKey && error.response?.status >= 400) {
-      console.warn(`${context}: API error with demo key, using fallback data`);
+      console.debug(`${context}: Demo API key limitation, using fallback data`);
       return fallbackData;
     }
 
-    // For other errors, still throw but log the fallback option
-    console.warn(`${context}: Using fallback data due to error`);
+    // For network errors or other issues, log but don't spam console
+    if (error.code === 'ENOTFOUND' || error.code === 'ECONNREFUSED') {
+      console.debug(`${context}: Network connectivity issue, using fallback data`);
+      return fallbackData;
+    }
+
+    // For other errors, log once but use fallback data
+    console.warn(`${context}: API temporarily unavailable, using fallback data`);
     return fallbackData;
   }
 

@@ -342,8 +342,15 @@ const EarthImageViewer = () => {
     setError(null);
     
     try {
-      const data = await comprehensiveAPIService.getEPICImages(imageType, selectedDate);
-      setImages(data || []);
+      // Use backend EPIC endpoint instead of direct NASA API
+      const response = await fetch(`http://localhost:5001/api/epic/images?date=${selectedDate}`);
+      const result = await response.json();
+      
+      if (result.success) {
+        setImages(result.data || []);
+      } else {
+        throw new Error(result.message || 'Failed to fetch EPIC images');
+      }
     } catch (err) {
       setError(`Failed to load EPIC images: ${err.message}`);
       console.error('EPIC images fetch error:', err);
@@ -369,8 +376,19 @@ const EarthImageViewer = () => {
   };
 
   const getImageUrl = (image) => {
-    const date = image.date.split(' ')[0].replace(/-/g, '/');
-    return `https://epic.gsfc.nasa.gov/archive/${imageType}/${date.split('/')[0]}/${date.split('/')[1]}/${date.split('/')[2]}/png/${image.image}.png`;
+    // If the backend provides an imageUrl, use it
+    if (image.imageUrl) {
+      return image.imageUrl;
+    }
+    
+    // Fallback to constructing the URL from image data
+    if (image.image && image.date) {
+      const date = image.date.split(' ')[0].replace(/-/g, '/');
+      return `https://epic.gsfc.nasa.gov/archive/${imageType}/${date.split('/')[0]}/${date.split('/')[1]}/${date.split('/')[2]}/png/${image.image}.png`;
+    }
+    
+    // Ultimate fallback to a placeholder Earth image
+    return 'https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=400&h=400&fit=crop&crop=center';
   };
 
   const openFullscreen = (imageUrl) => {

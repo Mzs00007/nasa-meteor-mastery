@@ -12,6 +12,7 @@ class LiveAsteroidService {
     this.updateInterval = null;
     this.subscribers = new Set();
     this.isUpdating = false;
+    this.nasaService = nasaService; // Add reference to nasaService
 
     // Real-time data storage
     this.liveAsteroids = [];
@@ -19,41 +20,66 @@ class LiveAsteroidService {
     this.potentiallyHazardous = [];
 
     // Auto-update configuration
-    this.autoUpdateEnabled = true;
+    this.autoUpdateEnabled = false; // Disabled to prevent automatic API calls
     this.updateFrequency = this.getOptimalUpdateFrequency();
     this.lastUpdateAttempt = 0;
     this.consecutiveErrors = 0;
     this.maxConsecutiveErrors = 3;
 
-    this.startAutoUpdate();
+    // Don't start auto-update on initialization
+    // this.startAutoUpdate();
   }
 
   /**
    * Subscribe to live asteroid data updates
    */
   subscribe(callback) {
+    if (typeof callback !== 'function') {
+      console.error('Subscribe callback must be a function');
+      return () => {}; // Return empty unsubscribe function
+    }
+
+    if (!this.subscribers) {
+      this.subscribers = new Set();
+    }
+
     this.subscribers.add(callback);
 
     // Immediately send current data if available
     if (this.liveAsteroids.length > 0) {
-      callback({
-        asteroids: this.liveAsteroids,
-        closeApproaches: this.closeApproaches,
-        potentiallyHazardous: this.potentiallyHazardous,
-        lastUpdate: this.lastUpdate,
-      });
+      try {
+        callback({
+          asteroids: this.liveAsteroids,
+          closeApproaches: this.closeApproaches,
+          potentiallyHazardous: this.potentiallyHazardous,
+          lastUpdate: this.lastUpdate,
+        });
+      } catch (error) {
+        console.error('Error in immediate callback:', error);
+      }
     }
 
-    return () => this.subscribers.delete(callback);
+    return () => {
+      if (this.subscribers) {
+        this.subscribers.delete(callback);
+      }
+    };
   }
 
   /**
    * Notify all subscribers of data updates
    */
   notifySubscribers(data) {
+    if (!this.subscribers || typeof this.subscribers.forEach !== 'function') {
+      console.warn('Subscribers not properly initialized');
+      return;
+    }
+    
     this.subscribers.forEach(callback => {
       try {
-        callback(data);
+        if (typeof callback === 'function') {
+          callback(data);
+        }
       } catch (error) {
         console.error('Error notifying subscriber:', error);
       }
@@ -89,7 +115,7 @@ class LiveAsteroidService {
       );
 
       if (timeSinceLastAttempt < backoffTime) {
-        console.log(
+        console.debug(
           `Backing off due to ${this.consecutiveErrors} consecutive errors. Next attempt in ${Math.round((backoffTime - timeSinceLastAttempt) / 1000)}s`
         );
         return false;
@@ -99,7 +125,7 @@ class LiveAsteroidService {
     // Check NASA service rate limit status
     const rateLimitStatus = nasaService.getRateLimitStatus();
     if (!rateLimitStatus.canMakeRequest) {
-      console.log('Rate limit reached, skipping update');
+      console.debug('Rate limit reached, skipping update');
       return false;
     }
 
@@ -210,10 +236,14 @@ class LiveAsteroidService {
 
       return processedData;
     } catch (error) {
-      console.error('Error fetching live asteroid data:', error);
-
-      // Increment consecutive error counter
-      this.consecutiveErrors++;
+      // Handle rate limit errors more gracefully
+      if (error.response?.status === 429) {
+        console.debug('NASA API rate limit reached, using cached/demo data');
+        this.consecutiveErrors++;
+      } else {
+        console.error('Error fetching live asteroid data:', error);
+        this.consecutiveErrors++;
+      }
 
       // If we've hit max consecutive errors, temporarily disable auto-update
       if (this.consecutiveErrors >= this.maxConsecutiveErrors) {

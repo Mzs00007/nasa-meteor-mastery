@@ -23,7 +23,7 @@ const Tooltip = ({
       <span
         className={`tooltip-text tooltip-${position}`}
         role='tooltip'
-        aria-hidden='true'
+        aria-hidden={true}
       >
         {text}
       </span>

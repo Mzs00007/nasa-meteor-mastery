@@ -284,26 +284,259 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  .simulation-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .simulation-controls {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 25px;
+  }
+  
+  .control-section {
+    padding: 20px;
+  }
+}
+
+/* Tablet Landscape (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .simulation-controls {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .simulation-viewport {
+    height: 65vh;
+  }
+  
+  .parameter-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .button-group {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .btn {
+    min-width: 120px;
+    flex: 1;
+  }
+}
+
+/* Tablet Portrait & Mobile Landscape (481px - 767px) */
+@media (min-width: 481px) and (max-width: 767px) {
   .simulation-controls {
     grid-template-columns: 1fr;
     padding: 15px;
+    gap: 15px;
+  }
+  
+  .simulation-viewport {
+    height: 55vh;
+    margin-bottom: 10px;
+  }
+  
+  .control-section {
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .parameter-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
   
   .button-group {
     flex-direction: column;
+    gap: 8px;
   }
   
   .btn {
     width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
   }
   
-  .parameter-grid {
+  .input-group label {
+    font-size: 13px;
+  }
+  
+  .input-group input,
+  .input-group select {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .checkbox-group label {
+    font-size: 13px;
+  }
+  
+  .info-display {
+    gap: 8px;
+  }
+  
+  .info-item {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile Portrait (320px - 480px) */
+@media (max-width: 480px) {
+  .simulation-container {
+    padding: 10px;
+  }
+  
+  .simulation-controls {
+    grid-template-columns: 1fr;
+    padding: 10px;
     gap: 10px;
   }
   
   .simulation-viewport {
-    height: 60vh;
+    height: 50vh;
+    margin-bottom: 8px;
+  }
+  
+  .control-section {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .control-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .parameter-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .button-group {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 13px;
+    min-height: 44px; /* Touch-friendly minimum */
+  }
+  
+  .input-group {
+    margin-bottom: 8px;
+  }
+  
+  .input-group label {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+  
+  .input-group input,
+  .input-group select {
+    padding: 8px;
+    font-size: 13px;
+    min-height: 44px; /* Touch-friendly minimum */
+  }
+  
+  .checkbox-group {
+    gap: 8px;
+  }
+  
+  .checkbox-group label {
+    font-size: 12px;
+    padding: 8px 0;
+    min-height: 44px; /* Touch-friendly minimum */
+    align-items: center;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+  }
+  
+  .info-display {
+    gap: 6px;
+  }
+  
+  .info-item {
+    padding: 6px 8px;
+    font-size: 11px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  
+  .info-item span:first-child {
+    font-size: 10px;
+    opacity: 0.8;
+  }
+  
+  .info-item span:last-child {
+    font-size: 12px;
+  }
+  
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .result-item {
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .result-item label {
+    font-size: 11px;
+  }
+  
+  .result-item span {
+    font-size: 13px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .btn {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
+  
+  .input-group input,
+  .input-group select {
+    min-height: 44px;
+    padding: 10px;
+  }
+  
+  .checkbox-group label {
+    min-height: 44px;
+    padding: 8px 0;
+  }
+  
+  .checkbox-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* High DPI Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .simulation-viewport {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
   }
 }
 

@@ -1,0 +1,116 @@
+/* Solar System Page Styles */
+.solar-system-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.solar-system-page-header {
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 10;
+  position: relative;
+}
+
+.solar-system-page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  background: linear-gradient(45deg, #64b5f6, #42a5f5, #2196f3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+}
+
+.solar-system-page-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.solar-system-page-content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the solar system panel takes full space */
+.solar-system-page-content .solar-system-panel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .solar-system-page-header {
+    padding: 15px 20px;
+  }
+  
+  .solar-system-page-title {
+    font-size: 2rem;
+  }
+  
+  .solar-system-page-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .solar-system-page-header {
+    padding: 10px 15px;
+  }
+  
+  .solar-system-page-title {
+    font-size: 1.8rem;
+  }
+  
+  .solar-system-page-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Ensure no interference with other page styles */
+.solar-system-page * {
+  box-sizing: border-box;
+}
+
+/* Add subtle animation to the background */
+.solar-system-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+  animation: backgroundShift 20s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}

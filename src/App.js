@@ -19,10 +19,11 @@ import NASAMissionControl from './components/mission-control/NASAMissionControl'
 import OpenMCTMissionControl from './components/mission-control/OpenMCTMissionControl';
 import OrbitalMechanicsVisualization from './components/mission-control/OrbitalMechanicsVisualization';
 import SatelliteConstellationTracker from './components/mission-control/SatelliteConstellationTracker';
-import SolarSystemNEOVisualization from './components/mission-control/SolarSystemNEOVisualization';
+// import SolarSystemNEOVisualization from './components/mission-control/SolarSystemNEOVisualization'; // Temporarily disabled
 import UniverseVisualization from './components/mission-control/UniverseVisualization';
 import NASAIntegrationPanel from './components/NASAIntegrationPanel';
 import ComprehensiveAPIDashboard from './components/Dashboard/ComprehensiveAPIDashboard';
+import SolarSystemPage from './components/SolarSystemPage';
 import Navbar from './components/Navbar';
 import Orbit3DView from './components/Orbit3DView';
 import RealTimeStatusIndicator from './components/RealTimeStatusIndicator';
@@ -31,6 +32,14 @@ import SimulationSetup from './components/SimulationSetup';
 import SpaceWeatherMonitor from './components/mission-control/SpaceWeatherMonitor';
 import TutorialGuide from './components/TutorialGuide';
 import { SimulationProvider } from './context/SimulationContext';
+// import { StoryProvider } from './components/StorytellingFramework';
+// import { InteractiveOnboarding } from './components/InteractiveOnboarding';
+// import { CharacterGuide } from './components/CharacterGuide';
+// import { 
+//   InteractiveElementHighlighter, 
+//   FeatureDiscoveryPanel,
+//   ScientificContextProvider 
+// } from './components/UXImprovements';
 import appController from './controllers/AppController';
 import globalButtonUtils from './utils/GlobalButtonUtils';
 import { getUIUtilities } from './utils/UIUtilities';
@@ -137,8 +146,10 @@ function App() {
   return (
     <AppControllerProvider>
       <SimulationProvider>
-        <BrowserRouter>
-          <div className={`app ${activeTheme}`}>
+        {/* <StoryProvider>
+          <ScientificContextProvider> */}
+            <BrowserRouter>
+              <div className={`app ${activeTheme}`}>
             {isLoading ? (
               <div className='loading-screen'>
                 <div className='loading-content'>
@@ -199,7 +210,7 @@ function App() {
                     />
                     <Route
                       path='/neo-visualization'
-                      element={<SolarSystemNEOVisualization />}
+                      element={<div style={{padding: '20px', textAlign: 'center', fontSize: '18px', color: '#666'}}>NEO Visualization temporarily disabled for maintenance</div>}
                     />
                     <Route
                       path='/orbital-mechanics'
@@ -229,6 +240,10 @@ function App() {
                       path='/meteorological-simulation'
                       element={<MeteorologicalSimulation />}
                     />
+                    <Route
+                      path='/solar-system'
+                      element={<SolarSystemPage />}
+                    />
                     <Route path='*' element={<Navigate to='/' replace />} />
                   </Routes>
                 </div>
@@ -236,12 +251,24 @@ function App() {
                 {/* Real-time status indicator for WebSocket connection */}
                 <RealTimeStatusIndicator position='top-right' showDetails />
 
+                {/* Interactive Onboarding System */}
+                {/* <InteractiveOnboarding /> */}
+
+                {/* Character Guide */}
+                {/* <CharacterGuide /> */}
+
+                {/* UX Improvement Components */}
+                {/* <InteractiveElementHighlighter />
+                <FeatureDiscoveryPanel /> */}
+
                 {/* Notification System */}
                 <NotificationContainer />
               </>
             )}
-          </div>
-        </BrowserRouter>
+              </div>
+            </BrowserRouter>
+          {/* </ScientificContextProvider>
+        </StoryProvider> */}
       </SimulationProvider>
     </AppControllerProvider>
   );

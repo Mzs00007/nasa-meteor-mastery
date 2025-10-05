@@ -11,105 +11,84 @@ import './UniverseVisualization.css';
 const UniverseVisualization = () => {
   const canvasRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [viewMode, setViewMode] = useState('solarSystem');
+  const [viewMode, setViewMode] = useState('galaxy'); // Solar System view temporarily disabled
   const [animationSpeed, setAnimationSpeed] = useState(1);
   const [showOrbits, setShowOrbits] = useState(true);
   const [showStars, setShowStars] = useState(true);
   const [showGrid, setShowGrid] = useState(false);
   const { simulationData } = React.useContext(SimulationContext);
 
-  // Celestial body data (scaled for visualization)
-  const celestialBodies = [
+  // Universe-scale objects (galaxies, nebulae, star clusters)
+  const universeObjects = [
     {
-      name: 'Sun',
-      radius: 20,
+      name: 'Milky Way Galaxy',
+      type: 'galaxy',
+      radius: 50,
       distance: 0,
-      color: 0xffd700,
-      emissive: 0xffd700,
-      rotationSpeed: 0.004,
-      orbitSpeed: 0,
-      texture: null,
+      color: 0xffffff,
+      emissive: 0x4444ff,
+      rotationSpeed: 0.001,
+      particleCount: 10000,
     },
     {
-      name: 'Mercury',
-      radius: 0.4,
-      distance: 28,
-      color: 0x8c8c8c,
-      emissive: 0x000000,
-      rotationSpeed: 0.004,
-      orbitSpeed: 0.04,
-      texture: null,
+      name: 'Andromeda Galaxy',
+      type: 'galaxy',
+      radius: 60,
+      distance: 800,
+      color: 0xffdddd,
+      emissive: 0xff4444,
+      rotationSpeed: 0.0008,
+      particleCount: 12000,
     },
     {
-      name: 'Venus',
-      radius: 0.9,
-      distance: 44,
-      color: 0xe6e6e6,
-      emissive: 0x000000,
+      name: 'Orion Nebula',
+      type: 'nebula',
+      radius: 25,
+      distance: 200,
+      color: 0xff6644,
+      emissive: 0xff3322,
       rotationSpeed: 0.002,
-      orbitSpeed: 0.015,
-      texture: null,
+      particleCount: 5000,
     },
     {
-      name: 'Earth',
-      radius: 1,
-      distance: 62,
-      color: 0x2233ff,
-      emissive: 0x000000,
-      rotationSpeed: 0.01,
-      orbitSpeed: 0.01,
-      texture: null,
+      name: 'Eagle Nebula',
+      type: 'nebula',
+      radius: 30,
+      distance: 350,
+      color: 0x44ff66,
+      emissive: 0x22ff44,
+      rotationSpeed: 0.0015,
+      particleCount: 6000,
     },
     {
-      name: 'Mars',
-      radius: 0.5,
-      distance: 78,
-      color: 0xff5733,
-      emissive: 0x000000,
-      rotationSpeed: 0.009,
-      orbitSpeed: 0.008,
-      texture: null,
+      name: 'Crab Nebula',
+      type: 'nebula',
+      radius: 20,
+      distance: 450,
+      color: 0x6644ff,
+      emissive: 0x4422ff,
+      rotationSpeed: 0.003,
+      particleCount: 4000,
     },
     {
-      name: 'Jupiter',
-      radius: 11,
-      distance: 260,
-      color: 0xd8ca9d,
-      emissive: 0x000000,
-      rotationSpeed: 0.025,
-      orbitSpeed: 0.004,
-      texture: null,
+      name: 'Pleiades Cluster',
+      type: 'star_cluster',
+      radius: 15,
+      distance: 150,
+      color: 0x44ddff,
+      emissive: 0x2299ff,
+      rotationSpeed: 0.004,
+      particleCount: 3000,
     },
     {
-      name: 'Saturn',
-      radius: 9,
-      distance: 480,
-      color: 0xfad5a5,
-      emissive: 0x000000,
-      rotationSpeed: 0.023,
-      orbitSpeed: 0.003,
-      texture: null,
-      hasRings: true,
-    },
-    {
-      name: 'Uranus',
-      radius: 4,
-      distance: 960,
-      color: 0x4fd0e7,
-      emissive: 0x000000,
-      rotationSpeed: 0.012,
-      orbitSpeed: 0.002,
-      texture: null,
-    },
-    {
-      name: 'Neptune',
-      radius: 3.9,
-      distance: 1500,
-      color: 0x3457d5,
-      emissive: 0x000000,
-      rotationSpeed: 0.011,
-      orbitSpeed: 0.001,
-      texture: null,
+      name: 'Globular Cluster M13',
+      type: 'star_cluster',
+      radius: 18,
+      distance: 600,
+      color: 0xffdd44,
+      emissive: 0xff9922,
+      rotationSpeed: 0.0025,
+      particleCount: 8000,
     },
   ];
 
@@ -196,61 +175,124 @@ const UniverseVisualization = () => {
       return gridHelper;
     };
 
-    // Create celestial bodies
-    const createCelestialBody = bodyData => {
-      const geometry = new THREE.SphereGeometry(bodyData.radius, 64, 64);
-      const material = new THREE.MeshStandardMaterial({
-        color: bodyData.color,
-        emissive: bodyData.emissive,
-        emissiveIntensity: bodyData.name === 'Sun' ? 1 : 0,
-        roughness: 0.8,
-        metalness: 0.2,
-      });
+    // Create universe objects (galaxies, nebulae, star clusters)
+    const createUniverseObject = objectData => {
+      const group = new THREE.Group();
+      group.userData = { ...objectData };
 
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.castShadow = bodyData.name !== 'Sun';
-      mesh.receiveShadow = bodyData.name !== 'Sun';
-      mesh.userData = { ...bodyData };
+      if (objectData.type === 'galaxy') {
+        // Create galaxy with particle system
+        const particleGeometry = new THREE.BufferGeometry();
+        const particleCount = objectData.particleCount;
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
 
-      // Create orbit path
-      if (bodyData.distance > 0) {
-        const orbitGeometry = new THREE.RingGeometry(
-          bodyData.distance - 0.1,
-          bodyData.distance + 0.1,
-          128
-        );
-        const orbitMaterial = new THREE.MeshBasicMaterial({
-          color: 0xffffff,
-          side: THREE.DoubleSide,
+        for (let i = 0; i < particleCount; i++) {
+          const radius = Math.random() * objectData.radius;
+          const angle = Math.random() * Math.PI * 2;
+          const height = (Math.random() - 0.5) * objectData.radius * 0.1;
+
+          positions[i * 3] = Math.cos(angle) * radius;
+          positions[i * 3 + 1] = height;
+          positions[i * 3 + 2] = Math.sin(angle) * radius;
+
+          const color = new THREE.Color(objectData.color);
+          colors[i * 3] = color.r;
+          colors[i * 3 + 1] = color.g;
+          colors[i * 3 + 2] = color.b;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+          size: 0.5,
+          vertexColors: true,
+          transparent: true,
+          opacity: 0.8,
+        });
+
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        group.add(particles);
+
+      } else if (objectData.type === 'nebula') {
+        // Create nebula with glowing sphere and particles
+        const nebulaGeometry = new THREE.SphereGeometry(objectData.radius, 32, 32);
+        const nebulaMaterial = new THREE.MeshBasicMaterial({
+          color: objectData.color,
           transparent: true,
           opacity: 0.3,
         });
-        const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
-        orbit.rotation.x = Math.PI / 2;
-        scene.add(orbit);
-        mesh.userData.orbit = orbit;
-      }
+        const nebulaSphere = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+        group.add(nebulaSphere);
 
-      // Create rings for Saturn
-      if (bodyData.hasRings) {
-        const ringGeometry = new THREE.RingGeometry(
-          bodyData.radius * 1.2,
-          bodyData.radius * 2.5,
-          64
-        );
-        const ringMaterial = new THREE.MeshBasicMaterial({
-          color: 0xfad5a5,
-          side: THREE.DoubleSide,
+        // Add particle effects
+        const particleGeometry = new THREE.BufferGeometry();
+        const particleCount = objectData.particleCount;
+        const positions = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount; i++) {
+          const radius = Math.random() * objectData.radius;
+          const theta = Math.random() * Math.PI * 2;
+          const phi = Math.random() * Math.PI;
+
+          positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+          positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+          positions[i * 3 + 2] = radius * Math.cos(phi);
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particleMaterial = new THREE.PointsMaterial({
+          color: objectData.emissive,
+          size: 0.3,
           transparent: true,
-          opacity: 0.7,
+          opacity: 0.6,
         });
-        const rings = new THREE.Mesh(ringGeometry, ringMaterial);
-        rings.rotation.x = Math.PI / 2;
-        mesh.add(rings);
+
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        group.add(particles);
+
+      } else if (objectData.type === 'star_cluster') {
+        // Create star cluster with bright points
+        const particleGeometry = new THREE.BufferGeometry();
+        const particleCount = objectData.particleCount;
+        const positions = new Float32Array(particleCount * 3);
+        const sizes = new Float32Array(particleCount);
+
+        for (let i = 0; i < particleCount; i++) {
+          const radius = Math.random() * objectData.radius;
+          const theta = Math.random() * Math.PI * 2;
+          const phi = Math.random() * Math.PI;
+
+          positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+          positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+          positions[i * 3 + 2] = radius * Math.cos(phi);
+
+          sizes[i] = Math.random() * 2 + 0.5;
+        }
+
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particleGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+        const particleMaterial = new THREE.PointsMaterial({
+          color: objectData.color,
+          size: 1,
+          transparent: true,
+          opacity: 0.9,
+        });
+
+        const particles = new THREE.Points(particleGeometry, particleMaterial);
+        group.add(particles);
       }
 
-      scene.add(mesh);
-      return mesh;
+      // Position the object
+      if (objectData.distance > 0) {
+        group.position.x = objectData.distance;
+      }
+
+      scene.add(group);
+      return group;
     };
 
     // Initialize scene
@@ -259,7 +301,7 @@ const UniverseVisualization = () => {
     grid.visible = showGrid;
     stars.visible = showStars;
 
-    const bodies = celestialBodies.map(createCelestialBody);
+    const objects = universeObjects.map(createUniverseObject);
 
     // Post-processing
     const composer = new EffectComposer(renderer);
@@ -282,19 +324,14 @@ const UniverseVisualization = () => {
 
       const delta = clock.getDelta() * animationSpeed;
 
-      // Update bodies
-      bodies.forEach(body => {
-        if (body.userData.distance > 0) {
-          // Orbital motion
-          body.userData.orbitAngle =
-            (body.userData.orbitAngle || 0) + body.userData.orbitSpeed * delta;
-          body.position.x =
-            Math.cos(body.userData.orbitAngle) * body.userData.distance;
-          body.position.z =
-            Math.sin(body.userData.orbitAngle) * body.userData.distance;
-
-          // Rotation
-          body.rotation.y += body.userData.rotationSpeed * delta;
+      // Update universe objects
+      objects.forEach(object => {
+        // Rotation animation for all objects
+        object.rotation.y += object.userData.rotationSpeed * delta;
+        
+        // Gentle floating motion for distant objects
+        if (object.userData.distance > 0) {
+          object.position.y = Math.sin(Date.now() * 0.0001 + object.userData.distance * 0.01) * 5;
         }
       });
 
@@ -344,7 +381,7 @@ const UniverseVisualization = () => {
         <div className='control-group'>
           <label>View Mode:</label>
           <select value={viewMode} onChange={e => setViewMode(e.target.value)}>
-            <option value='solarSystem'>Solar System</option>
+            {/* <option value='solarSystem'>Solar System</option> Temporarily disabled */}
             <option value='galaxy'>Galaxy View</option>
             <option value='universe'>Universe Scale</option>
           </select>
@@ -397,13 +434,14 @@ const UniverseVisualization = () => {
         </div>
 
         <div className='info-panel'>
-          <h4>Celestial Bodies</h4>
-          <div className='body-list'>
-            {celestialBodies.map(body => (
-              <div key={body.name} className='body-info'>
-                <span className='body-name'>{body.name}</span>
-                <span className='body-distance'>
-                  {body.distance > 0 ? `${body.distance} AU` : 'Center'}
+          <h4>Universe Objects</h4>
+          <div className='object-list'>
+            {universeObjects.map(object => (
+              <div key={object.name} className='object-info'>
+                <span className='object-name'>{object.name}</span>
+                <span className='object-type'>{object.type.replace('_', ' ')}</span>
+                <span className='object-distance'>
+                  {object.distance > 0 ? `${object.distance} ly` : 'Local Group'}
                 </span>
               </div>
             ))}

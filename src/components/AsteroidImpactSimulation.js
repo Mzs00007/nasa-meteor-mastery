@@ -8,6 +8,14 @@ import { PhysicsEngine } from '../physics/PhysicsEngine';
 import { ExplosionSystem } from '../effects/ExplosionSystem';
 import { EnhancedPhysicsEngine } from '../utils/enhanced-physics-engine';
 import JSZip from 'jszip';
+import { 
+  ModernSpinner, 
+  SkeletonText, 
+  SkeletonCard, 
+  LoadingButton, 
+  ProgressBar, 
+  LoadingOverlay 
+} from './ui/ModernLoadingComponents';
 
 // Simple placeholder classes for missing systems
 class AsteroidSystem {
@@ -99,6 +107,50 @@ class EarthModel {
 }
 
 import './AsteroidImpactSimulation.css';
+
+// Error Boundary Component for AsteroidImpactSimulation
+class AsteroidSimulationErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
+    console.error('AsteroidImpactSimulation Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-8 max-w-md text-center">
+            <div className="text-6xl mb-4">🌌</div>
+            <h2 className="text-2xl font-bold text-white mb-4">Simulation Error</h2>
+            <p className="text-gray-300 mb-6">
+              The 3D simulation encountered an error. This might be due to WebGL compatibility issues.
+            </p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+            >
+              🔄 Reload Simulation
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 // Custom shockwave pass for impact effects
 class ShockwavePass {
@@ -295,6 +347,12 @@ const AsteroidImpactSimulation = () => {
   const [asteroidVelocity, setAsteroidVelocity] = useState(20);
   const [impactAngle, setImpactAngle] = useState(45);
   const [asteroidComposition, setAsteroidComposition] = useState('rocky');
+  
+  // Loading states
+  const [sceneLoading, setSceneLoading] = useState(true);
+  const [simulationProgress, setSimulationProgress] = useState(0);
+  const [simulationStage, setSimulationStage] = useState('');
+  const [calculationsLoading, setCalculationsLoading] = useState(false);
 
   // System refs
   const physicsEngineRef = useRef(null);
@@ -332,6 +390,10 @@ const AsteroidImpactSimulation = () => {
   const initializeScene = useCallback(() => {
     if (!mountRef.current) return;
 
+    setSceneLoading(true);
+    setSimulationStage('Initializing 3D Scene...');
+    setSimulationProgress(10);
+
     // Scene setup
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000011);
@@ -346,6 +408,9 @@ const AsteroidImpactSimulation = () => {
     );
     camera.position.set(0, 0, 200);
     cameraRef.current = camera;
+
+    setSimulationStage('Setting up Renderer...');
+    setSimulationProgress(20);
 
     // Renderer setup with advanced settings
     const renderer = new THREE.WebGLRenderer({ 
@@ -372,6 +437,9 @@ const AsteroidImpactSimulation = () => {
     controls.autoRotate = false;
     controlsRef.current = controls;
 
+    setSimulationStage('Configuring Post-Processing...');
+    setSimulationProgress(40);
+
     // Post-processing setup
     const composer = new EffectComposer(renderer);
     const renderPass = new RenderPass(scene, camera);
@@ -388,8 +456,14 @@ const AsteroidImpactSimulation = () => {
 
     composerRef.current = composer;
 
+    setSimulationStage('Loading Physics Engine...');
+    setSimulationProgress(60);
+
     // Initialize physics engine
     physicsEngineRef.current = new EnhancedPhysicsEngine();
+
+    setSimulationStage('Initializing Core Systems...');
+    setSimulationProgress(70);
 
     // Initialize core systems
     explosionSystemRef.current = new ExplosionSystem(scene);
@@ -399,11 +473,25 @@ const AsteroidImpactSimulation = () => {
     debrisSystemRef.current = new DebrisSystem(scene);
     atmosphereSystemRef.current = new AtmosphereSystem(scene);
 
+    setSimulationStage('Creating Celestial Objects...');
+    setSimulationProgress(85);
+
     // Create celestial objects
     createEarth();
     createAsteroid();
     createStarField();
     setupLighting();
+
+    // Simulate loading time and complete initialization
+    setTimeout(() => {
+      setSimulationStage('Simulation Ready');
+      setSimulationProgress(100);
+      setTimeout(() => {
+        setSceneLoading(false);
+        setSimulationStage('');
+        setSimulationProgress(0);
+      }, 500);
+    }, 1000);
 
   }, []);
 
@@ -449,9 +537,43 @@ const AsteroidImpactSimulation = () => {
   // Simulation control functions
   const startSimulation = () => {
     setIsSimulationRunning(true);
+    setCalculationsLoading(true);
     setSimulationTime(0);
     setImpactOccurred(false);
     setImpactResults(null);
+    setSimulationProgress(0);
+    
+    // Simulate calculation stages with progress updates
+    const stages = [
+      { stage: 'Calculating trajectory...', progress: 20, delay: 800 },
+      { stage: 'Computing atmospheric entry...', progress: 40, delay: 1000 },
+      { stage: 'Analyzing impact dynamics...', progress: 60, delay: 1200 },
+      { stage: 'Processing explosion effects...', progress: 80, delay: 900 },
+      { stage: 'Finalizing simulation data...', progress: 100, delay: 600 }
+    ];
+    
+    let currentStage = 0;
+    const processStage = () => {
+      if (currentStage < stages.length) {
+        const { stage, progress, delay } = stages[currentStage];
+        setSimulationStage(stage);
+        setSimulationProgress(progress);
+        
+        setTimeout(() => {
+          currentStage++;
+          if (currentStage < stages.length) {
+            processStage();
+          } else {
+            setCalculationsLoading(false);
+            setSimulationStage('');
+            setSimulationProgress(0);
+            console.log('Simulation calculations completed');
+          }
+        }, delay);
+      }
+    };
+    
+    processStage();
     console.log('Simulation started');
   };
 
@@ -810,12 +932,64 @@ const AsteroidImpactSimulation = () => {
 
   return (
     <div className="asteroid-impact-simulation">
+      {/* Scene Loading Overlay */}
+      {sceneLoading && (
+        <LoadingOverlay>
+          <div className="flex flex-col items-center space-y-6">
+            <ModernSpinner variant="orbit" size="large" />
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Initializing 3D Simulation
+              </h3>
+              <p className="text-gray-300 mb-4">{simulationStage}</p>
+              <ProgressBar 
+                progress={simulationProgress} 
+                variant="gradient"
+                className="w-80"
+              />
+            </div>
+          </div>
+        </LoadingOverlay>
+      )}
+
+      {/* Simulation Calculations Overlay */}
+      {calculationsLoading && (
+        <LoadingOverlay>
+          <div className="flex flex-col items-center space-y-6">
+            <ModernSpinner variant="pulse" size="large" />
+            <div className="text-center">
+              <h3 className="text-xl font-semibold text-white mb-2">
+                Running Impact Simulation
+              </h3>
+              <p className="text-gray-300 mb-4">{simulationStage}</p>
+              <ProgressBar 
+                progress={simulationProgress} 
+                variant="gradient"
+                className="w-80"
+              />
+              <p className="text-sm text-gray-400 mt-2">
+                Computing complex physics calculations...
+              </p>
+            </div>
+          </div>
+        </LoadingOverlay>
+      )}
+
       {/* 3D Viewport */}
       <div 
         ref={mountRef} 
         className="simulation-viewport"
         style={{ width: '100%', height: '70vh', position: 'relative' }}
-      />
+      >
+        {sceneLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 z-10">
+            <div className="text-center">
+              <ModernSpinner variant="dots" size="medium" />
+              <p className="text-white mt-2">Loading 3D Scene...</p>
+            </div>
+          </div>
+        )}
+      </div>
       
       {/* Control Panel */}
       <div className="simulation-controls">
@@ -823,17 +997,19 @@ const AsteroidImpactSimulation = () => {
         <div className="control-section">
           <h3>Simulation Controls</h3>
           <div className="button-group">
-            <button 
+            <LoadingButton
               onClick={startSimulation}
-              disabled={isSimulationRunning}
+              loading={calculationsLoading}
+              disabled={isSimulationRunning && !calculationsLoading}
               className="btn btn-primary"
+              loadingText="Running Simulation..."
             >
               Start Simulation
-            </button>
+            </LoadingButton>
             <button 
               onClick={stopSimulation}
               disabled={!isSimulationRunning}
-              className="btn btn-secondary"
+              className="enhanced-btn enhanced-focus btn btn-secondary"
             >
               Stop
             </button>
@@ -845,20 +1021,20 @@ const AsteroidImpactSimulation = () => {
                   startRecording();
                 }
               }}
-              className={`btn ${isRecording ? 'btn-danger' : 'btn-success'}`}
+              className={`enhanced-btn enhanced-focus enhanced-pulse btn ${isRecording ? 'btn-danger' : 'btn-success'}`}
             >
               {isRecording ? 'Stop Recording' : 'Start Recording'}
             </button>
             <button 
               onClick={downloadVideo}
               disabled={recordedFrames.length === 0}
-              className="btn btn-info"
+              className="enhanced-btn enhanced-focus enhanced-glow btn btn-info"
             >
               Download Video
             </button>
             <button 
               onClick={resetSimulation}
-              className="btn btn-warning"
+              className="enhanced-btn enhanced-focus btn btn-warning"
             >
               Reset
             </button>
@@ -869,7 +1045,7 @@ const AsteroidImpactSimulation = () => {
         <div className="control-section">
           <h3>Asteroid Parameters</h3>
           <div className="parameter-grid">
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Diameter (m):</label>
               <input
                 type="range"
@@ -880,11 +1056,12 @@ const AsteroidImpactSimulation = () => {
                   ...prev,
                   diameter: parseInt(e.target.value)
                 }))}
+                className="enhanced-slider enhanced-focus"
               />
               <span>{asteroidParams.diameter}m</span>
             </div>
             
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Velocity (m/s):</label>
               <input
                 type="range"
@@ -895,11 +1072,12 @@ const AsteroidImpactSimulation = () => {
                   ...prev,
                   velocity: parseInt(e.target.value)
                 }))}
+                className="enhanced-slider enhanced-focus"
               />
               <span>{asteroidParams.velocity}m/s</span>
             </div>
             
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Impact Angle (°):</label>
               <input
                 type="range"
@@ -910,11 +1088,12 @@ const AsteroidImpactSimulation = () => {
                   ...prev,
                   angle: parseInt(e.target.value)
                 }))}
+                className="enhanced-slider enhanced-focus"
               />
               <span>{asteroidParams.angle}°</span>
             </div>
             
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Composition:</label>
               <select
                 value={asteroidParams.composition}
@@ -922,6 +1101,7 @@ const AsteroidImpactSimulation = () => {
                   ...prev,
                   composition: e.target.value
                 }))}
+                className="enhanced-focus"
               >
                 <option value="rocky">Rocky</option>
                 <option value="metallic">Metallic</option>
@@ -935,11 +1115,12 @@ const AsteroidImpactSimulation = () => {
         <div className="control-section">
           <h3>View Controls</h3>
           <div className="view-controls">
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Camera Mode:</label>
               <select
                 value={cameraMode}
                 onChange={(e) => setCameraMode(e.target.value)}
+                className="enhanced-focus enhanced-dropdown"
               >
                 <option value="free">Free Camera</option>
                 <option value="follow">Follow Asteroid</option>
@@ -948,7 +1129,7 @@ const AsteroidImpactSimulation = () => {
               </select>
             </div>
             
-            <div className="parameter-item">
+            <div className="parameter-item enhanced-input">
               <label>Time Scale:</label>
               <input
                 type="range"
@@ -957,24 +1138,27 @@ const AsteroidImpactSimulation = () => {
                 step="0.1"
                 value={timeScale}
                 onChange={(e) => setTimeScale(parseFloat(e.target.value))}
+                className="enhanced-slider enhanced-focus"
               />
               <span>{timeScale}x</span>
             </div>
             
             <div className="checkbox-group">
-              <label>
+              <label className="enhanced-checkbox">
                 <input
                   type="checkbox"
                   checked={showTrajectory}
                   onChange={(e) => setShowTrajectory(e.target.checked)}
+                  className="enhanced-focus"
                 />
                 Show Trajectory
               </label>
-              <label>
+              <label className="enhanced-checkbox">
                 <input
                   type="checkbox"
                   checked={showAtmosphere}
                   onChange={(e) => setShowAtmosphere(e.target.checked)}
+                  className="enhanced-focus"
                 />
                 Show Atmosphere
               </label>
@@ -985,34 +1169,87 @@ const AsteroidImpactSimulation = () => {
         {/* Simulation Info */}
         <div className="control-section">
           <h3>Simulation Info</h3>
-          <div className="info-display">
-            <div className="info-item">
-              <span>Status:</span>
-              <span className={isSimulationRunning ? 'status-running' : 'status-stopped'}>
-                {isSimulationRunning ? 'Running' : 'Stopped'}
-              </span>
+          {calculationsLoading ? (
+            <div className="info-display">
+              <div className="info-item">
+                <span>Status:</span>
+                <SkeletonText width="60px" />
+              </div>
+              <div className="info-item">
+                <span>Time:</span>
+                <SkeletonText width="40px" />
+              </div>
+              <div className="info-item">
+                <span>Impact:</span>
+                <SkeletonText width="50px" />
+              </div>
+              <div className="info-item">
+                <span>Recording:</span>
+                <SkeletonText width="45px" />
+              </div>
             </div>
-            <div className="info-item">
-              <span>Time:</span>
-              <span>{simulationTime.toFixed(2)}s</span>
+          ) : (
+            <div className="info-display">
+              <div className="info-item">
+                <span>Status:</span>
+                <span className={isSimulationRunning ? 'status-running' : 'status-stopped'}>
+                  {isSimulationRunning ? 'Running' : 'Stopped'}
+                </span>
+              </div>
+              <div className="info-item">
+                <span>Time:</span>
+                <span>{simulationTime.toFixed(2)}s</span>
+              </div>
+              <div className="info-item">
+                <span>Impact:</span>
+                <span className={impactOccurred ? 'status-impact' : 'status-pending'}>
+                  {impactOccurred ? 'Occurred' : 'Pending'}
+                </span>
+              </div>
+              <div className="info-item">
+                <span>Recording:</span>
+                <span className={isRecording ? 'status-recording' : 'status-idle'}>
+                  {isRecording ? 'Active' : 'Idle'}
+                </span>
+              </div>
             </div>
-            <div className="info-item">
-              <span>Impact:</span>
-              <span className={impactOccurred ? 'status-impact' : 'status-pending'}>
-                {impactOccurred ? 'Occurred' : 'Pending'}
-              </span>
-            </div>
-            <div className="info-item">
-              <span>Recording:</span>
-              <span className={isRecording ? 'status-recording' : 'status-idle'}>
-                {isRecording ? 'Active' : 'Idle'}
-              </span>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Impact Results */}
-        {impactResults && (
+        {calculationsLoading && (
+          <div className="impact-results">
+            <h3>Impact Results</h3>
+            <div className="results-grid">
+              <div className="result-item">
+                <label>Impact Energy:</label>
+                <SkeletonText width="80px" />
+              </div>
+              <div className="result-item">
+                <label>TNT Equivalent:</label>
+                <SkeletonText width="100px" />
+              </div>
+              <div className="result-item">
+                <label>Crater Diameter:</label>
+                <SkeletonText width="70px" />
+              </div>
+              <div className="result-item">
+                <label>Seismic Magnitude:</label>
+                <SkeletonText width="40px" />
+              </div>
+              <div className="result-item">
+                <label>Thermal Radius:</label>
+                <SkeletonText width="70px" />
+              </div>
+              <div className="result-item">
+                <label>Blast Radius:</label>
+                <SkeletonText width="70px" />
+              </div>
+            </div>
+          </div>
+        )}
+        
+        {impactResults && !calculationsLoading && (
           <div className="impact-results">
             <h3>Impact Results</h3>
             <div className="results-grid">
@@ -1054,4 +1291,11 @@ const AsteroidImpactSimulation = () => {
   );
 };
 
-export default AsteroidImpactSimulation;
+// Wrap the component with error boundary
+const AsteroidImpactSimulationWithErrorBoundary = () => (
+  <AsteroidSimulationErrorBoundary>
+    <AsteroidImpactSimulation />
+  </AsteroidSimulationErrorBoundary>
+);
+
+export default AsteroidImpactSimulationWithErrorBoundary;

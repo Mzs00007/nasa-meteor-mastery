@@ -169,20 +169,46 @@ export const CleanSelect = ({
 
   const selectedOption = options.find(option => option.value === value);
 
+  const handleTriggerKeyPress = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (e.key === 'Escape') {
+      setIsOpen(false);
+    }
+  };
+
+  const handleOptionKeyPress = (e, optionValue) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onChange(optionValue);
+      setIsOpen(false);
+    }
+  };
+
   return (
     <div
       className={`clean-select ${isOpen ? 'clean-select--open' : ''} ${className}`}
       ref={selectRef}
     >
       {label && <label className='clean-select__label'>{label}</label>}
-      <div className='clean-select__trigger' onClick={() => setIsOpen(!isOpen)}>
+      <div 
+        className='clean-select__trigger' 
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleTriggerKeyPress}
+        role="button"
+        tabIndex={0}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        aria-label={`${label || 'Select'}: ${selectedOption ? selectedOption.label : placeholder}`}
+      >
         <span className='clean-select__value'>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         <span className='clean-select__arrow'>▼</span>
       </div>
       {isOpen && (
-        <div className='clean-select__dropdown'>
+        <div className='clean-select__dropdown' role="listbox">
           {options.map(option => (
             <div
               key={option.value}
@@ -191,6 +217,10 @@ export const CleanSelect = ({
                 onChange(option.value);
                 setIsOpen(false);
               }}
+              onKeyDown={(e) => handleOptionKeyPress(e, option.value)}
+              role="option"
+              tabIndex={0}
+              aria-selected={option.value === value}
             >
               {option.label}
             </div>

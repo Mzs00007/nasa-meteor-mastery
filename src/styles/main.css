@@ -1,5 +1,6 @@
 /* Base Styles */
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+@import './micro-interactions.css';
 
 body {
   font-family: "Roboto", sans-serif;
@@ -298,137 +299,432 @@ h6 {
   }
 }
 
-/* Animations */
+/* Enhanced animations for landing page */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 50px rgba(102, 126, 234, 0.8), 0 0 80px rgba(118, 75, 162, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInFromRight 0.8s ease-out forwards;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Enhanced button styles */
+.enhanced-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.enhanced-button:hover::before {
+  left: 100%;
+}
+
+/* Enhanced card styles */
+.enhanced-card {
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.enhanced-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  .enhanced-button {
+    min-width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .enhanced-card {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Enhanced Simulation Setup Styles */
+.enhanced-form-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-form-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.form-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.parameter-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2em;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+.parameter-group {
+  position: relative;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.parameter-group:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(59, 130, 246, 0.3);
+  transform: translateY(-2px);
+}
+
+.parameter-header {
+  margin-bottom: 1rem;
+}
+
+.parameter-value {
+  font-weight: 600;
+  color: #60a5fa;
+  font-family: 'Orbitron', monospace;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.3);
+}
+
+.parameter-description {
+  line-height: 1.4;
+  font-style: italic;
+  background: rgba(59, 130, 246, 0.1);
+  padding: 0.5rem;
+  border-radius: 6px;
+  border-left: 3px solid #3b82f6;
+}
+
+.slider-container {
+  position: relative;
+}
+
+.enhanced-slider {
+  position: relative;
+}
+
+.enhanced-slider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);
+  border-radius: 1px;
+  pointer-events: none;
+  opacity: 0.3;
+  transform: translateY(-50%);
+}
+
+.range-label {
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.impact-indicator {
+  text-align: center;
+}
+
+.impact-level {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.impact-level.low {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.impact-level.medium {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.impact-level.high {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.velocity-indicator {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(59, 130, 246, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.angle-visualization {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.material-grid {
+  gap: 1rem;
+}
+
+.material-button {
+  position: relative;
+  min-height: 100px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.material-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+.material-button.selected-material {
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+.material-button.selected-material::before {
+  content: '✓';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.material-icon {
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.material-button:hover .material-icon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.5));
+}
+
+.advanced-toggle {
+  padding: 1rem;
+  background: rgba(139, 92, 246, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.enhanced-toggle {
+  position: relative;
+}
+
+.advanced-section {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.enhanced-input {
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.enhanced-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Animation for advanced section */
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(-10px);
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
     transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Pulse animation for high impact warning */
+@keyframes pulse {
+  0%, 100% {
     opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
   }
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-in;
-}
-
-.slide-up {
-  animation: slideUp 0.5s ease-in;
-}
-
-/* Additional Responsive Design for Simulation Results */
-@media (max-width: 1024px) {
-  .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .simulation-results-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
+/* Enhanced responsive design for simulation setup */
 @media (max-width: 768px) {
-  .container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+  .parameter-group {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
   }
-
-  /* Ensure proper spacing for mobile */
-  .space-y-8 > * + * {
-    margin-top: 1.5rem;
+  
+  .material-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
-
-  /* Mobile-friendly button groups */
-  .flex.flex-wrap.gap-2 {
-    gap: 0.5rem;
+  
+  .material-button {
+    min-height: 80px;
+    padding: 1rem;
   }
-
-  /* Improve touch targets */
-  button,
-  .glass-btn {
-    min-height: 44px;
-    min-width: 44px;
+  
+  .parameter-value {
+    font-size: 0.9rem;
   }
-
-  /* Better text sizing for mobile */
-  h1 {
-    line-height: 1.2;
-  }
-
-  h2 {
-    line-height: 1.3;
-  }
-
-  h3 {
-    line-height: 1.4;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  /* Reduce spacing on very small screens */
-  .space-y-8 > * + * {
-    margin-top: 1rem;
-  }
-
-  .space-y-6 > * + * {
-    margin-top: 1rem;
-  }
-
-  .space-y-4 > * + * {
-    margin-top: 0.75rem;
-  }
-
-  /* Ensure content doesn't get cut off by fixed elements */
-  .relative.z-10 {
-    padding-bottom: 6rem;
+  
+  .impact-level {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
+  .form-header h3 {
+    font-size: 1rem;
   }
-
-  /* Very compact spacing for small phones */
-  .space-y-8 > * + * {
-    margin-top: 0.75rem;
+  
+  .parameter-description {
+    font-size: 0.7rem;
+    padding: 0.4rem;
   }
-
-  .space-y-6 > * + * {
-    margin-top: 0.75rem;
-  }
-
-  .space-y-4 > * + * {
-    margin-top: 0.5rem;
-  }
-
-  /* Ensure adequate bottom padding for mobile quick actions */
-  .relative.z-10 {
-    padding-bottom: 7rem;
+  
+  .range-label {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
   }
 }

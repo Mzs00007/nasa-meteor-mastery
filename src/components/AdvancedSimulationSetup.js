@@ -7,6 +7,7 @@ import { liveAsteroidService } from '../services/liveAsteroidService';
 
 // Glass UI Components
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
+import { ModernSpinner, SkeletonText, SkeletonCard, LoadingButton, ProgressBar, LoadingOverlay } from './ui/ModernLoadingComponents';
 
 const AdvancedSimulationSetup = () => {
   const navigate = useNavigate();
@@ -39,11 +40,14 @@ const AdvancedSimulationSetup = () => {
   });
 
   const [simulationRunning, setSimulationRunning] = useState(false);
+  const [simulationProgress, setSimulationProgress] = useState(0);
+  const [simulationStage, setSimulationStage] = useState('');
   const [simulationResults, setSimulationResults] = useState(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showAtmospheric, setShowAtmospheric] = useState(false);
   const [showEnvironmental, setShowEnvironmental] = useState(false);
   const [liveAsteroids, setLiveAsteroids] = useState([]);
+  const [liveAsteroidsLoading, setLiveAsteroidsLoading] = useState(true);
   const [selectedLiveAsteroid, setSelectedLiveAsteroid] = useState('');
   const [realTimePreview, setRealTimePreview] = useState(null);
 
@@ -110,10 +114,16 @@ const AdvancedSimulationSetup = () => {
   useEffect(() => {
     const loadLiveData = async () => {
       try {
+        setLiveAsteroidsLoading(true);
+        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate loading
         const data = await liveAsteroidService.getLiveAsteroids();
         setLiveAsteroids(data.slice(0, 20)); // Limit to 20 for performance
       } catch (error) {
         console.error('Failed to load live asteroid data:', error);
+        // Set empty array on error
+        setLiveAsteroids([]);
+      } finally {
+        setLiveAsteroidsLoading(false);
       }
     };
 
@@ -175,15 +185,40 @@ const AdvancedSimulationSetup = () => {
 
   const handleRunAdvancedSimulation = async () => {
     setSimulationRunning(true);
+    setSimulationProgress(0);
     try {
       console.log(
         '🚀 Running advanced simulation with parameters:',
         advancedParams
       );
 
+      // Simulate progressive loading stages
+      setSimulationStage('Initializing simulation engine...');
+      setSimulationProgress(10);
+      await new Promise(resolve => setTimeout(resolve, 800));
+
+      setSimulationStage('Processing atmospheric entry...');
+      setSimulationProgress(30);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setSimulationStage('Calculating fragmentation patterns...');
+      setSimulationProgress(50);
+      await new Promise(resolve => setTimeout(resolve, 1200));
+
+      setSimulationStage('Modeling impact dynamics...');
+      setSimulationProgress(70);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      setSimulationStage('Analyzing environmental effects...');
+      setSimulationProgress(85);
+
       const results =
         await advancedSimulationEngine.runAdvancedSimulation(advancedParams);
       setSimulationResults(results);
+
+      setSimulationProgress(100);
+      setSimulationStage('Simulation complete!');
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       // Navigate to advanced results page
       navigate('/simulation/advanced-results', {
@@ -191,9 +226,12 @@ const AdvancedSimulationSetup = () => {
       });
     } catch (error) {
       console.error('Advanced simulation failed:', error);
+      setSimulationStage('Simulation failed');
       alert(`Simulation failed: ${error.message}`);
     } finally {
       setSimulationRunning(false);
+      setSimulationProgress(0);
+      setSimulationStage('');
     }
   };
 
@@ -329,25 +367,87 @@ const AdvancedSimulationSetup = () => {
             <h3 className='text-lg font-semibold text-white mb-4'>
               🛰️ Live NASA Data
             </h3>
-            <select
-              className='glass-input w-full mb-3'
-              value={selectedLiveAsteroid}
-              onChange={e => handleLiveAsteroidSelect(e.target.value)}
-            >
-              <option value=''>Select live asteroid data</option>
-              {liveAsteroids.map(asteroid => (
-                <option key={asteroid.id} value={asteroid.id}>
-                  {asteroid.name} - {asteroid.diameter}m, {asteroid.velocity}
-                  km/s
-                  {asteroid.isPotentiallyHazardous ? ' ⚠️' : ''}
-                </option>
-              ))}
-            </select>
-            {selectedLiveAsteroid && (
-              <div className='text-xs text-green-300 bg-green-500/10 p-2 rounded border border-green-500/20'>
-                Using live NASA data for{' '}
-                {liveAsteroids.find(a => a.id === selectedLiveAsteroid)?.name}
+            
+            {liveAsteroidsLoading ? (
+              <div className='space-y-3'>
+                <div className='flex items-center space-x-3 mb-4'>
+                  <ModernSpinner variant="orbit" size="small" />
+                  <span className='text-sm text-gray-300'>Loading live asteroid data...</span>
+                </div>
+                <SkeletonText lines={1} className="h-10" />
+                <SkeletonText lines={2} />
               </div>
+            ) : liveAsteroids.length === 0 ? (
+              <div className='text-center py-4'>
+                <div className='text-2xl mb-2'>⚠️</div>
+                <div className='text-sm text-gray-300 mb-3'>
+                  Failed to load live asteroid data
+                </div>
+                <button
+                  onClick={() => window.location.reload()}
+                  className='text-xs text-blue-300 hover:text-blue-200 underline'
+                >
+                  Try refreshing the page
+                </button>
+              </div>
+            ) : (
+              <>
+                <select
+                  className='glass-input w-full mb-3'
+                  value={selectedLiveAsteroid}
+                  onChange={e => handleLiveAsteroidSelect(e.target.value)}
+                  style={{
+                    padding: '12px',
+                    background: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    borderRadius: '8px',
+                    color: 'white',
+                    fontSize: '14px',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <option value='' style={{ background: '#1a1a1a', color: 'white' }}>
+                    Select live asteroid data ({liveAsteroids.length} available)
+                  </option>
+                  {liveAsteroids.map(asteroid => (
+                    <option 
+                      key={asteroid.id} 
+                      value={asteroid.id}
+                      style={{ background: '#1a1a1a', color: 'white' }}
+                    >
+                      {asteroid.name} - {asteroid.diameter}m, {asteroid.velocity}km/s
+                      {asteroid.isPotentiallyHazardous ? ' ⚠️' : ''}
+                    </option>
+                  ))}
+                </select>
+                
+                {selectedLiveAsteroid && (
+                  <div 
+                    className='text-xs p-3 rounded-lg border transition-all duration-300'
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.1))',
+                      borderColor: 'rgba(34, 197, 94, 0.3)',
+                      color: '#10b981'
+                    }}
+                  >
+                    <div className='flex items-center space-x-2'>
+                      <span>✅</span>
+                      <span>
+                        Using live NASA data for{' '}
+                        <strong>{liveAsteroids.find(a => a.id === selectedLiveAsteroid)?.name}</strong>
+                      </span>
+                    </div>
+                    {liveAsteroids.find(a => a.id === selectedLiveAsteroid)?.isPotentiallyHazardous && (
+                      <div className='mt-2 text-orange-300 flex items-center space-x-2'>
+                        <span>⚠️</span>
+                        <span>Potentially Hazardous Object</span>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -798,10 +898,11 @@ const AdvancedSimulationSetup = () => {
           </div>
 
           {/* Run Simulation */}
-          <button
-            className='w-full'
+          <LoadingButton
             onClick={handleRunAdvancedSimulation}
+            loading={simulationRunning}
             disabled={simulationRunning}
+            className="w-full"
             style={{
               padding: '16px 24px',
               background: simulationRunning 
@@ -813,33 +914,60 @@ const AdvancedSimulationSetup = () => {
               color: 'white',
               fontSize: '16px',
               fontWeight: '600',
-              cursor: simulationRunning ? 'not-allowed' : 'pointer',
-              transition: 'all 0.3s ease',
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-              opacity: simulationRunning ? 0.6 : 1
-            }}
-            onMouseEnter={(e) => {
-              if (!simulationRunning) {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.3)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!simulationRunning) {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
-              }
+              transition: 'all 0.3s ease'
             }}
           >
-            {simulationRunning ? (
-              <>
-                <span className='mr-2'>⏳</span>
-                Running Advanced Simulation...
-              </>
-            ) : (
-              <>🚀 Launch Advanced Simulation</>
-            )}
-          </button>
+            {simulationRunning ? 'Running Advanced Simulation...' : '🚀 Launch Advanced Simulation'}
+          </LoadingButton>
+
+          {/* Simulation Progress Overlay */}
+          {simulationRunning && (
+            <div 
+              className="fixed inset-0 z-50 flex items-center justify-center"
+              style={{
+                background: 'rgba(0, 0, 0, 0.8)',
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <div 
+                className="p-8 rounded-2xl max-w-md w-full mx-4"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                }}
+              >
+                <div className="text-center mb-6">
+                  <ModernSpinner variant="orbit" size="large" />
+                  <h3 className="text-xl font-semibold text-white mt-4 mb-2">
+                    Advanced Simulation Running
+                  </h3>
+                  <p className="text-gray-300 text-sm">
+                    Processing complex atmospheric and impact calculations...
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <ProgressBar 
+                    progress={simulationProgress} 
+                    variant="gradient"
+                    className="mb-4"
+                  />
+                  
+                  <div className="text-center">
+                    <div className="text-white font-medium mb-1">
+                      {simulationProgress}% Complete
+                    </div>
+                    <div className="text-gray-300 text-sm">
+                      {simulationStage}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right Panel - Real-time Preview */}

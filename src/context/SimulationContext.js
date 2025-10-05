@@ -31,7 +31,8 @@ export const SimulationProvider = ({ children }) => {
   // Fetch meteor data on component mount
   useEffect(() => {
     fetchMeteorData();
-    fetchNasaAsteroidData();
+    // Don't automatically fetch NASA data on app initialization
+    // fetchNasaAsteroidData();
   }, []);
 
   const fetchMeteorData = async () => {
@@ -184,6 +185,43 @@ export const SimulationProvider = ({ children }) => {
     }
   };
 
+  // Comprehensive impact calculations
+  const calculateCraterDiameter = (energy, velocity, angle) => {
+    // Crater diameter formula based on energy (simplified)
+    const energyMegatons = energy / (4.184e15); // Convert to megatons TNT
+    return Math.pow(energyMegatons, 0.25) * 1.8 * 1609.34; // Convert to meters
+  };
+
+  const calculateCraterDepth = (diameter) => {
+    return diameter * 0.2; // Depth is typically 20% of diameter
+  };
+
+  const calculateCasualties = (radius, populationDensity = 100) => {
+    const area = Math.PI * Math.pow(radius * 1609.34, 2); // Convert miles to meters
+    return Math.floor(area * populationDensity / 1000000); // People per sq km
+  };
+
+  const calculateFireballRadius = (energy) => {
+    const energyMegatons = energy / (4.184e15);
+    return Math.pow(energyMegatons, 0.4) * 1.5; // Miles
+  };
+
+  const calculateShockwaveDecibels = (energy) => {
+    const energyMegatons = energy / (4.184e15);
+    return 180 + 20 * Math.log10(energyMegatons);
+  };
+
+  const calculateWindSpeed = (energy, distance) => {
+    const energyMegatons = energy / (4.184e15);
+    const baseSpeed = Math.pow(energyMegatons, 0.33) * 500;
+    return baseSpeed / Math.pow(distance, 0.7); // mph
+  };
+
+  const calculateEarthquakeMagnitude = (energy) => {
+    const energyJoules = energy;
+    return (Math.log10(energyJoules) - 4.8) / 1.5;
+  };
+
   const calculateImpactEnergy = () => {
     try {
       const density = {
@@ -201,6 +239,97 @@ export const SimulationProvider = ({ children }) => {
       return energy; // Joules
     } catch (err) {
       throw new Error(`Failed to calculate impact energy: ${err.message}`);
+    }
+  };
+
+  const calculateComprehensiveImpactData = () => {
+    try {
+      const energy = calculateImpactEnergy();
+      const energyMegatons = energy / (4.184e15);
+      const velocityMph = asteroidParams.velocity * 2236.94; // km/s to mph
+      
+      // Crater calculations
+      const craterDiameter = calculateCraterDiameter(energy, asteroidParams.velocity, asteroidParams.angle);
+      const craterDepth = calculateCraterDepth(craterDiameter);
+      const craterRadiusMiles = (craterDiameter / 2) / 1609.34;
+      const craterCasualties = calculateCasualties(craterRadiusMiles, 150);
+
+      // Fireball calculations
+      const fireballRadius = calculateFireballRadius(energy);
+      const fireballCasualties = calculateCasualties(fireballRadius, 120);
+      const thirdDegreeBurnRadius = fireballRadius * 1.8;
+      const secondDegreeBurnRadius = fireballRadius * 2.5;
+      const clothesFireRadius = fireballRadius * 4.8;
+      const treesFireRadius = fireballRadius * 8.9;
+
+      // Shockwave calculations
+      const shockwaveDecibels = calculateShockwaveDecibels(energy);
+      const lungDamageRadius = Math.pow(energyMegatons, 0.33) * 2.1;
+      const eardrumRuptureRadius = Math.pow(energyMegatons, 0.33) * 2.7;
+      const buildingCollapseRadius = Math.pow(energyMegatons, 0.33) * 4.7;
+      const homeCollapseRadius = Math.pow(energyMegatons, 0.33) * 6.2;
+      const shockwaveCasualties = calculateCasualties(lungDamageRadius, 80);
+
+      // Wind blast calculations
+      const peakWindSpeed = calculateWindSpeed(energy, 1);
+      const windBlastRadius = Math.pow(energyMegatons, 0.33) * 1.4;
+      const homeLevelRadius = Math.pow(energyMegatons, 0.33) * 2.3;
+      const tornadoRadius = Math.pow(energyMegatons, 0.33) * 4.1;
+      const treesDownRadius = Math.pow(energyMegatons, 0.33) * 6.7;
+      const windBlastCasualties = calculateCasualties(windBlastRadius, 100);
+
+      // Earthquake calculations
+      const earthquakeMagnitude = calculateEarthquakeMagnitude(energy);
+      const earthquakeRadius = Math.pow(10, earthquakeMagnitude) * 0.01;
+      const earthquakeCasualties = calculateCasualties(earthquakeRadius, 50);
+
+      // Frequency calculation
+      const impactFrequency = Math.pow(energyMegatons, 0.8) * 10000;
+
+      return {
+        energy,
+        energyMegatons,
+        velocityMph,
+        impactFrequency,
+        crater: {
+          diameter: craterDiameter,
+          depth: craterDepth,
+          radiusMiles: craterRadiusMiles,
+          casualties: craterCasualties,
+          tntEquivalent: energyMegatons * 1e6 // tons
+        },
+        fireball: {
+          radius: fireballRadius,
+          casualties: fireballCasualties,
+          thirdDegreeBurns: calculateCasualties(thirdDegreeBurnRadius, 80),
+          secondDegreeBurns: calculateCasualties(secondDegreeBurnRadius, 60),
+          clothesFireRadius,
+          treesFireRadius
+        },
+        shockwave: {
+          decibels: shockwaveDecibels,
+          casualties: shockwaveCasualties,
+          lungDamageRadius,
+          eardrumRuptureRadius,
+          buildingCollapseRadius,
+          homeCollapseRadius
+        },
+        windBlast: {
+          peakSpeed: peakWindSpeed,
+          casualties: windBlastCasualties,
+          windBlastRadius,
+          homeLevelRadius,
+          tornadoRadius,
+          treesDownRadius
+        },
+        earthquake: {
+          magnitude: earthquakeMagnitude,
+          casualties: earthquakeCasualties,
+          radius: earthquakeRadius
+        }
+      };
+    } catch (err) {
+      throw new Error(`Failed to calculate comprehensive impact data: ${err.message}`);
     }
   };
 
@@ -252,8 +381,10 @@ export const SimulationProvider = ({ children }) => {
       } catch (err) {
         // Fallback to client-side calculation if API fails
       }
-      const energy = calculateImpactEnergy();
-      const craterDiameter = Math.pow(energy, 1 / 3) * 0.0123; // simplified crater estimation
+      // Calculate comprehensive impact data
+      const impactData = calculateComprehensiveImpactData();
+      const energy = impactData.energy;
+      const craterDiameter = impactData.crater.diameter;
 
       // Calculate random impact location
       const newLocation = {
@@ -270,6 +401,8 @@ export const SimulationProvider = ({ children }) => {
         craterDiameter,
         timestamp,
         id: simulationId,
+        impactData, // Include comprehensive impact data
+        parameters: { ...asteroidParams }, // Include simulation parameters
       });
 
       // Add to simulation history
@@ -282,6 +415,7 @@ export const SimulationProvider = ({ children }) => {
             craterDiameter,
             impactLocation: newLocation,
             timestamp,
+            impactData, // Include comprehensive impact data in history
           },
         },
         ...prev.slice(0, 9), // Keep only the 10 most recent simulations

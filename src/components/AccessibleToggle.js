@@ -52,7 +52,7 @@ const AccessibleToggle = ({
           {label}
           {tooltip && (
             <Tooltip text={tooltip} position='right'>
-              <span className='info-icon' aria-hidden='true'>
+              <span className='info-icon' aria-hidden={true}>
                 ℹ️
               </span>
             </Tooltip>
@@ -62,7 +62,7 @@ const AccessibleToggle = ({
 
       <div className='toggle-container'>
         {showLabels && (
-          <span className='toggle-label-off' aria-hidden='true'>
+          <span className='toggle-label-off' aria-hidden={true}>
             {offLabel}
           </span>
         )}
@@ -86,7 +86,7 @@ const AccessibleToggle = ({
         </button>
 
         {showLabels && (
-          <span className='toggle-label-on' aria-hidden='true'>
+          <span className='toggle-label-on' aria-hidden={true}>
             {onLabel}
           </span>
         )}

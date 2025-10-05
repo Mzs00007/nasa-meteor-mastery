@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSimulation } from '../context/SimulationContext';
 
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
+import Advanced2DImpactMap from './Advanced2DImpactMap';
 import {
   GlassButton,
   GlassPanel,
@@ -15,14 +16,66 @@ import {
   GlassToggle,
   GlassSpinner,
 } from './ui/GlassComponents';
+import {
+  ModernSpinner,
+  SkeletonText,
+  SkeletonCard,
+  LoadingButton,
+  ProgressBar,
+  LoadingOverlay
+} from './ui/ModernLoadingComponents';
 import '../styles/glassmorphic.css';
+
+// Error Boundary Component
+class SimulationErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null, errorInfo: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
+    console.error('SimulationSetup Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
+          <GlassCard className="p-8 max-w-md text-center">
+            <div className="text-6xl mb-4">⚠️</div>
+            <h2 className="text-2xl font-bold text-white mb-4">Simulation Error</h2>
+            <p className="text-gray-300 mb-6">
+              Something went wrong with the simulation setup. Please refresh the page and try again.
+            </p>
+            <GlassButton 
+              onClick={() => window.location.reload()} 
+              variant="primary"
+            >
+              🔄 Reload Page
+            </GlassButton>
+          </GlassCard>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
 
 const SimulationSetup = () => {
   const navigate = useNavigate();
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [selectedAsteroid, setSelectedAsteroid] = useState('');
   const [activePreset, setActivePreset] = useState(null);
-  const [viewMode, setViewMode] = useState('3d'); // '3d', 'data', 'comparison'
+  const [viewMode, setViewMode] = useState('2d-map'); // '2d-map', 'data', 'comparison'
   const [simulationRunning, setSimulationRunning] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
 
@@ -97,15 +150,19 @@ const SimulationSetup = () => {
   ];
 
   useEffect(() => {
-    if (selectedAsteroid) {
-      const asteroid = nasaAsteroidData.find(a => a.id === selectedAsteroid);
-      if (asteroid) {
-        setAsteroidParams({
-          ...asteroidParams,
-          diameter: asteroid.diameter,
-          velocity: asteroid.velocity,
-          name: asteroid.name,
-        });
+    if (selectedAsteroid && nasaAsteroidData?.length > 0) {
+      try {
+        const asteroid = nasaAsteroidData.find(a => a.id === selectedAsteroid);
+        if (asteroid) {
+          setAsteroidParams({
+            ...asteroidParams,
+            diameter: asteroid.diameter || 100,
+            velocity: asteroid.velocity || 20,
+            name: asteroid.name || 'Unknown Asteroid',
+          });
+        }
+      } catch (error) {
+        console.error('Error processing asteroid data:', error);
       }
     }
   }, [selectedAsteroid, nasaAsteroidData]);
@@ -131,11 +188,24 @@ const SimulationSetup = () => {
   const handleRunSimulation = async () => {
     setSimulationRunning(true);
     try {
+      // Validate parameters before running simulation
+      if (!asteroidParams?.diameter || asteroidParams.diameter <= 0) {
+        throw new Error('Invalid asteroid diameter');
+      }
+      if (!asteroidParams?.velocity || asteroidParams.velocity <= 0) {
+        throw new Error('Invalid asteroid velocity');
+      }
+      if (!asteroidParams?.composition) {
+        throw new Error('Asteroid composition not selected');
+      }
+
       await runSimulation(asteroidParams);
       // Navigate to results page after successful simulation
       navigate('/simulation/results');
     } catch (error) {
       console.error('Simulation failed:', error);
+      // Show user-friendly error message
+      alert(`Simulation failed: ${error.message || 'Unknown error occurred'}`);
     } finally {
       setSimulationRunning(false);
     }
@@ -188,6 +258,11 @@ const SimulationSetup = () => {
                 🛰️ NASA Data
               </GlassButton>
             </Link>
+            <Link to='/solar-system'>
+              <GlassButton variant='secondary' size='sm'>
+                🌌 Solar System
+              </GlassButton>
+            </Link>
           </div>
         </div>
       </GlassNav>
@@ -235,71 +310,124 @@ const SimulationSetup = () => {
           </GlassCard>
 
           {/* Asteroid Parameters */}
-          <GlassCard className='p-4'>
-            <h3 className='text-lg font-semibold text-white mb-4'>
-              🌠 Asteroid Parameters
-            </h3>
+          <GlassCard className='p-4 enhanced-form-card'>
+            <div className="form-header">
+              <h3 className='text-lg font-semibold text-white mb-2 flex items-center'>
+                <span className="parameter-icon">🌠</span>
+                Asteroid Parameters
+              </h3>
+              <p className="text-sm text-gray-400 mb-4">Configure the physical properties of your asteroid</p>
+            </div>
 
             {/* Diameter */}
-            <div className='mb-6'>
-              <label className='block text-sm font-medium text-gray-300 mb-2'>
-                Diameter: {asteroidParams.diameter}m
-              </label>
-              <GlassSlider
-                min={1}
-                max={10000}
-                value={asteroidParams.diameter}
-                onChange={value => handleParameterChange('diameter', value)}
-                className='w-full'
-              />
-              <div className='flex justify-between text-xs text-gray-400 mt-1'>
-                <span>1m</span>
-                <span>10km</span>
+            <div className='mb-6 parameter-group'>
+              <div className="parameter-header">
+                <label className='block text-sm font-medium text-gray-300 mb-2 flex items-center justify-between'>
+                  <span>Diameter</span>
+                  <span className="parameter-value">{asteroidParams.diameter}m</span>
+                </label>
+                <div className="parameter-description text-xs text-gray-400 mb-3">
+                  Size affects impact energy exponentially. Larger asteroids create devastating global effects.
+                </div>
+              </div>
+              <div className="slider-container">
+                <GlassSlider
+                  min={1}
+                  max={10000}
+                  value={asteroidParams.diameter}
+                  onChange={value => handleParameterChange('diameter', value)}
+                  className='w-full enhanced-slider'
+                />
+                <div className='flex justify-between text-xs text-gray-400 mt-2'>
+                  <span className="range-label">1m (small)</span>
+                  <span className="range-label">10km (extinction-level)</span>
+                </div>
+              </div>
+              <div className="impact-indicator mt-2">
+                <div className={`impact-level ${asteroidParams.diameter < 100 ? 'low' : asteroidParams.diameter < 1000 ? 'medium' : 'high'}`}>
+                  {asteroidParams.diameter < 100 && '🟢 Local damage'}
+                  {asteroidParams.diameter >= 100 && asteroidParams.diameter < 1000 && '🟡 Regional impact'}
+                  {asteroidParams.diameter >= 1000 && '🔴 Global catastrophe'}
+                </div>
               </div>
             </div>
 
             {/* Velocity */}
-            <div className='mb-6'>
-              <label className='block text-sm font-medium text-gray-300 mb-2'>
-                Velocity: {asteroidParams.velocity} km/s
-              </label>
-              <GlassSlider
-                min={11}
-                max={72}
-                value={asteroidParams.velocity}
-                onChange={value => handleParameterChange('velocity', value)}
-                className='w-full'
-              />
-              <div className='flex justify-between text-xs text-gray-400 mt-1'>
-                <span>11 km/s</span>
-                <span>72 km/s</span>
+            <div className='mb-6 parameter-group'>
+              <div className="parameter-header">
+                <label className='block text-sm font-medium text-gray-300 mb-2 flex items-center justify-between'>
+                  <span>Velocity</span>
+                  <span className="parameter-value">{asteroidParams.velocity} km/s</span>
+                </label>
+                <div className="parameter-description text-xs text-gray-400 mb-3">
+                  Entry speed determines kinetic energy. Faster impacts create more devastating effects.
+                </div>
+              </div>
+              <div className="slider-container">
+                <GlassSlider
+                  min={11}
+                  max={72}
+                  value={asteroidParams.velocity}
+                  onChange={value => handleParameterChange('velocity', value)}
+                  className='w-full enhanced-slider'
+                />
+                <div className='flex justify-between text-xs text-gray-400 mt-2'>
+                  <span className="range-label">11 km/s (minimum)</span>
+                  <span className="range-label">72 km/s (maximum)</span>
+                </div>
+              </div>
+              <div className="velocity-indicator mt-2">
+                <div className="text-xs text-blue-300">
+                  ⚡ Kinetic Energy: ~{((asteroidParams.diameter ** 3) * (asteroidParams.velocity ** 2) / 1000000).toFixed(2)} relative units
+                </div>
               </div>
             </div>
 
             {/* Entry Angle */}
-            <div className='mb-6'>
-              <label className='block text-sm font-medium text-gray-300 mb-2'>
-                Entry Angle: {asteroidParams.angle}°
-              </label>
-              <GlassSlider
-                min={0}
-                max={90}
-                value={asteroidParams.angle}
-                onChange={value => handleParameterChange('angle', value)}
-                className='w-full'
-              />
-              <div className='flex justify-between text-xs text-gray-400 mt-1'>
-                <span>0° (grazing)</span>
-                <span>90° (vertical)</span>
+            <div className='mb-6 parameter-group'>
+              <div className="parameter-header">
+                <label className='block text-sm font-medium text-gray-300 mb-2 flex items-center justify-between'>
+                  <span>Entry Angle</span>
+                  <span className="parameter-value">{asteroidParams.angle}°</span>
+                </label>
+                <div className="parameter-description text-xs text-gray-400 mb-3">
+                  Steeper angles create deeper craters, while shallow angles cause wider destruction.
+                </div>
+              </div>
+              <div className="slider-container">
+                <GlassSlider
+                  min={0}
+                  max={90}
+                  value={asteroidParams.angle}
+                  onChange={value => handleParameterChange('angle', value)}
+                  className='w-full enhanced-slider'
+                />
+                <div className='flex justify-between text-xs text-gray-400 mt-2'>
+                  <span className="range-label">0° (grazing)</span>
+                  <span className="range-label">90° (vertical)</span>
+                </div>
+              </div>
+              <div className="angle-visualization mt-2">
+                <div className="text-xs text-purple-300 flex items-center">
+                  <span className="mr-2">📐</span>
+                  {asteroidParams.angle < 30 && 'Shallow impact - wide destruction zone'}
+                  {asteroidParams.angle >= 30 && asteroidParams.angle < 60 && 'Moderate angle - balanced impact'}
+                  {asteroidParams.angle >= 60 && 'Steep impact - deep crater formation'}
+                </div>
               </div>
             </div>
 
             {/* Material Selection */}
-            <div className='mb-6'>
-              <label className='block text-sm font-medium text-gray-300 mb-3'>
-                Material Composition
-              </label>
-              <div className='grid grid-cols-3 gap-2'>
+            <div className='mb-6 parameter-group'>
+              <div className="parameter-header">
+                <label className='block text-sm font-medium text-gray-300 mb-3'>
+                  Material Composition
+                </label>
+                <div className="parameter-description text-xs text-gray-400 mb-4">
+                  Different materials have varying densities and structural properties affecting impact dynamics.
+                </div>
+              </div>
+              <div className='grid grid-cols-3 gap-3 material-grid'>
                 {materials.map(material => (
                   <GlassButton
                     key={material.id}
@@ -309,39 +437,53 @@ const SimulationSetup = () => {
                         : 'secondary'
                     }
                     size='sm'
-                    className='flex flex-col items-center p-3'
+                    className={`flex flex-col items-center p-4 material-button transition-all duration-300 ${
+                      asteroidParams.composition === material.id ? 'selected-material' : ''
+                    }`}
                     onClick={() =>
                       handleParameterChange('composition', material.id)
                     }
                   >
-                    <span className='text-lg mb-1'>{material.icon}</span>
-                    <span className='text-xs'>{material.name}</span>
+                    <span className='text-2xl mb-2 material-icon'>{material.icon}</span>
+                    <span className='text-sm font-medium'>{material.name}</span>
+                    <span className='text-xs text-gray-400 mt-1'>
+                      {material.id === 'iron' && 'Dense, high impact'}
+                      {material.id === 'stone' && 'Moderate density'}
+                      {material.id === 'ice' && 'Low density, fragile'}
+                    </span>
                   </GlassButton>
                 ))}
               </div>
             </div>
 
             {/* Advanced Options Toggle */}
-            <div className='mb-4'>
+            <div className='mb-4 advanced-toggle'>
               <GlassToggle
                 checked={showAdvanced}
                 onChange={setShowAdvanced}
                 label='Advanced Options'
+                className="enhanced-toggle"
               />
+              <div className="text-xs text-gray-400 mt-1">
+                Access additional simulation parameters and settings
+              </div>
             </div>
 
             {/* Advanced Parameters */}
             {showAdvanced && (
-              <div className='space-y-4 border-t border-white/10 pt-4'>
-                <div>
+              <div className='space-y-4 border-t border-white/10 pt-4 advanced-section animate-fadeIn'>
+                <div className="parameter-group">
                   <label className='block text-sm font-medium text-gray-300 mb-2'>
                     Impact Date
                   </label>
+                  <div className="parameter-description text-xs text-gray-400 mb-3">
+                    Set the date for your simulation scenario
+                  </div>
                   <GlassInput
                     type='date'
                     value={date}
                     onChange={e => setDate(e.target.value)}
-                    className='w-full'
+                    className='w-full enhanced-input'
                   />
                 </div>
               </div>
@@ -354,15 +496,31 @@ const SimulationSetup = () => {
               🛰️ NASA Real-time Data
             </h3>
             {nasaDataLoading ? (
-              <div className='flex items-center justify-center py-4'>
-                <GlassSpinner size='sm' />
-                <span className='ml-2 text-sm text-gray-300'>
-                  Loading NASA data...
-                </span>
+              <div className='space-y-4'>
+                <div className='flex items-center justify-center py-2'>
+                  <ModernSpinner variant="orbit" size="sm" />
+                  <span className='ml-3 text-sm text-gray-300'>
+                    Fetching real-time asteroid data from NASA...
+                  </span>
+                </div>
+                <SkeletonText lines={3} />
+                <div className="space-y-2">
+                  <div className="h-10 bg-white/5 rounded-lg animate-pulse"></div>
+                  <SkeletonText lines={2} />
+                </div>
               </div>
             ) : nasaDataError ? (
               <div className='text-red-400 text-sm p-3 bg-red-500/10 rounded-lg border border-red-500/20'>
-                {nasaDataError}
+                <div className="flex items-center">
+                  <span className="text-red-500 mr-2">⚠️</span>
+                  {nasaDataError}
+                </div>
+                <button 
+                  className="mt-2 text-xs text-red-300 hover:text-red-200 underline"
+                  onClick={() => window.location.reload()}
+                >
+                  Try refreshing the page
+                </button>
               </div>
             ) : (
               <div className='space-y-3'>
@@ -372,30 +530,40 @@ const SimulationSetup = () => {
                   onChange={e => setSelectedAsteroid(e.target.value)}
                 >
                   <option value=''>Select a NASA asteroid</option>
-                  {nasaAsteroidData.map(asteroid => (
-                    <option key={asteroid.id} value={asteroid.id}>
-                      {asteroid.name} ({asteroid.diameter}m, {asteroid.velocity}
+                  {nasaAsteroidData?.map(asteroid => (
+                    <option key={asteroid?.id || Math.random()} value={asteroid?.id || ''}>
+                      {asteroid?.name || 'Unknown'} ({asteroid?.diameter || 'N/A'}m, {asteroid?.velocity || 'N/A'}
                       km/s)
-                      {asteroid.isPotentiallyHazardous ? ' ⚠️' : ''}
+                      {asteroid?.isPotentiallyHazardous ? ' ⚠️' : ''}
                     </option>
-                  ))}
+                  )) || []}
                 </select>
                 {selectedAsteroid && (
                   <div
-                    className={`text-sm p-3 rounded-lg border ${
-                      nasaAsteroidData.find(a => a.id === selectedAsteroid)
+                    className={`text-sm p-3 rounded-lg border transition-all duration-300 ${
+                      nasaAsteroidData?.find(a => a.id === selectedAsteroid)
                         ?.isPotentiallyHazardous
                         ? 'bg-red-500/10 border-red-500/20 text-red-300'
                         : 'bg-green-500/10 border-green-500/20 text-green-300'
                     }`}
                   >
-                    Selected:{' '}
-                    {
-                      nasaAsteroidData.find(a => a.id === selectedAsteroid)
-                        ?.name
-                    }
-                    {nasaAsteroidData.find(a => a.id === selectedAsteroid)
-                      ?.isPotentiallyHazardous && ' ⚠️ POTENTIALLY HAZARDOUS'}
+                    <div className="flex items-center">
+                      <span className="mr-2">
+                        {nasaAsteroidData?.find(a => a.id === selectedAsteroid)
+                          ?.isPotentiallyHazardous ? '⚠️' : '✅'}
+                      </span>
+                      Selected:{' '}
+                      {
+                        nasaAsteroidData?.find(a => a.id === selectedAsteroid)
+                          ?.name || 'Unknown Asteroid'
+                      }
+                    </div>
+                    {nasaAsteroidData?.find(a => a.id === selectedAsteroid)
+                      ?.isPotentiallyHazardous && (
+                      <div className="text-xs mt-1 text-red-400">
+                        POTENTIALLY HAZARDOUS OBJECT
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -403,23 +571,18 @@ const SimulationSetup = () => {
           </GlassCard>
 
           {/* Run Simulation Button */}
-          <GlassButton
+          <LoadingButton
             variant='primary'
             size='lg'
-            className='w-full'
+            className='w-full glass-button'
             onClick={handleRunSimulation}
+            loading={simulationRunning || loading}
             disabled={simulationRunning || loading}
             title='Start asteroid impact simulation with current parameters'
+            loadingText="Running Simulation..."
           >
-            {simulationRunning || loading ? (
-              <>
-                <GlassSpinner size='sm' className='mr-2' />
-                Running Simulation...
-              </>
-            ) : (
-              <>🚀 Launch Simulation</>
-            )}
-          </GlassButton>
+            🚀 Launch Simulation
+          </LoadingButton>
         </div>
 
         {/* Main Display Area */}
@@ -432,12 +595,12 @@ const SimulationSetup = () => {
               </h2>
               <div className='flex space-x-2'>
                 <GlassButton
-                  variant={viewMode === '3d' ? 'primary' : 'secondary'}
+                  variant={viewMode === '2d-map' ? 'primary' : 'secondary'}
                   size='sm'
-                  onClick={() => setViewMode('3d')}
-                  title='Switch to 3D trajectory and impact visualization'
+                  onClick={() => setViewMode('2d-map')}
+                  title='Switch to 2D impact map with realistic crater visualization'
                 >
-                  🌐 3D View
+                  🗺️ 2D Impact Map
                 </GlassButton>
                 <GlassButton
                   variant={viewMode === 'data' ? 'primary' : 'secondary'}
@@ -478,43 +641,52 @@ const SimulationSetup = () => {
                 <div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
                   <GlassStat
                     label='Impact Energy'
-                    value={`${(simulationResults.impactEnergy / 1e15).toFixed(2)} MT`}
+                    value={simulationResults?.impactEnergy ? `${(simulationResults.impactEnergy / 1e15).toFixed(2)} MT` : 'Calculating...'}
                     icon='💥'
                   />
                   <GlassStat
                     label='Crater Diameter'
-                    value={`${(simulationResults.craterDiameter / 1000).toFixed(1)} km`}
+                    value={simulationResults?.craterDiameter ? `${(simulationResults.craterDiameter / 1000).toFixed(1)} km` : 'Calculating...'}
                     icon='🕳️'
                   />
                   <GlassStat
                     label='Impact Location'
-                    value={impactLocation ? `${impactLocation.latitude.toFixed(2)}°, ${impactLocation.longitude.toFixed(2)}°` : 'Not calculated'}
+                    value={impactLocation?.latitude && impactLocation?.longitude ? `${impactLocation.latitude.toFixed(2)}°, ${impactLocation.longitude.toFixed(2)}°` : 'Not calculated'}
                     icon='🎯'
                   />
                   <GlassStat
                     label='Simulation ID'
-                    value={simulationResults.simulationId.slice(0, 8)}
+                    value={simulationResults?.simulationId?.slice(0, 8) || 'N/A'}
                     icon='🆔'
                   />
                 </div>
 
                 {/* Visualization Area */}
-                <div className='bg-black/20 rounded-lg p-6 min-h-[300px] flex items-center justify-center border border-white/10'>
-                  <div className='text-center text-gray-300'>
-                    <div className='text-4xl mb-4'>🌌</div>
-                    <div className='text-lg font-medium mb-2'>
-                      3D Visualization
+                {viewMode === '2d-map' ? (
+                  <Advanced2DImpactMap
+                    simulationResults={simulationResults}
+                    impactLocation={impactLocation}
+                    asteroidParams={asteroidParams}
+                    onError={(error) => console.error('2D Impact Map Error:', error)}
+                  />
+                ) : (
+                  <div className='bg-black/20 rounded-lg p-6 min-h-[300px] flex items-center justify-center border border-white/10'>
+                    <div className='text-center text-gray-300'>
+                      <div className='text-4xl mb-4'>
+                        {viewMode === 'data' ? '📊' : '⚖️'}
+                      </div>
+                      <div className='text-lg font-medium mb-2'>
+                        {viewMode === 'data' ? 'Data Analysis' : 'Comparison View'}
+                      </div>
+                      <p className='text-sm'>
+                        {viewMode === 'data' &&
+                          'Detailed numerical analysis and charts'}
+                        {viewMode === 'comparison' &&
+                          'Compare simulation results with historical events'}
+                      </p>
                     </div>
-                    <p className='text-sm'>
-                      {viewMode === '3d' &&
-                        'Interactive 3D trajectory and impact visualization'}
-                      {viewMode === 'data' &&
-                        'Detailed numerical analysis and charts'}
-                      {viewMode === 'comparison' &&
-                        'Comparison with historical events'}
-                    </p>
                   </div>
-                </div>
+                )}
               </div>
             ) : (
               <div className='flex items-center justify-center h-full min-h-[400px]'>
@@ -537,4 +709,11 @@ const SimulationSetup = () => {
   );
 };
 
-export default SimulationSetup;
+// Wrap the component with error boundary
+const SimulationSetupWithErrorBoundary = () => (
+  <SimulationErrorBoundary>
+    <SimulationSetup />
+  </SimulationErrorBoundary>
+);
+
+export default SimulationSetupWithErrorBoundary;

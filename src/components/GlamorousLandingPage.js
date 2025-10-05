@@ -219,178 +219,157 @@ const GlamorousLandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className={`min-h-screen flex items-center justify-center px-4 transition-all duration-1000 ${
-          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        }`}
-      >
-        <div className='max-w-6xl mx-auto text-center space-y-8'>
-          {/* Main Title */}
-          <div className='space-y-4'>
-            <h1 className='font-orbitron font-black text-6xl md:text-8xl lg:text-9xl'>
-              <span className='bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 bg-clip-text text-transparent animate-pulse'>
-                METEOR
-              </span>
-              <br />
-              <span className='bg-gradient-to-r from-blue-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent'>
-                MADNESS
-              </span>
+      <section className='relative min-h-screen flex items-center justify-center px-4'>
+        <div className='text-center max-w-6xl mx-auto relative z-10'>
+          {/* Enhanced Title with Better Typography */}
+          <div className='mb-8'>
+            <h1 
+              className='font-orbitron font-bold text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight'
+              style={{
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                textShadow: '0 0 30px rgba(102, 126, 234, 0.5)',
+                animation: 'glow 2s ease-in-out infinite alternate'
+              }}
+            >
+              METEOR MADNESS
             </h1>
-            <div className='flex items-center justify-center space-x-4 text-white/80'>
-              <div className='h-px bg-gradient-to-r from-transparent via-white/50 to-transparent flex-1 max-w-32' />
-              <MeteorIcon />
-              <div className='h-px bg-gradient-to-r from-transparent via-white/50 to-transparent flex-1 max-w-32' />
-            </div>
-            <p className='text-xl md:text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed'>
-              Professional asteroid impact simulation powered by NASA data and
-              cutting-edge visualization technology
+            <div className='h-1 w-48 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 mx-auto rounded-full mb-6 animate-pulse' />
+            <p className='text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto leading-relaxed'>
+              Experience cutting-edge asteroid impact simulation with real NASA data. 
+              Explore planetary defense strategies and visualize cosmic threats in stunning detail.
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className='flex flex-col sm:flex-row items-center justify-center gap-6'>
+          {/* Enhanced Action Buttons with Better Spacing */}
+          <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-16'>
             <Link 
               to='/simulation'
+              className='group relative overflow-hidden'
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
-                padding: '16px 32px',
+                justifyContent: 'center',
+                padding: '18px 36px',
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '12px',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '16px',
                 color: 'white',
                 fontSize: '18px',
-                fontWeight: '600',
+                fontWeight: '700',
                 textDecoration: 'none',
-                minWidth: '256px',
-                justifyContent: 'center',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-                position: 'relative',
-                overflow: 'hidden'
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 8px 32px rgba(102, 126, 234, 0.3)',
+                minWidth: '280px'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+                e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                e.target.style.boxShadow = '0 12px 40px rgba(102, 126, 234, 0.5)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
+                e.target.style.transform = 'translateY(0) scale(1)';
+                e.target.style.boxShadow = '0 8px 32px rgba(102, 126, 234, 0.3)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
               }}
-              title='Begin your asteroid impact simulation journey with cutting-edge NASA data, advanced physics modeling, and real-time visualization of potential Earth threats'
+              title='Launch comprehensive asteroid impact simulations with real-time physics modeling and NASA data integration'
             >
-              <MeteorIcon />
-              <span>Start Simulation</span>
+              <span className='mr-3 text-2xl'>🚀</span>
+              Start Simulation
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000' />
             </Link>
+            
             <button
-              onClick={scrollToAbout}
+              onClick={() => setShowAbout(!showAbout)}
+              className='group relative overflow-hidden'
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '16px 32px',
+                padding: '18px 36px',
                 background: 'rgba(255, 255, 255, 0.1)',
                 backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '12px',
+                border: '2px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '16px',
                 color: 'white',
                 fontSize: '18px',
-                fontWeight: '600',
-                minWidth: '256px',
+                fontWeight: '700',
+                minWidth: '280px',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
               }}
               onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+                e.target.style.transform = 'translateY(-4px) scale(1.02)';
+                e.target.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.3)';
                 e.target.style.background = 'rgba(255, 255, 255, 0.15)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
               }}
               onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.2)';
+                e.target.style.transform = 'translateY(0) scale(1)';
+                e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
                 e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
               }}
               title='Explore the scientific foundation, technology stack, and planetary defense capabilities of our asteroid impact simulation platform'
             >
+              <span className='mr-3 text-2xl'>🌌</span>
               Discover More
+              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000' />
             </button>
           </div>
 
-          {/* Live Stats */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-16'>
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '24px',
-                textAlign: 'center',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-              }}
-              className='animate-float'
-            >
-              <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
-                <MeteorIcon />
+          {/* Enhanced Live Stats with Better Cards */}
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+            {[
+              { value: '2,000+', label: 'Known NEOs Tracked', icon: '🛰️', delay: '0s' },
+              { value: '99.9%', label: 'Detection Accuracy', icon: '🎯', delay: '0.2s' },
+              { value: '24/7', label: 'Real-time Monitoring', icon: '⚡', delay: '0.4s' }
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className='group relative overflow-hidden'
+                style={{
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  borderRadius: '20px',
+                  padding: '32px 24px',
+                  textAlign: 'center',
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  animationDelay: stat.delay
+                }}
+                className='animate-float hover:scale-105'
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
+                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.2)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                }}
+              >
+                <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-300'>
+                  {stat.icon}
+                </div>
+                <div className='text-4xl font-bold text-white mb-3 font-orbitron'>
+                  {stat.value}
+                </div>
+                <div className='text-lg font-semibold text-white/90'>
+                  {stat.label}
+                </div>
+                <div className='absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-20' />
               </div>
-              <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'white', marginBottom: '8px' }}>
-                2,000+
-              </div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: 'white', marginBottom: '8px' }}>
-                Known NEOs Tracked
-              </div>
-            </div>
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '24px',
-                textAlign: 'center',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-                animationDelay: '0.5s'
-              }}
-              className='animate-float'
-            >
-              <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
-                <MeteorIcon />
-              </div>
-              <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'white', marginBottom: '8px' }}>
-                99.9%
-              </div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: 'white', marginBottom: '8px' }}>
-                Detection Accuracy
-              </div>
-            </div>
-            <div
-              style={{
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                borderRadius: '12px',
-                padding: '24px',
-                textAlign: 'center',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
-                animationDelay: '1s'
-              }}
-              className='animate-float'
-            >
-              <div style={{ marginBottom: '12px', display: 'flex', justifyContent: 'center' }}>
-                <MeteorIcon />
-              </div>
-              <div style={{ fontSize: '32px', fontWeight: 'bold', color: 'white', marginBottom: '8px' }}>
-                24/7
-              </div>
-              <div style={{ fontSize: '16px', fontWeight: '600', color: 'white', marginBottom: '8px' }}>
-                Real-time Monitoring
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

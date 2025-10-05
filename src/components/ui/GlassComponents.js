@@ -245,11 +245,23 @@ export const GlassToggle = ({
   label,
   className = '',
 }) => {
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onChange(!checked);
+    }
+  };
+
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       <div
         className={`glass-toggle ${checked ? 'active' : ''}`}
         onClick={() => onChange(!checked)}
+        onKeyDown={handleKeyPress}
+        role="switch"
+        tabIndex={0}
+        aria-checked={checked}
+        aria-label={label || 'Toggle'}
       />
       {label && (
         <span className='text-white/80 text-sm font-medium'>{label}</span>

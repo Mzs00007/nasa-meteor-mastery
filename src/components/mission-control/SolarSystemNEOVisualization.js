@@ -6,125 +6,45 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 import { SimulationContext } from '../../context/SimulationContext';
-import { getNEODetails, getNEOFeed } from '../../services/nasaService';
+import { nasaService } from '../../services/nasaService';
+import { ModernSpinner, SkeletonText, SkeletonCard, LoadingOverlay, ProgressBar } from '../ui/ModernLoadingComponents';
 import './SolarSystemNEOVisualization.css';
 
 const SolarSystemNEOVisualization = () => {
   const canvasRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
   const [neoData, setNeoData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStage, setLoadingStage] = useState('Initializing...');
   const [filterHazardous, setFilterHazardous] = useState(false);
-  const [minSize, setMinSize] = useState(10); // meters
-  const [maxDistance, setMaxDistance] = useState(0.5); // AU
+  const [minSize, setMinSize] = useState(1);
+  const [maxDistance, setMaxDistance] = useState(1);
   const [showOrbits, setShowOrbits] = useState(true);
   const [showLabels, setShowLabels] = useState(true);
   const [animationSpeed, setAnimationSpeed] = useState(1);
   const { simulationData } = React.useContext(SimulationContext);
-
-  // Solar system bodies data (scaled for visualization)
-  const solarSystemBodies = [
-    {
-      name: 'Sun',
-      radius: 20,
-      distance: 0,
-      color: 0xffd700,
-      emissive: 0xffd700,
-      rotationSpeed: 0.004,
-      orbitSpeed: 0,
-      texture: null,
-    },
-    {
-      name: 'Mercury',
-      radius: 0.4,
-      distance: 28,
-      color: 0x8c8c8c,
-      emissive: 0x000000,
-      rotationSpeed: 0.004,
-      orbitSpeed: 0.04,
-      texture: null,
-    },
-    {
-      name: 'Venus',
-      radius: 0.9,
-      distance: 44,
-      color: 0xe6e6e6,
-      emissive: 0x000000,
-      rotationSpeed: 0.002,
-      orbitSpeed: 0.015,
-      texture: null,
-    },
-    {
-      name: 'Earth',
-      radius: 1,
-      distance: 62,
-      color: 0x2233ff,
-      emissive: 0x000000,
-      rotationSpeed: 0.01,
-      orbitSpeed: 0.01,
-      texture: null,
-    },
-    {
-      name: 'Mars',
-      radius: 0.5,
-      distance: 78,
-      color: 0xff5733,
-      emissive: 0x000000,
-      rotationSpeed: 0.009,
-      orbitSpeed: 0.008,
-      texture: null,
-    },
-    {
-      name: 'Jupiter',
-      radius: 11,
-      distance: 260,
-      color: 0xd8ca9d,
-      emissive: 0x000000,
-      rotationSpeed: 0.025,
-      orbitSpeed: 0.004,
-      texture: null,
-    },
-    {
-      name: 'Saturn',
-      radius: 9,
-      distance: 480,
-      color: 0xfad5a5,
-      emissive: 0x000000,
-      rotationSpeed: 0.023,
-      orbitSpeed: 0.003,
-      texture: null,
-      hasRings: true,
-    },
-    {
-      name: 'Uranus',
-      radius: 4,
-      distance: 960,
-      color: 0x4fd0e7,
-      emissive: 0x000000,
-      rotationSpeed: 0.012,
-      orbitSpeed: 0.002,
-      texture: null,
-    },
-    {
-      name: 'Neptune',
-      radius: 3.9,
-      distance: 1500,
-      color: 0x3457d5,
-      emissive: 0x000000,
-      rotationSpeed: 0.011,
-      orbitSpeed: 0.001,
-      texture: null,
-    },
-  ];
 
   // Fetch NEO data from NASA API
   useEffect(() => {
     const fetchNEOData = async () => {
       try {
         setIsLoading(true);
+        setLoadingProgress(0);
+        setLoadingStage('Connecting to NASA API...');
+        
+        await new Promise(resolve => setTimeout(resolve, 500));
+        setLoadingProgress(20);
+        
         const today = new Date().toISOString().split('T')[0];
+        setLoadingStage('Fetching NEO data...');
         const feedData = await nasaService.getNeoFeed(today, today);
+        setLoadingProgress(50);
 
         if (feedData && feedData.near_earth_objects) {
+          setLoadingStage('Processing asteroid data...');
+          await new Promise(resolve => setTimeout(resolve, 300));
+          setLoadingProgress(70);
+          
           // Process NEO data for visualization
           const processedNEOs = Object.values(feedData.near_earth_objects)
             .flat()
@@ -147,13 +67,25 @@ const SolarSystemNEOVisualization = () => {
                 neo.close_approach_data[0]?.close_approach_date,
             }));
 
+          setLoadingProgress(90);
+          setLoadingStage('Preparing visualization...');
+          await new Promise(resolve => setTimeout(resolve, 300));
+          
           setNeoData(processedNEOs);
+          setLoadingProgress(100);
+          setLoadingStage('Complete!');
         }
       } catch (error) {
         console.error('Failed to fetch NEO data:', error);
+        setLoadingStage('Using sample data...');
+        setLoadingProgress(80);
         // Fallback to sample data
         setNeoData(generateSampleNEOData());
+        await new Promise(resolve => setTimeout(resolve, 500));
+        setLoadingProgress(100);
+        setLoadingStage('Complete!');
       } finally {
+        await new Promise(resolve => setTimeout(resolve, 500));
         setIsLoading(false);
       }
     };
@@ -255,18 +187,26 @@ const SolarSystemNEOVisualization = () => {
     const ambientLight = new THREE.AmbientLight(0x333333);
     scene.add(ambientLight);
 
-    const sunLight = new THREE.PointLight(0xffffff, 2, 1000);
-    sunLight.position.set(0, 0, 0);
-    sunLight.castShadow = true;
-    scene.add(sunLight);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(0, 0, 0);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 2048;
+    directionalLight.shadow.mapSize.height = 2048;
+    directionalLight.shadow.camera.near = 0.5;
+    directionalLight.shadow.camera.far = 500;
+    directionalLight.shadow.camera.left = -100;
+    directionalLight.shadow.camera.right = 100;
+    directionalLight.shadow.camera.top = 100;
+    directionalLight.shadow.camera.bottom = -100;
+    scene.add(directionalLight);
 
     // Create starfield
     const createStarfield = () => {
       const starGeometry = new THREE.BufferGeometry();
       const starMaterial = new THREE.PointsMaterial({
         color: 0xffffff,
-        size: 0.7,
-        sizeAttenuation: true,
+        size: 0.5,
+        sizeAttenuation: false,
       });
 
       const starVertices = [];
@@ -281,72 +221,50 @@ const SolarSystemNEOVisualization = () => {
         'position',
         new THREE.Float32BufferAttribute(starVertices, 3)
       );
-      const stars = new THREE.Points(starGeometry, starMaterial);
-      scene.add(stars);
-      return stars;
+      return new THREE.Points(starGeometry, starMaterial);
     };
 
-    // Create orbit paths
-    const createOrbitPath = (distance, color = 0xffffff) => {
-      const orbitGeometry = new THREE.RingGeometry(
-        distance - 0.1,
-        distance + 0.1,
-        128
-      );
-      const orbitMaterial = new THREE.MeshBasicMaterial({
-        color: color,
-        side: THREE.DoubleSide,
-        transparent: true,
-        opacity: 0.3,
-      });
-      const orbit = new THREE.Mesh(orbitGeometry, orbitMaterial);
-      orbit.rotation.x = Math.PI / 2;
-      return orbit;
-    };
-
-    // Create celestial body
-    const createCelestialBody = bodyData => {
-      const geometry = new THREE.SphereGeometry(bodyData.radius, 64, 64);
-      const material = new THREE.MeshStandardMaterial({
-        color: bodyData.color,
-        emissive: bodyData.emissive,
-        emissiveIntensity: bodyData.name === 'Sun' ? 1 : 0,
-        roughness: 0.8,
-        metalness: 0.2,
-      });
-
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.castShadow = bodyData.name !== 'Sun';
-      mesh.receiveShadow = bodyData.name !== 'Sun';
-      mesh.userData = { ...bodyData };
-
-      // Create orbit path
-      if (bodyData.distance > 0 && showOrbits) {
-        const orbit = createOrbitPath(bodyData.distance);
-        scene.add(orbit);
-        mesh.userData.orbit = orbit;
-      }
-
-      // Create rings for Saturn
-      if (bodyData.hasRings) {
-        const ringGeometry = new THREE.RingGeometry(
-          bodyData.radius * 1.2,
-          bodyData.radius * 2.5,
-          64
+    // Create orbit path
+    const createOrbitPath = (radius, color) => {
+      const points = [];
+      for (let i = 0; i <= 64; i++) {
+        const angle = (i / 64) * Math.PI * 2;
+        points.push(
+          new THREE.Vector3(Math.cos(angle) * radius, 0, Math.sin(angle) * radius)
         );
-        const ringMaterial = new THREE.MeshBasicMaterial({
-          color: 0xfad5a5,
-          side: THREE.DoubleSide,
-          transparent: true,
-          opacity: 0.7,
-        });
-        const rings = new THREE.Mesh(ringGeometry, ringMaterial);
-        rings.rotation.x = Math.PI / 2;
-        mesh.add(rings);
       }
 
-      scene.add(mesh);
-      return mesh;
+      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      const material = new THREE.LineBasicMaterial({
+        color: color,
+        opacity: 0.3,
+        transparent: true,
+      });
+
+      return new THREE.Line(geometry, material);
+    };
+
+    // Create text label
+    const createLabel = (text, position, color) => {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      canvas.width = 256;
+      canvas.height = 64;
+
+      context.fillStyle = `#${color.toString(16).padStart(6, '0')}`;
+      context.font = '20px Arial';
+      context.textAlign = 'center';
+      context.fillText(text, 128, 32);
+
+      const texture = new THREE.CanvasTexture(canvas);
+      const material = new THREE.SpriteMaterial({ map: texture });
+      const sprite = new THREE.Sprite(material);
+
+      sprite.position.copy(position);
+      sprite.position.y += 5;
+      sprite.scale.set(20, 5, 1);
+
+      return sprite;
     };
 
     // Create NEO (Near Earth Object)
@@ -370,12 +288,13 @@ const SolarSystemNEOVisualization = () => {
       mesh.receiveShadow = true;
       mesh.userData = { ...neoData, type: 'neo' };
 
-      // Position NEO along its orbit (simplified)
-      const orbitDistance = 62 + neoData.missDistance * 100; // Scale miss distance
+      // Position NEO in space (simplified orbital positioning)
+      const orbitDistance = 100 + neoData.missDistance * 200; // Scale miss distance
       const angle = Math.random() * Math.PI * 2;
+      const inclination = (Math.random() - 0.5) * 0.5; // Add some vertical variation
       mesh.position.set(
         Math.cos(angle) * orbitDistance,
-        0,
+        Math.sin(inclination) * 50,
         Math.sin(angle) * orbitDistance
       );
 
@@ -397,35 +316,9 @@ const SolarSystemNEOVisualization = () => {
       return mesh;
     };
 
-    // Create text label
-    const createLabel = (text, position, color) => {
-      const canvas = document.createElement('canvas');
-      const context = canvas.getContext('2d');
-      canvas.width = 256;
-      canvas.height = 64;
-
-      context.fillStyle = '#ffffff';
-      context.font = '24px Arial';
-      context.textAlign = 'center';
-      context.fillText(text, 128, 32);
-
-      const texture = new THREE.CanvasTexture(canvas);
-      const material = new THREE.SpriteMaterial({
-        map: texture,
-        transparent: true,
-      });
-
-      const sprite = new THREE.Sprite(material);
-      sprite.position.copy(position);
-      sprite.position.y += 5;
-      sprite.scale.set(20, 5, 1);
-
-      return sprite;
-    };
-
     // Initialize scene
     const stars = createStarfield();
-    const bodies = solarSystemBodies.map(createCelestialBody);
+    scene.add(stars);
     const neos = filteredNEOs.map(createNEO);
 
     // Post-processing
@@ -449,26 +342,14 @@ const SolarSystemNEOVisualization = () => {
 
       const delta = clock.getDelta() * animationSpeed;
 
-      // Animate solar system bodies
-      bodies.forEach(body => {
-        if (body.userData.orbitSpeed > 0) {
-          body.rotation.y += body.userData.rotationSpeed * delta;
-
-          // Orbital motion
-          const time = Date.now() * 0.001 * body.userData.orbitSpeed * delta;
-          body.position.x = Math.cos(time) * body.userData.distance;
-          body.position.z = Math.sin(time) * body.userData.distance;
-        }
-      });
-
       // Animate NEOs
       neos.forEach(neo => {
         neo.rotation.y += 0.01 * delta;
 
-        // Orbital motion around Earth
+        // Orbital motion in space
         const orbitSpeed = 0.02 * (1 + neo.userData.velocity / 50);
         const time = Date.now() * 0.001 * orbitSpeed * delta;
-        const orbitDistance = 62 + neo.userData.missDistance * 100;
+        const orbitDistance = 100 + neo.userData.missDistance * 200;
 
         neo.position.x = Math.cos(time) * orbitDistance;
         neo.position.z = Math.sin(time) * orbitDistance;
@@ -503,7 +384,7 @@ const SolarSystemNEOVisualization = () => {
   return (
     <div className='neo-visualization-container'>
       <div className='neo-visualization-header'>
-        <h2>Solar System NEO Visualization</h2>
+        <h2>NEO Tracking Visualization</h2>
         <div className='neo-controls-panel'>
           <div className='control-group'>
             <label>
@@ -575,45 +456,92 @@ const SolarSystemNEOVisualization = () => {
         </div>
 
         <div className='neo-stats'>
-          <span>Total NEOs: {neoData.length}</span>
-          <span>Filtered: {filteredNEOs.length}</span>
-          <span>
-            Hazardous: {neoData.filter(neo => neo.isHazardous).length}
-          </span>
+          {isLoading ? (
+            <>
+              <span><SkeletonText width="80px" height="14px" /></span>
+              <span><SkeletonText width="70px" height="14px" /></span>
+              <span><SkeletonText width="90px" height="14px" /></span>
+            </>
+          ) : (
+            <>
+              <span>Total NEOs: {neoData.length}</span>
+              <span>Filtered: {filteredNEOs.length}</span>
+              <span>
+                Hazardous: {neoData.filter(neo => neo.isHazardous).length}
+              </span>
+            </>
+          )}
         </div>
       </div>
 
       <div className='neo-visualization-canvas'>
         {isLoading && (
-          <div className='loading-overlay'>
-            <div className='loading-spinner' />
-            <p>Loading NASA NEO data...</p>
-          </div>
+          <LoadingOverlay>
+            <ModernSpinner variant="orbit" size="large" />
+            <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+              <h3 style={{ color: '#ffffff', marginBottom: '1rem', fontSize: '1.2rem' }}>
+                {loadingStage}
+              </h3>
+              <ProgressBar 
+                progress={loadingProgress} 
+                variant="gradient"
+                style={{ width: '300px', margin: '0 auto' }}
+              />
+              <p style={{ color: 'rgba(255, 255, 255, 0.8)', marginTop: '1rem', fontSize: '0.9rem' }}>
+                Fetching real-time asteroid data from NASA
+              </p>
+            </div>
+          </LoadingOverlay>
         )}
         <canvas ref={canvasRef} />
       </div>
 
       <div className='neo-info-panel'>
-        <h3>Near Earth Objects ({filteredNEOs.length})</h3>
+        <h3>Near Earth Objects ({isLoading ? '...' : filteredNEOs.length})</h3>
         <div className='neo-list'>
-          {filteredNEOs.slice(0, 10).map(neo => (
-            <div key={neo.id} className='neo-item'>
-              <div
-                className='neo-color-indicator'
-                style={{
-                  backgroundColor: neo.isHazardous ? '#ff3333' : '#33ff33',
-                }}
-              />
-              <div className='neo-details'>
-                <strong>{neo.name}</strong>
-                <span>Size: {neo.diameter}m</span>
-                <span>Velocity: {neo.velocity} km/s</span>
-                <span>Distance: {neo.missDistance} AU</span>
-                <span>Class: {neo.orbitClass}</span>
-                <span>Approach: {neo.closeApproachDate}</span>
+          {isLoading ? (
+            // Skeleton loading for NEO items
+            Array.from({ length: 5 }).map((_, index) => (
+              <div key={`skeleton-${index}`} className='neo-item'>
+                <div 
+                  className='neo-color-indicator'
+                  style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
+                />
+                <div className='neo-details'>
+                  <SkeletonText width="80%" height="16px" style={{ marginBottom: '0.5rem' }} />
+                  <SkeletonText width="60%" height="12px" style={{ marginBottom: '0.3rem' }} />
+                  <SkeletonText width="70%" height="12px" style={{ marginBottom: '0.3rem' }} />
+                  <SkeletonText width="65%" height="12px" style={{ marginBottom: '0.3rem' }} />
+                  <SkeletonText width="55%" height="12px" style={{ marginBottom: '0.3rem' }} />
+                  <SkeletonText width="75%" height="12px" />
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            filteredNEOs.slice(0, 10).map(neo => (
+              <div key={neo.id} className={`neo-item ${neo.isHazardous ? 'hazardous' : ''}`}>
+                <div
+                  className='neo-color-indicator'
+                  style={{
+                    backgroundColor: neo.isHazardous ? '#ff3333' : '#33ff33',
+                  }}
+                />
+                <div className='neo-details'>
+                  <strong>{neo.name}</strong>
+                  <span>Size: {Math.round(neo.diameter)}m</span>
+                  <span>Velocity: {neo.velocity.toFixed(1)} km/s</span>
+                  <span>Distance: {neo.missDistance.toFixed(3)} AU</span>
+                  <span>Class: {neo.orbitClass}</span>
+                  <span>Approach: {neo.closeApproachDate}</span>
+                  {neo.isHazardous && (
+                    <span style={{ color: '#ff6b6b', fontWeight: 'bold' }}>
+                      ⚠️ Potentially Hazardous
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

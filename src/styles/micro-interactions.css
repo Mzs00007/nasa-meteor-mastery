@@ -1,0 +1,579 @@
+/* Enhanced Micro-Interactions and Smooth Transitions */
+
+/* CSS Custom Properties for consistent timing and easing */
+:root {
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-elastic: 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.2);
+  --shadow-glow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+/* Enhanced Button Interactions */
+.enhanced-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+.enhanced-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left var(--transition-slow);
+  z-index: 1;
+}
+
+.enhanced-btn:hover::before {
+  left: 100%;
+}
+
+.enhanced-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-strong);
+}
+
+.enhanced-btn:active {
+  transform: translateY(0) scale(0.98);
+  transition: all var(--transition-fast);
+}
+
+.enhanced-btn:focus {
+  outline: none;
+  box-shadow: var(--shadow-strong), 0 0 0 3px rgba(74, 158, 255, 0.3);
+}
+
+/* Enhanced Card Interactions */
+.enhanced-card {
+  transition: all var(--transition-normal);
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: var(--shadow-strong);
+}
+
+.enhanced-card:hover .card-content {
+  transform: translateY(-2px);
+}
+
+/* Enhanced Input Interactions */
+.enhanced-input {
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.enhanced-input input,
+.enhanced-input select,
+.enhanced-input textarea {
+  transition: all var(--transition-normal);
+  border: 2px solid transparent;
+}
+
+.enhanced-input input:focus,
+.enhanced-input select:focus,
+.enhanced-input textarea:focus {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-glow);
+  border-color: rgba(74, 158, 255, 0.5);
+}
+
+.enhanced-input label {
+  transition: all var(--transition-normal);
+}
+
+.enhanced-input input:focus + label,
+.enhanced-input input:not(:placeholder-shown) + label {
+  transform: translateY(-8px) scale(0.85);
+  color: #4a9eff;
+}
+
+/* Enhanced Icon Interactions */
+.enhanced-icon {
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.enhanced-icon:hover {
+  transform: scale(1.2) rotate(5deg);
+  color: #4a9eff;
+}
+
+.enhanced-icon:active {
+  transform: scale(1.1) rotate(0deg);
+  transition: all var(--transition-fast);
+}
+
+/* Enhanced Navigation Interactions */
+.enhanced-nav-item {
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.enhanced-nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4a9eff, #00d4ff);
+  transition: all var(--transition-normal);
+  transform: translateX(-50%);
+}
+
+.enhanced-nav-item:hover::after,
+.enhanced-nav-item.active::after {
+  width: 100%;
+}
+
+.enhanced-nav-item:hover {
+  transform: translateY(-1px);
+  color: #4a9eff;
+}
+
+/* Enhanced Toggle Interactions */
+.enhanced-toggle {
+  transition: all var(--transition-bounce);
+}
+
+.enhanced-toggle:hover {
+  transform: scale(1.05);
+}
+
+.enhanced-toggle input:checked + .toggle-slider {
+  animation: toggle-bounce 0.4s ease;
+}
+
+@keyframes toggle-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Enhanced Progress Indicators */
+.enhanced-progress {
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-progress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: progress-shimmer 2s infinite;
+}
+
+@keyframes progress-shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Enhanced Modal Interactions */
+.enhanced-modal {
+  animation: modal-fade-in var(--transition-normal) ease;
+}
+
+.enhanced-modal-content {
+  animation: modal-slide-up var(--transition-bounce) ease;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced Tooltip Interactions */
+.enhanced-tooltip {
+  position: relative;
+}
+
+.enhanced-tooltip::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-8px);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-normal);
+  z-index: 1000;
+}
+
+.enhanced-tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Enhanced Loading States */
+.enhanced-loading {
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: loading-sweep 1.5s infinite;
+}
+
+@keyframes loading-sweep {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Enhanced Ripple Effect */
+.enhanced-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.enhanced-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced Floating Action Button */
+.enhanced-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a9eff, #00d4ff);
+  border: none;
+  box-shadow: var(--shadow-medium);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  z-index: 1000;
+}
+
+.enhanced-fab:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-strong);
+}
+
+.enhanced-fab:active {
+  transform: scale(0.95);
+}
+
+/* Enhanced Accordion */
+.enhanced-accordion-header {
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.enhanced-accordion-header:hover {
+  background: rgba(74, 158, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.enhanced-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow) ease;
+}
+
+.enhanced-accordion-content.open {
+  max-height: 1000px;
+}
+
+/* Enhanced Tabs */
+.enhanced-tab {
+  position: relative;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.enhanced-tab::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4a9eff, #00d4ff);
+  transition: width var(--transition-normal);
+}
+
+.enhanced-tab:hover::before,
+.enhanced-tab.active::before {
+  width: 100%;
+}
+
+.enhanced-tab:hover {
+  color: #4a9eff;
+  transform: translateY(-1px);
+}
+
+/* Enhanced Dropdown */
+.enhanced-dropdown {
+  position: relative;
+}
+
+.enhanced-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: var(--shadow-strong);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-normal);
+  z-index: 1000;
+}
+
+.enhanced-dropdown:hover .enhanced-dropdown-content,
+.enhanced-dropdown.open .enhanced-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Enhanced Slider */
+.enhanced-slider {
+  position: relative;
+}
+
+.enhanced-slider input[type="range"] {
+  transition: all var(--transition-normal);
+}
+
+.enhanced-slider input[type="range"]:hover {
+  transform: scaleY(1.2);
+}
+
+.enhanced-slider input[type="range"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.3);
+}
+
+/* Enhanced Checkbox and Radio */
+.enhanced-checkbox,
+.enhanced-radio {
+  position: relative;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.enhanced-checkbox:hover,
+.enhanced-radio:hover {
+  transform: scale(1.1);
+}
+
+.enhanced-checkbox input:checked + label::after,
+.enhanced-radio input:checked + label::after {
+  animation: check-bounce var(--transition-bounce);
+}
+
+@keyframes check-bounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Enhanced Notification/Toast */
+.enhanced-notification {
+  animation: notification-slide-in var(--transition-bounce) ease;
+}
+
+.enhanced-notification.removing {
+  animation: notification-slide-out var(--transition-normal) ease forwards;
+}
+
+@keyframes notification-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes notification-slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* Enhanced Scroll Indicators */
+.enhanced-scroll-indicator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #4a9eff, #00d4ff);
+  transition: width var(--transition-fast);
+  z-index: 9999;
+}
+
+/* Enhanced Focus States for Accessibility */
+.enhanced-focus:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.3);
+  transition: box-shadow var(--transition-fast);
+}
+
+/* Enhanced Hover Glow Effects */
+.enhanced-glow:hover {
+  box-shadow: 
+    0 0 20px rgba(74, 158, 255, 0.3),
+    0 0 40px rgba(74, 158, 255, 0.2),
+    0 0 60px rgba(74, 158, 255, 0.1);
+  transition: box-shadow var(--transition-normal);
+}
+
+/* Enhanced Pulse Animation */
+.enhanced-pulse {
+  animation: enhanced-pulse 2s infinite;
+}
+
+@keyframes enhanced-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced Shake Animation */
+.enhanced-shake {
+  animation: enhanced-shake 0.5s ease-in-out;
+}
+
+@keyframes enhanced-shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Enhanced Bounce Animation */
+.enhanced-bounce {
+  animation: enhanced-bounce 1s ease infinite;
+}
+
+@keyframes enhanced-bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -15px, 0);
+  }
+  70% {
+    transform: translate3d(0, -7px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .enhanced-btn:hover {
+    transform: translateY(-1px) scale(1.01);
+  }
+  
+  .enhanced-card:hover {
+    transform: translateY(-2px) scale(1.005);
+  }
+  
+  .enhanced-fab {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .enhanced-btn:focus,
+  .enhanced-input input:focus,
+  .enhanced-focus:focus {
+    outline: 3px solid;
+    outline-offset: 2px;
+  }
+}

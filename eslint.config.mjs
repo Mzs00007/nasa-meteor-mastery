@@ -1,15 +1,15 @@
 import js from '@eslint/js';
+import importPlugin from 'eslint-plugin-import';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import jsxA11y from 'eslint-plugin-jsx-a11y';
-import importPlugin from 'eslint-plugin-import';
 import security from 'eslint-plugin-security';
 import testingLibrary from 'eslint-plugin-testing-library';
 
 export default [
   js.configs.recommended,
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
@@ -179,7 +179,9 @@ export default [
       'import/no-namespace': 'off',
       'import/extensions': ['error', 'ignorePackages', {
         js: 'never',
-        jsx: 'never'
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never'
       }],
       'import/order': ['error', {
         groups: [
@@ -267,7 +269,6 @@ export default [
       'no-proto': 'error',
       'no-redeclare': 'error',
       'no-restricted-properties': 'error',
-      'no-script-url': 'error',
       'no-self-assign': 'error',
       'no-unused-expressions': 'error',
       'no-unused-labels': 'error',
@@ -290,9 +291,11 @@ export default [
       },
       'import/resolver': {
         node: {
-          extensions: ['.js', '.jsx']
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+          caseSensitive: false
         }
-      }
+      },
+      'import/core-modules': ['@eslint/js', 'eslint-plugin-import', 'eslint-plugin-react', 'eslint-plugin-react-hooks', 'eslint-plugin-testing-library']
     }
   },
   // Test Files Configuration

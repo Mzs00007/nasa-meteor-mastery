@@ -95,41 +95,158 @@ class ComprehensiveAPIService {
   }
 
   /**
-   * DONKI - Space Weather Database
+   * DONKI - Space Weather Database (via backend proxy)
    */
-  async getSpaceWeatherNotifications(type = 'all', startDate = null, endDate = null, options = {}) {
-    const params = { type };
-    if (startDate) params.startDate = startDate;
-    if (endDate) params.endDate = endDate;
-    
-    return this.makeRequest('DONKI', '/notifications', params, options);
+  async getSpaceWeatherNotifications(type = 'all', startDate = null, endDate = null) {
+    try {
+      const params = new URLSearchParams();
+      if (type && type !== 'all') params.append('type', type);
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      
+      const url = `http://localhost:5000/api/donki/notifications${params.toString() ? '?' + params.toString() : ''}`;
+      console.log('Fetching from URL:', url);
+      
+      const response = await fetch(url);
+      console.log('Response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('Response data:', data);
+      
+      // Handle backend proxy response format
+      return data.data || data;
+    } catch (error) {
+      console.error('Error fetching space weather notifications:', error);
+      throw error;
+    }
   }
 
-  async getSolarFlares(startDate, endDate, options = {}) {
-    const params = { startDate, endDate };
-    return this.makeRequest('DONKI', '/FLR', params, options);
+  async getSolarFlares(startDate = null, endDate = null, options = {}) {
+    try {
+      const params = new URLSearchParams();
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      
+      const url = `http://localhost:5000/api/donki/flares${params.toString() ? '?' + params.toString() : ''}`;
+      console.log('Fetching solar flares from URL:', url);
+      
+      const response = await fetch(url);
+      console.log('Solar flares response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('Solar flares response data:', data);
+      
+      return data.data || data; // Handle backend wrapper format
+    } catch (error) {
+      console.error('Error fetching solar flares:', error);
+      throw error;
+    }
   }
 
-  async getCoronalMassEjections(startDate, endDate, options = {}) {
-    const params = { startDate, endDate };
-    return this.makeRequest('DONKI', '/CME', params, options);
+  async getCoronalMassEjections(startDate = null, endDate = null, options = {}) {
+    try {
+      const params = new URLSearchParams();
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      
+      const url = `http://localhost:5000/api/donki/cme${params.toString() ? '?' + params.toString() : ''}`;
+      console.log('Fetching CME from URL:', url);
+      
+      const response = await fetch(url);
+      console.log('CME response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('CME response data:', data);
+      
+      return data.data || data; // Handle backend wrapper format
+    } catch (error) {
+      console.error('Error fetching coronal mass ejections:', error);
+      throw error;
+    }
   }
 
-  async getGeomagneticStorms(startDate, endDate, options = {}) {
-    const params = { startDate, endDate };
-    return this.makeRequest('DONKI', '/GST', params, options);
+  async getGeomagneticStorms(startDate = null, endDate = null, options = {}) {
+    try {
+      const params = new URLSearchParams();
+      if (startDate) params.append('startDate', startDate);
+      if (endDate) params.append('endDate', endDate);
+      
+      const url = `http://localhost:5000/api/donki/storms${params.toString() ? '?' + params.toString() : ''}`;
+      console.log('Fetching geomagnetic storms from URL:', url);
+      
+      const response = await fetch(url);
+      console.log('Geomagnetic storms response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('Geomagnetic storms response data:', data);
+      
+      return data.data || data; // Handle backend wrapper format
+    } catch (error) {
+      console.error('Error fetching geomagnetic storms:', error);
+      throw error;
+    }
   }
 
   /**
    * EONET - Natural Event Tracker
    */
   async getNaturalEvents(status = 'open', limit = 100, days = 20, options = {}) {
-    const params = { status, limit, days };
-    return this.makeRequest('EONET', '/events', params, options);
+    try {
+      const params = new URLSearchParams({ status, limit, days });
+      const url = `https://eonet.gsfc.nasa.gov/api/v3/events?${params}`;
+      console.log('Fetching natural events from:', url);
+      
+      const response = await fetch(url);
+      console.log('Natural events response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Natural events data received:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching natural events:', error);
+      throw error;
+    }
   }
 
   async getEventCategories(options = {}) {
-    return this.makeRequest('EONET', '/categories', {}, options);
+    try {
+      const url = 'https://eonet.gsfc.nasa.gov/api/v3/categories';
+      console.log('Fetching event categories from:', url);
+      
+      const response = await fetch(url);
+      console.log('Event categories response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('Event categories data received:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching event categories:', error);
+      throw error;
+    }
   }
 
   async getEventSources(options = {}) {
@@ -255,6 +372,107 @@ class ComprehensiveAPIService {
   }
 
   /**
+   * Partner APIs - Aliases for PartnerAPIsExplorer compatibility
+   */
+  async getUSGSEarthquakes(minMagnitude = 4.5, timeRange = 'week', options = {}) {
+    try {
+      // Calculate date range based on timeRange
+      const endDate = new Date();
+      const startDate = new Date();
+      
+      switch (timeRange) {
+        case 'day':
+          startDate.setDate(endDate.getDate() - 1);
+          break;
+        case 'week':
+          startDate.setDate(endDate.getDate() - 7);
+          break;
+        case 'month':
+          startDate.setMonth(endDate.getMonth() - 1);
+          break;
+        default:
+          startDate.setDate(endDate.getDate() - 7);
+      }
+
+      const params = new URLSearchParams({
+        format: 'geojson',
+        starttime: startDate.toISOString().split('T')[0],
+        endtime: endDate.toISOString().split('T')[0],
+        minmagnitude: minMagnitude,
+        limit: 100
+      });
+
+      const url = `https://earthquake.usgs.gov/fdsnws/event/1/query?${params}`;
+      console.log('Fetching USGS earthquakes from:', url);
+      
+      const response = await fetch(url);
+      console.log('USGS earthquakes response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('USGS earthquakes data received:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching USGS earthquakes:', error);
+      throw error;
+    }
+  }
+
+  async getUSGSElevation(lat, lon, units = 'Meters', options = {}) {
+    try {
+      const params = new URLSearchParams({
+        x: lon,
+        y: lat,
+        units: units,
+        output: 'json'
+      });
+
+      const url = `https://nationalmap.gov/epqs/pqs.php?${params}`;
+      console.log('Fetching USGS elevation from:', url);
+      
+      const response = await fetch(url);
+      console.log('USGS elevation response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('USGS elevation data received:', data);
+      return data;
+    } catch (error) {
+      console.error('Error fetching USGS elevation:', error);
+      throw error;
+    }
+  }
+
+  async getWeatherData(location, options = {}) {
+    try {
+      // This is a placeholder for weather data - you would need to integrate with a weather API
+      // For now, return mock data to prevent errors
+      console.log('Fetching weather data for location:', location);
+      
+      const mockWeatherData = {
+        location: location,
+        temperature: Math.round(Math.random() * 30 + 10), // Random temp between 10-40°C
+        humidity: Math.round(Math.random() * 100),
+        windSpeed: Math.round(Math.random() * 20),
+        description: 'Partly cloudy',
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Weather data (mock):', mockWeatherData);
+      return mockWeatherData;
+    } catch (error) {
+      console.error('Error fetching weather data:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Cache management
    */
   generateCacheKey(url, params) {
@@ -355,45 +573,37 @@ class ComprehensiveAPIService {
   }
 
   /**
-   * HTTP request with retry logic
+   * HTTP request with retry logic (temporarily simplified for debugging)
    */
   async fetchWithRetry(url, options = {}) {
-    const config = {
-      ...NASA_API_CONFIG.REQUEST_CONFIG,
-      ...options,
-    };
+    try {
+      console.log('fetchWithRetry called with URL:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        ...options,
+      });
 
-    let lastError;
-    for (let attempt = 0; attempt <= config.RETRY_ATTEMPTS; attempt++) {
-      try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: config.HEADERS,
-          signal: AbortSignal.timeout(config.TIMEOUT),
-          ...options,
-        });
+      console.log('fetchWithRetry response status:', response.status);
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
-
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.includes('application/json')) {
-          return await response.json();
-        } else {
-          return await response.text();
-        }
-      } catch (error) {
-        lastError = error;
-        
-        if (attempt < config.RETRY_ATTEMPTS) {
-          const delay = config.RETRY_DELAY * Math.pow(2, attempt); // Exponential backoff
-          await new Promise(resolve => setTimeout(resolve, delay));
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
       }
+
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await response.json();
+        console.log('fetchWithRetry JSON data received:', data);
+        return data;
+      } else {
+        const text = await response.text();
+        console.log('fetchWithRetry text data received:', text);
+        return text;
+      }
+    } catch (error) {
+      console.error('fetchWithRetry error:', error);
+      throw error;
     }
-    
-    throw lastError;
   }
 
   /**
@@ -474,6 +684,9 @@ export const {
   getElevation,
   getSatellitePositions,
   getHorizonsData,
+  getUSGSEarthquakes,
+  getUSGSElevation,
+  getWeatherData,
   getStats,
   clearCache,
   resetAllCircuitBreakers,

@@ -36,8 +36,14 @@ const EnhancedNEOPanel = () => {
       setStatistics(stats);
       setError(null);
     } catch (err) {
-      setError('Failed to fetch NEO data');
-      console.error('NEO fetch error:', err);
+      // Handle rate limit errors more gracefully
+      if (err.response?.status === 429) {
+        setError('NASA API rate limit reached - using cached data');
+        console.debug('NEO API rate limit reached, using fallback data');
+      } else {
+        setError('Failed to fetch NEO data');
+        console.error('NEO fetch error:', err);
+      }
     } finally {
       setLoading(false);
     }

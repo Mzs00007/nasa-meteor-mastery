@@ -161,8 +161,22 @@ const NASAMissionControl = () => {
     }
   };
 
+  const handleSystemPanelKeyPress = (e, system) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      navigateToSystem(system);
+    }
+  };
+
   const renderSystemPanel = (title, system, data, icon) => (
-    <div className='system-panel' onClick={() => navigateToSystem(system)}>
+    <div 
+      className='system-panel' 
+      onClick={() => navigateToSystem(system)}
+      onKeyDown={(e) => handleSystemPanelKeyPress(e, system)}
+      role="button"
+      tabIndex={0}
+      aria-label={`Navigate to ${title} system`}
+    >
       <div className='panel-header'>
         <div className='panel-title'>
           <span className='panel-icon'>{icon}</span>
@@ -299,7 +313,7 @@ const NASAMissionControl = () => {
           <div className='mission-status'>
             <div className='status-display'>
               <span className='status-label'>MISSION STATUS</span>
-              <span className={`status-value ${missionStatus.toLowerCase()}`}>
+              <span className={`status-value ${missionStatus?.toLowerCase()}`}>
                 {missionStatus}
               </span>
             </div>
@@ -482,7 +496,7 @@ const NASAMissionControl = () => {
               {activeAlerts.map(alert => (
                 <div
                   key={alert.id}
-                  className={`alert-item ${alert.level.toLowerCase()}`}
+                  className={`alert-item ${alert.level?.toLowerCase()}`}
                 >
                   <div className='alert-header'>
                     <span className='alert-system'>{alert.system}</span>

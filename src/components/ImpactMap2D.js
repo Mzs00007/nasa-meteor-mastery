@@ -13,8 +13,50 @@ import '../styles/glassmorphic.css';
 // OpenLayers imports
 const ol = window.ol;
 
+// Error Boundary for ImpactMap2D
+class ImpactMapErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error('ImpactMap2D Error:', error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="error-boundary-container">
+          <div className="error-message">
+            <h3>Map Visualization Error</h3>
+            <p>There was an error loading the impact map. This might be due to:</p>
+            <ul>
+              <li>Missing map data or coordinates</li>
+              <li>Network connectivity issues</li>
+              <li>Browser compatibility problems</li>
+            </ul>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="btn btn-primary"
+            >
+              Reload Page
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    return this.props.children;
+  }
+}
+
 const ImpactMap2D = () => {
-  const { impactLocation, simulationResults, loading } = useSimulation();
+  const { impactLocation, simulationResults, loading, nasaAsteroidData, nasaDataLoading } = useSimulation();
   const { satelliteImagery, environmentalIndicators, naturalDisasters } =
     useEarthObservation();
   const { isConnected, getCachedData } = useWebSocket();
@@ -81,32 +123,33 @@ const ImpactMap2D = () => {
 
   // Enhanced atmospheric effects visualization
   const createAtmosphericEffectsLayer = () => {
-    if (!impactLocation || !simulationResults) {
+    if (!impactLocation || !simulationResults || !impactLocation.longitude || !impactLocation.latitude) {
       return null;
     }
 
     const features = [];
     const impactCoords = [impactLocation.longitude, impactLocation.latitude];
+    const craterDiameter = simulationResults.craterDiameter || 1; // Default to 1 km if undefined
 
     // Create multiple concentric circles for atmospheric effects
     const effectRadii = [
       {
-        radius: simulationResults.craterDiameter * 2,
+        radius: craterDiameter * 2,
         color: 'rgba(255, 100, 0, 0.3)',
         effect: 'Fireball',
       },
       {
-        radius: simulationResults.craterDiameter * 5,
+        radius: craterDiameter * 5,
         color: 'rgba(255, 150, 0, 0.2)',
         effect: 'Thermal Radiation',
       },
       {
-        radius: simulationResults.craterDiameter * 10,
+        radius: craterDiameter * 10,
         color: 'rgba(255, 200, 0, 0.15)',
         effect: 'Atmospheric Disturbance',
       },
       {
-        radius: simulationResults.craterDiameter * 20,
+        radius: craterDiameter * 20,
         color: 'rgba(200, 200, 200, 0.1)',
         effect: 'Dust Cloud',
       },
@@ -145,23 +188,24 @@ const ImpactMap2D = () => {
 
   // Enhanced impact zone visualization with detailed effects
   const createEnhancedImpactZone = () => {
-    if (!impactLocation || !simulationResults) {
+    if (!impactLocation || !simulationResults || !impactLocation.longitude || !impactLocation.latitude) {
       return null;
     }
 
     const features = [];
     const impactCoords = [impactLocation.longitude, impactLocation.latitude];
+    const craterDiameter = simulationResults.craterDiameter || 1; // Default to 1 km if undefined
 
     // Main crater
     const crater = new ol.geom.Circle(
       ol.proj.fromLonLat(impactCoords),
-      (simulationResults.craterDiameter / 2) * 1000
+      (craterDiameter / 2) * 1000
     );
 
     const craterFeature = new ol.Feature({
       geometry: crater,
       type: 'crater',
-      diameter: simulationResults.craterDiameter,
+      diameter: craterDiameter,
     });
 
     craterFeature.setStyle(
@@ -180,19 +224,19 @@ const ImpactMap2D = () => {
     const energy = simulationResults.energy || 1e12;
     const damageZones = [
       {
-        radius: simulationResults.craterDiameter * 3,
+        radius: craterDiameter * 3,
         color: 'rgba(255, 69, 0, 0.4)',
         type: 'Total Destruction',
         description: 'Complete structural collapse',
       },
       {
-        radius: simulationResults.craterDiameter * 6,
+        radius: craterDiameter * 6,
         color: 'rgba(255, 140, 0, 0.3)',
         type: 'Severe Damage',
         description: 'Major structural damage',
       },
       {
-        radius: simulationResults.craterDiameter * 12,
+        radius: craterDiameter * 12,
         color: 'rgba(255, 215, 0, 0.2)',
         type: 'Moderate Damage',
         description: 'Broken windows, minor damage',
@@ -407,6 +451,38 @@ const ImpactMap2D = () => {
       return () => clearInterval(interval);
     }
   }, [isConnected, getCachedData]);
+
+  // Integrate NASA asteroid data into real-time events
+  useEffect(() => {
+    if (nasaAsteroidData && nasaAsteroidData.length > 0) {
+      const nasaEvents = nasaAsteroidData.map(asteroid => ({
+        id: `nasa-${asteroid.id}`,
+        type: 'nasa_asteroid',
+        latitude: Math.random() * 180 - 90, // Random position for visualization
+        longitude: Math.random() * 360 - 180,
+        description: `${asteroid.name} - ${asteroid.diameter ? (asteroid.diameter / 1000).toFixed(2) + ' km' : 'Unknown size'}`,
+        severity: asteroid.isPotentiallyHazardous ? 'high' : 'medium',
+        timestamp: new Date().toISOString(),
+        asteroidData: {
+          name: asteroid.name,
+          diameter: asteroid.diameter,
+          velocity: asteroid.velocity,
+          isPotentiallyHazardous: asteroid.isPotentiallyHazardous,
+          approachDate: asteroid.approachDate,
+          missDistance: asteroid.missDistance,
+          orbitClass: asteroid.orbitClass
+        }
+      }));
+
+      // Merge NASA events with existing real-time events
+      setRealTimeEvents(prevEvents => {
+        // Remove old NASA events
+        const filteredEvents = prevEvents.filter(event => event.type !== 'nasa_asteroid');
+        // Add new NASA events
+        return [...filteredEvents, ...nasaEvents];
+      });
+    }
+  }, [nasaAsteroidData]);
 
   // Update map when impact location changes
   useEffect(() => {
@@ -696,6 +772,10 @@ const ImpactMap2D = () => {
             case 'atmospheric':
               color = 'rgba(100, 255, 100, 0.8)';
               symbol = '🌪';
+              break;
+            case 'nasa_asteroid':
+              color = event.severity === 'high' ? 'rgba(255, 50, 50, 0.9)' : 'rgba(100, 150, 255, 0.8)';
+              symbol = event.asteroidData?.isPotentiallyHazardous ? '☄️' : '🌑';
               break;
             default:
               symbol = '●';
@@ -1252,7 +1332,8 @@ const ImpactMap2D = () => {
             border: '1px solid rgba(255, 255, 255, 0.3)',
             borderRadius: '12px',
             padding: '20px',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            position: 'relative'
           }}
         >
           <div
@@ -1264,6 +1345,60 @@ const ImpactMap2D = () => {
             <div className='glass-loading-overlay'>
               <div className='glass-spinner' />
               <div className='glass-loading-text'>Calculating Impact...</div>
+            </div>
+          )}
+          {!loading && !impactLocation && !simulationResults && (
+            <div 
+              style={{
+                position: 'absolute',
+                top: '20px',
+                left: '20px',
+                right: '20px',
+                bottom: '20px',
+                background: 'rgba(0, 0, 0, 0.7)',
+                backdropFilter: 'blur(10px)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                textAlign: 'center',
+                padding: '40px',
+                borderRadius: '12px'
+              }}
+            >
+              <div style={{ fontSize: '64px', marginBottom: '20px', opacity: 0.6 }}>🗺️</div>
+              <h3 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '12px', color: 'white' }}>
+                No Impact Data Available
+              </h3>
+              <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.8)', marginBottom: '24px', maxWidth: '400px' }}>
+                Run a simulation to visualize impact zones, crater formation, and environmental effects on the interactive map.
+              </p>
+              <button
+                onClick={() => window.location.href = '/simulation'}
+                style={{
+                  background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+                  border: 'none',
+                  borderRadius: '8px',
+                  padding: '12px 24px',
+                  color: 'white',
+                  fontSize: '16px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(59, 130, 246, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = 'translateY(0)';
+                  e.target.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+                }}
+              >
+                Run Simulation
+              </button>
             </div>
           )}
         </div>
@@ -1501,4 +1636,11 @@ const ImpactMap2D = () => {
   );
 };
 
-export default ImpactMap2D;
+// Wrap component with error boundary
+const ImpactMap2DWithErrorBoundary = () => (
+  <ImpactMapErrorBoundary>
+    <ImpactMap2D />
+  </ImpactMapErrorBoundary>
+);
+
+export default ImpactMap2DWithErrorBoundary;

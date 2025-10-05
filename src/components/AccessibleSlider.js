@@ -96,7 +96,7 @@ const AccessibleSlider = ({
           {label}
           {tooltip && (
             <Tooltip text={tooltip} position='right'>
-              <span className='info-icon' aria-hidden='true'>
+              <span className='info-icon' aria-hidden={true}>
                 ℹ️
               </span>
             </Tooltip>
@@ -133,12 +133,12 @@ const AccessibleSlider = ({
           <div
             className='slider-fill'
             style={{ width: `${percentage}%` }}
-            aria-hidden='true'
+            aria-hidden={true}
           />
         </div>
 
         {showValue && (
-          <div className='slider-value' aria-hidden='true'>
+          <div className='slider-value' aria-hidden={true}>
             {localValue}
           </div>
         )}

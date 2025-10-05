@@ -1,17 +1,63 @@
-/* App.css - Responsive styles for Meteor Madness application */
+/* App.css - Enhanced Responsive styles for Meteor Madness application */
 
-/* Base responsive typography */
-html {
-  font-size: 14px;
+/* Import responsive utilities */
+@import './styles/responsive-utilities.css';
+
+/* CSS Custom Properties for consistent spacing and viewport management */
+:root {
+  /* Viewport heights with safe areas */
+  --vh-full: 100vh;
+  --vh-screen: calc(var(--vh, 1vh) * 100);
+  --vh-safe: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
+  
+  /* Header heights for different breakpoints */
+  --header-height-mobile: 50px;
+  --header-height-tablet: 60px;
+  --header-height-desktop: 70px;
+  
+  /* Dynamic spacing scale */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* Container max-widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
 }
 
-@media (min-width: 640px) {
+/* Base responsive typography with improved scaling */
+html {
+  font-size: 14px;
+  /* Support for dynamic viewport units */
+  height: 100%;
+  height: 100dvh;
+}
+
+@media (min-width: 481px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
 @media (min-width: 1024px) {
+  html {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1200px) {
   html {
     font-size: 18px;
   }
@@ -24,133 +70,210 @@ body {
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   overflow-x: hidden;
+  /* Improved viewport handling */
+  min-height: 100vh;
+  min-height: 100dvh;
+  position: relative;
 }
 
-/* Responsive main content */
+/* Enhanced responsive main content with better viewport calculations */
 .main-content {
-  padding-top: 50px;
-  min-height: calc(100vh - 50px);
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  padding-top: var(--header-height-mobile);
+  min-height: calc(var(--vh-safe) - var(--header-height-mobile));
+  padding-left: var(--spacing-sm);
+  padding-right: var(--spacing-sm);
+  padding-bottom: var(--spacing-md);
+  /* Support for safe areas on mobile devices */
+  padding-left: max(var(--spacing-sm), env(safe-area-inset-left));
+  padding-right: max(var(--spacing-sm), env(safe-area-inset-right));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .main-content {
-    padding-top: 60px;
-    min-height: calc(100vh - 60px);
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .main-content {
+    padding-top: var(--header-height-tablet);
+    min-height: calc(var(--vh-safe) - var(--header-height-tablet));
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 }
 
 @media (min-width: 1024px) {
   .main-content {
-    padding-top: 70px;
-    min-height: calc(100vh - 70px);
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-top: var(--header-height-desktop);
+    min-height: calc(var(--vh-safe) - var(--header-height-desktop));
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
   }
 }
 
-/* Responsive panels */
+@media (min-width: 1200px) {
+  .main-content {
+    padding-left: var(--spacing-2xl);
+    padding-right: var(--spacing-2xl);
+  }
+}
+
+/* Enhanced responsive panels with consistent spacing */
 .visualization-panel {
-  margin: 0.25rem;
-  padding: 0.75rem;
+  margin: var(--spacing-xs);
+  padding: var(--spacing-md);
   overflow: hidden;
   border-radius: 0.5rem;
+  /* Improved viewport handling for panels */
+  max-height: calc(var(--vh-safe) - var(--header-height-mobile) - var(--spacing-xl));
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .visualization-panel {
-    margin: 0.5rem;
-    padding: 1rem;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .visualization-panel {
+    margin: var(--spacing-md);
+    padding: var(--spacing-lg);
+    max-height: calc(var(--vh-safe) - var(--header-height-tablet) - var(--spacing-xl));
   }
 }
 
 @media (min-width: 1024px) {
   .visualization-panel {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    max-height: calc(var(--vh-safe) - var(--header-height-desktop) - var(--spacing-2xl));
   }
 }
 
 .control-panel {
-  margin: 0.25rem;
-  padding: 0.75rem;
+  margin: var(--spacing-xs);
+  padding: var(--spacing-md);
   border-radius: 0.5rem;
+  /* Ensure touch-friendly spacing */
+  min-height: 44px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .control-panel {
-    margin: 0.5rem;
-    padding: 1rem;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .control-panel {
+    margin: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
 }
 
 @media (min-width: 1024px) {
   .control-panel {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: var(--spacing-lg);
+    padding: var(--spacing-xl);
   }
 }
 
 .panel-title {
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--spacing-md);
   font-size: 1.125rem;
   font-weight: 600;
+  line-height: 1.4;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .panel-title {
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .panel-title {
+    margin-bottom: var(--spacing-lg);
     font-size: 1.25rem;
   }
 }
 
 @media (min-width: 1024px) {
   .panel-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--spacing-xl);
     font-size: 1.5rem;
   }
 }
 
 .interception-controls {
-  margin: 0.25rem;
-  padding: 0.75rem;
+  margin: var(--spacing-xs);
+  padding: var(--spacing-md);
   border-radius: 0.5rem;
+  /* Improved touch targets */
+  min-height: 44px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .interception-controls {
-    margin: 0.5rem;
-    padding: 1rem;
+    margin: var(--spacing-sm);
+    padding: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .interception-controls {
+    margin: var(--spacing-md);
+    padding: var(--spacing-lg);
   }
 }
 
 @media (min-width: 1024px) {
   .interception-controls {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: var(--spacing-lg);
+    padding: var(--spacing-xl);
   }
 }
 
-/* Responsive button styles */
+/* Enhanced responsive button styles with improved touch targets */
 .btn-responsive {
-  padding: 0.5rem 1rem;
+  padding: var(--spacing-sm) var(--spacing-md);
   font-size: 0.875rem;
   border-radius: 0.375rem;
   transition: all 0.2s ease-in-out;
   min-height: 44px; /* Touch-friendly minimum */
+  min-width: 44px; /* Ensure square touch targets */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   white-space: nowrap;
+  cursor: pointer;
+  /* Improved focus states */
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
-@media (min-width: 640px) {
+.btn-responsive:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
   .btn-responsive {
-    padding: 0.625rem 1.25rem;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.9rem;
+    min-height: 46px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .btn-responsive {
+    padding: var(--spacing-md) var(--spacing-lg);
     font-size: 1rem;
     min-height: 48px;
   }
@@ -158,50 +281,67 @@ body {
 
 @media (min-width: 1024px) {
   .btn-responsive {
-    padding: 0.75rem 1.5rem;
+    padding: var(--spacing-lg) var(--spacing-xl);
     font-size: 1.125rem;
     min-height: 52px;
   }
 }
 
-/* Responsive grid layouts */
+/* Enhanced responsive grid layouts with better breakpoints */
 .responsive-grid {
   display: grid;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
   grid-template-columns: 1fr;
+  width: 100%;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
   .responsive-grid {
-    gap: 1rem;
+    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .responsive-grid {
+    gap: var(--spacing-lg);
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1024px) and (max-width: 1199px) {
   .responsive-grid {
-    gap: 1.5rem;
+    gap: var(--spacing-lg);
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1200px) {
   .responsive-grid {
+    gap: var(--spacing-xl);
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-/* Responsive flex layouts */
+/* Enhanced responsive flex layouts */
 .responsive-flex {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
+  align-items: stretch;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 481px) and (max-width: 767px) {
+  .responsive-flex {
+    gap: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) {
   .responsive-flex {
     flex-direction: row;
-    gap: 1rem;
+    gap: var(--spacing-lg);
+    align-items: center;
   }
 }
 

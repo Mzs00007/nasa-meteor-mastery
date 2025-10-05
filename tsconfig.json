@@ -28,5 +28,9 @@
     "src",
     "__tests__",
     "backend"
+  ],
+  "exclude": [
+    "eslint.config.mjs",
+    "node_modules"
   ]
 }

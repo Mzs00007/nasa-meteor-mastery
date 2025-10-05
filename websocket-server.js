@@ -35,6 +35,41 @@ const NASA_BASE_URL = 'https://api.nasa.gov';
 const dataCache = new Map();
 const streamingIntervals = new Map();
 
+// Enhanced NASA API cache with TTL (Time To Live)
+const nasaApiCache = new Map();
+const NASA_CACHE_TTL = 5 * 60 * 1000; // 5 minutes cache for NASA API data
+
+// API status tracking
+let apiStatus = {
+  nasa: { healthy: true, lastError: null, lastSuccess: Date.now() },
+  iss: { healthy: true, lastError: null, lastSuccess: Date.now() }
+};
+
+// Function to update API status and notify clients
+function updateApiStatus(apiName, isHealthy, error = null) {
+  const wasHealthy = apiStatus[apiName].healthy;
+  apiStatus[apiName] = {
+    healthy: isHealthy,
+    lastError: error,
+    lastSuccess: isHealthy ? Date.now() : apiStatus[apiName].lastSuccess
+  };
+  
+  // Notify clients if status changed
+  if (wasHealthy !== isHealthy) {
+    const statusUpdate = {
+      api: apiName,
+      status: isHealthy ? 'healthy' : 'degraded',
+      message: isHealthy ? `${apiName.toUpperCase()} API is back online` : 
+               `${apiName.toUpperCase()} API is experiencing issues: ${error}`,
+      timestamp: new Date().toISOString(),
+      fallbackActive: !isHealthy
+    };
+    
+    io.to('mission_control').emit('api_status_update', statusUpdate);
+    console.log(`📡 API Status Update: ${apiName} is now ${isHealthy ? 'healthy' : 'degraded'}`);
+  }
+}
+
 // Utility function to generate realistic data
 function generateRealisticData(type) {
   const timestamp = new Date().toISOString();
@@ -154,18 +189,82 @@ function generateRealisticData(type) {
   }
 }
 
-// Fetch real NASA data when possible
-async function fetchNASAData(endpoint) {
-  try {
-    const response = await axios.get(`${NASA_BASE_URL}${endpoint}`, {
-      params: { api_key: NASA_API_KEY },
-      timeout: 5000
-    });
-    return response.data;
-  } catch (error) {
-    console.warn(`Failed to fetch NASA data from ${endpoint}:`, error.message);
-    return null;
+// Fetch real NASA data with caching and exponential backoff retry logic
+async function fetchNASAData(endpoint, maxRetries = 3) {
+  // Check cache first
+  const cacheKey = `${NASA_BASE_URL}${endpoint}`;
+  const cachedData = nasaApiCache.get(cacheKey);
+  
+  if (cachedData && (Date.now() - cachedData.timestamp) < NASA_CACHE_TTL) {
+    console.log(`📦 Using cached NASA data for ${endpoint}`);
+    return cachedData.data;
   }
+  
+  let lastError;
+  
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      const response = await axios.get(`${NASA_BASE_URL}${endpoint}`, {
+        params: { api_key: NASA_API_KEY },
+        timeout: 5000
+      });
+      
+      // Success - cache the result and update API status
+      nasaApiCache.set(cacheKey, {
+        data: response.data,
+        timestamp: Date.now()
+      });
+      
+      // Update API status to healthy
+      updateApiStatus('nasa', true);
+      
+      if (attempt > 0) {
+        console.log(`✅ NASA API request succeeded on attempt ${attempt + 1} for ${endpoint}`);
+      }
+      
+      return response.data;
+    } catch (error) {
+      lastError = error;
+      
+      // Check if it's a rate limit error (429) or server error (5xx)
+      const isRetryableError = error.response && 
+        (error.response.status === 429 || error.response.status >= 500);
+      
+      // Don't retry on non-retryable errors (4xx except 429)
+      if (error.response && error.response.status >= 400 && error.response.status < 500 && error.response.status !== 429) {
+        console.warn(`❌ Non-retryable error for ${endpoint}: ${error.response.status} ${error.message}`);
+        break;
+      }
+      
+      // If this is the last attempt, don't wait
+      if (attempt === maxRetries) {
+        break;
+      }
+      
+      // Calculate exponential backoff delay (1s, 2s, 4s, 8s...)
+      const delay = Math.min(1000 * Math.pow(2, attempt), 10000); // Cap at 10 seconds
+      
+      console.warn(`⚠️ NASA API request failed (attempt ${attempt + 1}/${maxRetries + 1}) for ${endpoint}: ${error.message}. Retrying in ${delay}ms...`);
+      
+      // Wait before retrying
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  
+  // All retries failed - update API status
+  const errorMessage = lastError?.response?.status === 429 ? 'Rate limit exceeded' : lastError?.message || 'Unknown error';
+  updateApiStatus('nasa', false, errorMessage);
+  
+  console.error(`❌ NASA API request failed after ${maxRetries} attempts for ${endpoint}:`, errorMessage);
+  
+  // Try to use stale cached data as last resort
+  const staleData = nasaApiCache.get(cacheKey);
+  if (staleData) {
+    console.log(`⚠️ Using stale cached data for ${endpoint} (age: ${Math.round((Date.now() - staleData.timestamp) / 1000)}s)`);
+    return staleData.data;
+  }
+  
+  return null;
 }
 
 // Enhanced ISS position with real data
@@ -173,6 +272,9 @@ async function getISSPosition() {
   try {
     const response = await axios.get('http://api.open-notify.org/iss-now.json', { timeout: 5000 });
     if (response.data && response.data.iss_position) {
+      // Update API status to healthy
+      updateApiStatus('iss', true);
+      
       return {
         timestamp: new Date().toISOString(),
         latitude: parseFloat(response.data.iss_position.latitude),
@@ -185,6 +287,9 @@ async function getISSPosition() {
       };
     }
   } catch (error) {
+    // Update API status to unhealthy
+    updateApiStatus('iss', false, error.message);
+    
     console.warn('Failed to fetch real ISS data, using simulated data');
   }
   return generateRealisticData('iss_position');
@@ -362,13 +467,38 @@ io.on('connection', (socket) => {
   });
 });
 
-// Health check endpoint
+// Health check endpoint with API status
 app.get('/health', (req, res) => {
+  const cacheStats = {
+    totalEntries: nasaApiCache.size,
+    entries: Array.from(nasaApiCache.keys()).map(key => ({
+      endpoint: key.replace(NASA_BASE_URL, ''),
+      age: Math.round((Date.now() - nasaApiCache.get(key).timestamp) / 1000),
+      isExpired: (Date.now() - nasaApiCache.get(key).timestamp) > NASA_CACHE_TTL
+    }))
+  };
+
   res.json({
     status: 'healthy',
     timestamp: new Date().toISOString(),
     activeStreams: Array.from(streamingIntervals.keys()),
-    connectedClients: io.engine.clientsCount
+    connectedClients: io.engine.clientsCount,
+    nasaApiCache: cacheStats,
+    apiStatus: {
+      nasaApiKey: NASA_API_KEY !== 'DEMO_KEY' ? 'custom' : 'demo',
+      cacheEnabled: true,
+      cacheTtl: `${NASA_CACHE_TTL / 1000}s`,
+      nasa: {
+        healthy: apiStatus.nasa.healthy,
+        lastError: apiStatus.nasa.lastError,
+        lastSuccessAge: Math.round((Date.now() - apiStatus.nasa.lastSuccess) / 1000)
+      },
+      iss: {
+        healthy: apiStatus.iss.healthy,
+        lastError: apiStatus.iss.lastError,
+        lastSuccessAge: Math.round((Date.now() - apiStatus.iss.lastSuccess) / 1000)
+      }
+    }
   });
 });
 

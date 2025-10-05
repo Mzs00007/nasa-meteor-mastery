@@ -3,15 +3,23 @@ import { useSimulation } from '../context/SimulationContext';
 import Icon from './Icon';
 import '../styles/main.css';
 
-// NavLink component for consistent styling
-const NavLink = ({ onClick, icon, text, title }) => (
+// Enhanced NavLink component with better animations
+const NavLink = ({ onClick, icon, text, title, isActive = false }) => (
   <button
     onClick={onClick}
-    className='px-3 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200 flex items-center space-x-2'
+    className={`enhanced-nav-item enhanced-btn enhanced-focus group relative px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2 transform hover:scale-105 ${
+      isActive 
+        ? 'bg-gradient-to-r from-nasa-blue to-nasa-red text-white shadow-lg shadow-nasa-blue/25 active' 
+        : 'text-gray-300 hover:text-white hover:bg-white/10 hover:shadow-lg hover:shadow-white/10'
+    }`}
     title={title}
   >
-    <Icon name={icon} size='small' />
-    <span className='hidden xl:block'>{text}</span>
+    <Icon name={icon} size='small' className="enhanced-icon transition-transform duration-300 group-hover:rotate-12" />
+    <span className='hidden xl:block transition-all duration-300'>{text}</span>
+    {/* Animated underline */}
+    <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-nasa-blue to-nasa-red transition-all duration-300 ${
+      isActive ? 'w-full' : 'w-0 group-hover:w-3/4'
+    }`} />
   </button>
 );
 
@@ -19,11 +27,22 @@ const Navbar = ({ onThemeChange, currentTheme }) => {
   const { setView, view } = useSimulation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('both');
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     // Set active tab based on current view
     setActiveTab(view || 'both');
   }, [view]);
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleViewChange = view => {
     setView(view);
@@ -37,31 +56,26 @@ const Navbar = ({ onThemeChange, currentTheme }) => {
   };
 
   const handleOrbitalMechanicsNavigation = () => {
-    // Navigate to orbital mechanics visualization
     window.location.href = '/orbital-mechanics';
     setIsMenuOpen(false);
   };
 
   const handleUniverseVisualizationNavigation = () => {
-    // Navigate to universe visualization
     window.location.href = '/universe-visualization';
     setIsMenuOpen(false);
   };
 
   const handleNEOVisualizationNavigation = () => {
-    // Navigate to NEO visualization
     window.location.href = '/neo-visualization';
     setIsMenuOpen(false);
   };
 
   const handleISSTrackingNavigation = () => {
-    // Navigate to ISS tracking visualization
     window.location.href = '/iss-tracking';
     setIsMenuOpen(false);
   };
 
   const handleSatelliteTrackingNavigation = () => {
-    // Navigate to satellite constellation tracker
     window.location.href = '/satellite-tracking';
     setIsMenuOpen(false);
   };
@@ -107,202 +121,183 @@ const Navbar = ({ onThemeChange, currentTheme }) => {
   };
 
   return (
-    <nav className='fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 backdrop-blur-lg border-b border-white/10 shadow-2xl'>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled 
+        ? 'bg-gradient-to-r from-slate-900/98 via-blue-900/98 to-slate-900/98 backdrop-blur-xl shadow-2xl shadow-black/20' 
+        : 'bg-gradient-to-r from-slate-900/95 via-blue-900/95 to-slate-900/95 backdrop-blur-lg'
+    } border-b border-white/10`}>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-        <div className='flex items-center justify-between h-16 lg:h-20'>
-          {/* Logo Section */}
+        <div className={`flex items-center justify-between transition-all duration-300 ${
+          isScrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-20'
+        }`}>
+          {/* Enhanced Logo Section */}
           <div className='flex items-center space-x-3'>
-            <a href='#!' className='flex items-center space-x-2 group'>
-              <div className='p-2 bg-gradient-to-br from-nasa-blue to-nasa-red rounded-xl group-hover:scale-110 transition-transform duration-300'>
+            <a href='#!' className='flex items-center space-x-3 group'>
+              <div className='relative p-2.5 bg-gradient-to-br from-nasa-blue via-purple-600 to-nasa-red rounded-2xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg shadow-nasa-blue/25'>
                 <Icon
                   name='brightness_high'
-                  className='text-white'
+                  className='text-white transition-transform duration-500 group-hover:rotate-180'
                   size='small'
                 />
+                {/* Animated glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-nasa-blue to-nasa-red rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl" />
               </div>
-              <span className='hidden sm:block text-xl lg:text-2xl font-bold bg-gradient-to-r from-nasa-blue to-nasa-red bg-clip-text text-transparent'>
-                Meteor Mastery
-              </span>
+              <div className="flex flex-col">
+                <span className='hidden sm:block text-xl lg:text-2xl font-bold bg-gradient-to-r from-nasa-blue via-purple-400 to-nasa-red bg-clip-text text-transparent transition-all duration-300 group-hover:scale-105'>
+                  Meteor Mastery
+                </span>
+                <span className='hidden lg:block text-xs text-gray-400 font-medium tracking-wider'>
+                  NASA Space Defense
+                </span>
+              </div>
             </a>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className='hidden lg:flex items-center space-x-1'>
-            {/* View Controls */}
-            <div className='flex items-center space-x-1 bg-white/5 rounded-xl p-1 mr-4'>
-              <button
-                onClick={() => handleViewChange('both')}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
-                  activeTab === 'both' 
-                    ? 'bg-nasa-blue text-white shadow-lg' 
-                    : 'text-gray-300 hover:text-white hover:bg-white/10'
-                }`}
-                title='Switch to combined 3D and 2D view display'
-              >
-                <Icon name='view_agenda' size='small' />
-                <span>Both Views</span>
-              </button>
-              <button
-                onClick={() => handleViewChange('3d')}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
-                  activeTab === '3d' 
-                    ? 'bg-nasa-blue text-white shadow-lg' 
-                    : 'text-gray-300 hover:text-white hover:bg-white/10'
-                }`}
-                title='Switch to 3D orbital visualization view'
-              >
-                <Icon name='3d_rotation' size='small' />
-                <span>3D View</span>
-              </button>
-              <button
-                onClick={() => handleViewChange('2d')}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center space-x-2 ${
-                  activeTab === '2d' 
-                    ? 'bg-nasa-blue text-white shadow-lg' 
-                    : 'text-gray-300 hover:text-white hover:bg-white/10'
-                }`}
-                title='Switch to 2D impact map view'
-              >
-                <Icon name='map' size='small' />
-                <span>2D Map</span>
-              </button>
+          {/* Enhanced Desktop Navigation */}
+          <div className='hidden md:flex items-center space-x-2'>
+            {/* Navigation Links with improved styling */}
+            <div className='flex items-center space-x-1 bg-white/5 rounded-2xl p-1.5 backdrop-blur-sm border border-white/10'>
+              <NavLink 
+                onClick={handleNEOVisualizationNavigation} 
+                icon='dangerous' 
+                text='NEO' 
+                title='Near-Earth Object Tracking'
+                isActive={window.location.pathname === '/neo-visualization'}
+              />
+              <NavLink 
+                onClick={handleUniverseVisualizationNavigation} 
+                icon='stars' 
+                text='Universe' 
+                title='Universe Visualization'
+                isActive={window.location.pathname === '/universe-visualization'}
+              />
             </div>
 
-            {/* Navigation Links */}
-            <div className='flex items-center space-x-1'>
-              <NavLink onClick={handleOrbitalMechanicsNavigation} icon='public' text='Orbital' />
-              <NavLink onClick={handleUniverseVisualizationNavigation} icon='stars' text='Universe' />
-              <NavLink onClick={handleNEOVisualizationNavigation} icon='dangerous' text='NEO' />
-              <NavLink onClick={handleLiveAsteroidDataNavigation} icon='radar' text='Live Data' />
-              <NavLink onClick={handleLiveSimulationNavigation} icon='rocket_launch' text='Simulation' />
-              <NavLink onClick={handleISSTrackingNavigation} icon='satellite' text='ISS' />
-              <NavLink onClick={handleSatelliteTrackingNavigation} icon='satellite_alt' text='Satellites' />
-              <NavLink onClick={handleSpaceWeatherNavigation} icon='wb_sunny' text='Weather' />
-              <NavLink onClick={handleComprehensiveAPIsNavigation} icon='api' text='APIs' />
-              <NavLink onClick={handleMissionControlNavigation} icon='dashboard' text='Mission' />
-              <NavLink onClick={handleHistoryNavigation} icon='history' text='History' />
-            </div>
-
-            {/* Theme Selector */}
-            <div className='ml-4 relative'>
+            {/* Enhanced Theme Selector */}
+            <div className='ml-4 relative group'>
               <select
                 value={currentTheme}
                 onChange={handleThemeChange}
-                className='bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent appearance-none cursor-pointer min-w-[120px]'
+                className='enhanced-input enhanced-focus bg-white/10 border border-white/20 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent appearance-none cursor-pointer min-w-[140px] transition-all duration-300 hover:bg-white/15 hover:border-white/30 backdrop-blur-sm'
               >
-                <option value='light' className='bg-gray-800 text-white'>Light Mode</option>
-                <option value='dark' className='bg-gray-800 text-white'>Dark Mode</option>
-                <option value='nasa' className='bg-gray-800 text-white'>NASA Theme</option>
+                <option value='light' className='bg-gray-800 text-white'>🌞 Light Mode</option>
+                <option value='dark' className='bg-gray-800 text-white'>🌙 Dark Mode</option>
+                <option value='nasa' className='bg-gray-800 text-white'>🚀 NASA Theme</option>
               </select>
+              {/* Custom dropdown arrow */}
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <Icon name="expand_more" size="small" className="text-gray-400 group-hover:text-white transition-colors duration-300" />
+              </div>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Enhanced Mobile Menu Button */}
           <button
-            className='lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors duration-200'
+            className='md:hidden relative p-3 rounded-xl text-white hover:bg-white/10 transition-all duration-300 group'
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label='Toggle navigation menu'
           >
-            <Icon name={isMenuOpen ? 'close' : 'menu'} size='small' />
+            <div className="relative">
+              <Icon 
+                name={isMenuOpen ? 'close' : 'menu'} 
+                size='small' 
+                className="transition-transform duration-300 group-hover:scale-110" 
+              />
+              {/* Animated background */}
+              <div className="absolute inset-0 bg-gradient-to-r from-nasa-blue to-nasa-red rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10" />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
-         <div
-           className={`lg:hidden transition-all duration-300 ease-in-out ${
-             isMenuOpen 
-               ? 'max-h-screen opacity-100 pb-6' 
-               : 'max-h-0 opacity-0 overflow-hidden'
-           }`}
-         >
-           <div className='pt-4 space-y-4'>
-             {/* Mobile View Controls */}
-             <div className='space-y-2'>
-               <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider px-3'>View Controls</h3>
-               <div className='grid grid-cols-3 gap-2 px-3'>
-                 <button
-                   onClick={() => handleViewChange('both')}
-                   className={`p-3 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center space-y-1 ${
-                     activeTab === 'both' 
-                       ? 'bg-nasa-blue text-white shadow-lg' 
-                       : 'text-gray-300 hover:text-white hover:bg-white/10 bg-white/5'
-                   }`}
-                 >
-                   <Icon name='view_agenda' size='small' />
-                   <span>Both</span>
-                 </button>
-                 <button
-                   onClick={() => handleViewChange('3d')}
-                   className={`p-3 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center space-y-1 ${
-                     activeTab === '3d' 
-                       ? 'bg-nasa-blue text-white shadow-lg' 
-                       : 'text-gray-300 hover:text-white hover:bg-white/10 bg-white/5'
-                   }`}
-                 >
-                   <Icon name='3d_rotation' size='small' />
-                   <span>3D</span>
-                 </button>
-                 <button
-                   onClick={() => handleViewChange('2d')}
-                   className={`p-3 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center space-y-1 ${
-                     activeTab === '2d' 
-                       ? 'bg-nasa-blue text-white shadow-lg' 
-                       : 'text-gray-300 hover:text-white hover:bg-white/10 bg-white/5'
-                   }`}
-                 >
-                   <Icon name='map' size='small' />
-                   <span>2D</span>
-                 </button>
-               </div>
-             </div>
+        {/* Enhanced Mobile Navigation Menu */}
+        <div
+          className={`md:hidden transition-all duration-500 ease-out overflow-hidden ${
+            isMenuOpen 
+              ? 'max-h-screen opacity-100 pb-6 transform translate-y-0' 
+              : 'max-h-0 opacity-0 transform -translate-y-4'
+          }`}
+        >
+          <div className='pt-6 space-y-6'>
+            {/* Mobile Navigation Links with improved layout */}
+            <div className='space-y-3'>
+              <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider px-3 flex items-center space-x-2'>
+                <Icon name="explore" size="small" />
+                <span>Navigation</span>
+              </h3>
+              <div className='grid grid-cols-1 gap-3 px-3'>
+                <MobileNavLink 
+                  onClick={handleNEOVisualizationNavigation} 
+                  icon='dangerous' 
+                  text='NEO Tracking' 
+                  description="Monitor near-Earth objects"
+                />
+                <MobileNavLink 
+                  onClick={handleUniverseVisualizationNavigation} 
+                  icon='stars' 
+                  text='Universe Explorer' 
+                  description="Explore the cosmos in 3D"
+                />
+              </div>
+            </div>
 
-             {/* Mobile Navigation Links */}
-             <div className='space-y-2'>
-               <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider px-3'>Navigation</h3>
-               <div className='grid grid-cols-2 gap-2 px-3'>
-                 <MobileNavLink onClick={handleOrbitalMechanicsNavigation} icon='public' text='Orbital Mechanics' />
-                 <MobileNavLink onClick={handleUniverseVisualizationNavigation} icon='stars' text='Universe' />
-                 <MobileNavLink onClick={handleNEOVisualizationNavigation} icon='dangerous' text='NEO Tracking' />
-                 <MobileNavLink onClick={handleLiveAsteroidDataNavigation} icon='radar' text='Live Data' />
-                 <MobileNavLink onClick={handleLiveSimulationNavigation} icon='rocket_launch' text='Simulation' />
-                 <MobileNavLink onClick={handleISSTrackingNavigation} icon='satellite' text='ISS Tracking' />
-                 <MobileNavLink onClick={handleSatelliteTrackingNavigation} icon='satellite_alt' text='Satellites' />
-                 <MobileNavLink onClick={handleSpaceWeatherNavigation} icon='wb_sunny' text='Space Weather' />
-                 <MobileNavLink onClick={handleComprehensiveAPIsNavigation} icon='api' text='NASA APIs' />
-                 <MobileNavLink onClick={handleMissionControlNavigation} icon='dashboard' text='Mission Control' />
-                 <MobileNavLink onClick={handleHistoryNavigation} icon='history' text='History' />
-                 <MobileNavLink onClick={handleMeteorologicalSimulationNavigation} icon='cloud' text='Meteorology' />
-               </div>
-             </div>
+            {/* Enhanced Mobile Theme Selector */}
+            <div className='px-3 space-y-3'>
+              <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider flex items-center space-x-2'>
+                <Icon name="palette" size="small" />
+                <span>Theme</span>
+              </h3>
+              <div className="relative">
+                <select
+                  value={currentTheme}
+                  onChange={handleThemeChange}
+                  className='w-full bg-white/10 border border-white/20 rounded-xl px-4 py-4 text-white text-sm focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent appearance-none cursor-pointer transition-all duration-300 hover:bg-white/15 backdrop-blur-sm'
+                >
+                  <option value='light' className='bg-gray-800 text-white'>🌞 Light Mode</option>
+                  <option value='dark' className='bg-gray-800 text-white'>🌙 Dark Mode</option>
+                  <option value='nasa' className='bg-gray-800 text-white'>🚀 NASA Theme</option>
+                </select>
+                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                  <Icon name="expand_more" size="small" className="text-gray-400" />
+                </div>
+              </div>
+            </div>
 
-             {/* Mobile Theme Selector */}
-             <div className='px-3 space-y-2'>
-               <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider'>Theme</h3>
-               <select
-                 value={currentTheme}
-                 onChange={handleThemeChange}
-                 className='w-full bg-white/10 border border-white/20 rounded-lg px-3 py-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-nasa-blue focus:border-transparent appearance-none cursor-pointer'
-               >
-                 <option value='light' className='bg-gray-800 text-white'>Light Mode</option>
-                 <option value='dark' className='bg-gray-800 text-white'>Dark Mode</option>
-                 <option value='nasa' className='bg-gray-800 text-white'>NASA Theme</option>
-               </select>
-             </div>
-           </div>
-         </div>
-       </div>
-     </nav>
-   );
- };
+            {/* Quick Actions */}
+            <div className='px-3 pt-2 border-t border-white/10'>
+              <div className='flex justify-center'>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className='px-6 py-2 bg-gradient-to-r from-nasa-blue to-nasa-red text-white rounded-xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-nasa-blue/25'
+                >
+                  Close Menu
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-// Mobile NavLink component
-const MobileNavLink = ({ onClick, icon, text }) => (
+// Enhanced Mobile NavLink component
+const MobileNavLink = ({ onClick, icon, text, description }) => (
   <button
     onClick={onClick}
-    className='p-3 rounded-lg text-xs font-medium text-gray-300 hover:text-white hover:bg-white/10 bg-white/5 transition-all duration-200 flex flex-col items-center space-y-1 min-h-[4rem]'
+    className='w-full p-4 rounded-xl text-left text-gray-300 hover:text-white hover:bg-white/10 bg-white/5 transition-all duration-300 flex items-center space-x-4 group hover:scale-[1.02] hover:shadow-lg hover:shadow-white/10 border border-white/5 hover:border-white/20'
   >
-    <Icon name={icon} size='small' />
-    <span className='text-center leading-tight'>{text}</span>
+    <div className="p-2 bg-gradient-to-br from-nasa-blue/20 to-nasa-red/20 rounded-lg group-hover:from-nasa-blue/30 group-hover:to-nasa-red/30 transition-all duration-300">
+      <Icon name={icon} size='small' className="transition-transform duration-300 group-hover:scale-110" />
+    </div>
+    <div className="flex-1">
+      <div className='font-medium text-sm'>{text}</div>
+      {description && (
+        <div className='text-xs text-gray-500 mt-1 group-hover:text-gray-400 transition-colors duration-300'>
+          {description}
+        </div>
+      )}
+    </div>
+    <Icon name="arrow_forward_ios" size="small" className="text-gray-500 group-hover:text-gray-300 transition-all duration-300 group-hover:translate-x-1" />
   </button>
 );
 

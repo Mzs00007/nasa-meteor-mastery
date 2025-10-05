@@ -25,6 +25,7 @@ import {
   GlassNav,
   GlassToggle,
 } from './ui/GlassComponents';
+import { ModernSpinner, SkeletonText, SkeletonCard, LoadingButton, ProgressBar, LoadingOverlay } from './ui/ModernLoadingComponents';
 
 // Register Chart.js components
 ChartJS.register(
@@ -48,6 +49,25 @@ const AdvancedSimulationResults = () => {
   const [showEnvironmental, setShowEnvironmental] = useState(true);
   const [exporting, setExporting] = useState(false);
   const [exportType, setExportType] = useState('');
+  const [chartsLoading, setChartsLoading] = useState(true);
+  const [dataProcessing, setDataProcessing] = useState(true);
+
+  // Simulate data processing and chart loading
+  useEffect(() => {
+    const processData = async () => {
+      if (results) {
+        // Simulate data processing time
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setDataProcessing(false);
+        
+        // Simulate chart rendering time
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setChartsLoading(false);
+      }
+    };
+
+    processData();
+  }, [results]);
 
   // Chart options
   const chartOptions = {
@@ -220,27 +240,50 @@ const AdvancedSimulationResults = () => {
         <div className='flex items-center justify-between px-6 py-4'>
           <Link
             to='/'
-            className='text-xl font-bold text-white hover:text-blue-300 transition-colors'
+            className='text-xl font-bold text-white hover:text-blue-300 transition-colors enhanced-nav-item enhanced-focus'
           >
             🌌 Advanced Results
           </Link>
           <div className='flex items-center space-x-4'>
             <Link to='/simulation/advanced-setup'>
-              <GlassButton variant='secondary' size='sm'>
+              <GlassButton variant='secondary' size='sm' className='enhanced-btn enhanced-focus'>
                 🔄 New Simulation
               </GlassButton>
             </Link>
-            <div className='relative'>
-              <GlassButton
-                variant='primary'
-                size='sm'
+            <div className='flex items-center space-x-2'>
+              <LoadingButton
                 onClick={handleExportPDF}
+                loading={exporting && exportType === 'PDF'}
                 disabled={exporting}
+                className="px-4 py-2 text-sm enhanced-btn enhanced-focus enhanced-glow"
+                style={{
+                  background: 'rgba(59, 130, 246, 0.2)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontWeight: '500'
+                }}
               >
-                {exporting && exportType === 'PDF'
-                  ? '⏳ Exporting...'
-                  : '📄 Export PDF'}
-              </GlassButton>
+                📄 Export PDF
+              </LoadingButton>
+              
+              <LoadingButton
+                onClick={handleExportCSV}
+                loading={exporting && exportType === 'CSV'}
+                disabled={exporting}
+                className="px-4 py-2 text-sm enhanced-btn enhanced-focus enhanced-pulse"
+                style={{
+                  background: 'rgba(34, 197, 94, 0.2)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(34, 197, 94, 0.3)',
+                  borderRadius: '8px',
+                  color: 'white',
+                  fontWeight: '500'
+                }}
+              >
+                📊 Export CSV
+              </LoadingButton>
             </div>
           </div>
         </div>
@@ -275,7 +318,7 @@ const AdvancedSimulationResults = () => {
 
         {/* Tab Navigation */}
         <div className='px-6 mb-6'>
-          <GlassCard className='p-2'>
+          <GlassCard className='p-2 enhanced-card'>
             <div className='flex space-x-2'>
               {tabs.map(tab => (
                 <GlassButton
@@ -283,9 +326,9 @@ const AdvancedSimulationResults = () => {
                   variant={activeTab === tab.id ? 'primary' : 'secondary'}
                   size='sm'
                   onClick={() => setActiveTab(tab.id)}
-                  className='flex items-center space-x-2'
+                  className={`flex items-center space-x-2 enhanced-tab enhanced-btn enhanced-focus ${activeTab === tab.id ? 'active' : ''}`}
                 >
-                  <span>{tab.icon}</span>
+                  <span className='enhanced-icon'>{tab.icon}</span>
                   <span>{tab.name}</span>
                 </GlassButton>
               ))}
@@ -295,7 +338,30 @@ const AdvancedSimulationResults = () => {
 
         {/* Content */}
         <div className='px-6 pb-6'>
-          {activeTab === 'overview' && (
+          {dataProcessing ? (
+            <div className='space-y-6'>
+              <GlassCard className='p-6'>
+                <div className='flex items-center justify-center py-12'>
+                  <div className='text-center'>
+                    <ModernSpinner variant="orbit" size="large" />
+                    <h3 className='text-xl font-semibold text-white mt-4 mb-2'>
+                      Processing Simulation Data
+                    </h3>
+                    <p className='text-gray-300'>
+                      Analyzing atmospheric entry, fragmentation, and impact effects...
+                    </p>
+                  </div>
+                </div>
+              </GlassCard>
+              
+              <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
+                <SkeletonCard className="h-64" />
+                <SkeletonCard className="h-64" />
+                <SkeletonCard className="h-64" />
+                <SkeletonCard className="h-64" />
+              </div>
+            </div>
+          ) : activeTab === 'overview' && (
             <div className='space-y-6'>
               {/* Key Statistics */}
               <GlassCard className='p-6'>
@@ -303,26 +369,49 @@ const AdvancedSimulationResults = () => {
                   📈 Key Statistics
                 </h2>
                 <div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
-                  <GlassStat
-                    label='Impact Energy'
-                    value={`${formatNumber(results.summary.impactEnergy / 1e15)} PJ`}
-                    icon='⚡'
-                  />
-                  <GlassStat
-                    label='TNT Equivalent'
-                    value={`${formatNumber(results.environmentalEffects.tntEquivalent)} tons`}
-                    icon='💥'
-                  />
-                  <GlassStat
-                    label='Crater Diameter'
-                    value={`${formatNumber(results.summary.craterDiameter)} m`}
-                    icon='🕳️'
-                  />
-                  <GlassStat
-                    label='Devastation Radius'
-                    value={`${formatNumber(results.summary.devastationRadius)} m`}
-                    icon='💀'
-                  />
+                  {chartsLoading ? (
+                    <>
+                      <div className='p-4 bg-white/5 rounded-lg'>
+                        <SkeletonText className="h-4 w-16 mb-2" />
+                        <SkeletonText className="h-6 w-20" />
+                      </div>
+                      <div className='p-4 bg-white/5 rounded-lg'>
+                        <SkeletonText className="h-4 w-16 mb-2" />
+                        <SkeletonText className="h-6 w-20" />
+                      </div>
+                      <div className='p-4 bg-white/5 rounded-lg'>
+                        <SkeletonText className="h-4 w-16 mb-2" />
+                        <SkeletonText className="h-6 w-20" />
+                      </div>
+                      <div className='p-4 bg-white/5 rounded-lg'>
+                        <SkeletonText className="h-4 w-16 mb-2" />
+                        <SkeletonText className="h-6 w-20" />
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <GlassStat
+                        label='Impact Energy'
+                        value={`${formatNumber(results.summary.impactEnergy / 1e15)} PJ`}
+                        icon='⚡'
+                      />
+                      <GlassStat
+                        label='TNT Equivalent'
+                        value={`${formatNumber(results.environmentalEffects.tntEquivalent)} tons`}
+                        icon='💥'
+                      />
+                      <GlassStat
+                        label='Crater Diameter'
+                        value={`${formatNumber(results.summary.craterDiameter)} m`}
+                        icon='🕳️'
+                      />
+                      <GlassStat
+                        label='Devastation Radius'
+                        value={`${formatNumber(results.summary.devastationRadius)} m`}
+                        icon='💀'
+                      />
+                    </>
+                  )}
                 </div>
               </GlassCard>
 
@@ -416,7 +505,7 @@ const AdvancedSimulationResults = () => {
                   <GlassButton
                     variant='secondary'
                     onClick={handleExportTrajectory}
-                    disabled={exporting || !results.entryPhase?.trajectory}
+                    disabled={exporting || !results?.entryPhase?.trajectory}
                     className='flex items-center justify-center space-x-2'
                   >
                     <span>🛸</span>
@@ -480,23 +569,32 @@ const AdvancedSimulationResults = () => {
                 <h2 className='text-xl font-semibold text-white mb-4'>
                   🛸 Atmospheric Entry Trajectory
                 </h2>
-                <div className='h-96'>
-                  <Line
-                    data={trajectoryData}
-                    options={{
-                      ...chartOptions,
-                      scales: {
-                        ...chartOptions.scales,
-                        y1: {
-                          type: 'linear',
-                          display: true,
-                          position: 'right',
-                          ticks: { color: 'rgba(255, 255, 255, 0.6)' },
-                          grid: { drawOnChartArea: false },
+                <div className='h-96 relative'>
+                  {chartsLoading ? (
+                    <div className='absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg'>
+                      <div className='text-center'>
+                        <ModernSpinner variant="pulse" size="medium" />
+                        <p className='text-gray-300 mt-2'>Rendering trajectory chart...</p>
+                      </div>
+                    </div>
+                  ) : (
+                    <Line
+                      data={trajectoryData}
+                      options={{
+                        ...chartOptions,
+                        scales: {
+                          ...chartOptions.scales,
+                          y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: { color: 'rgba(255, 255, 255, 0.6)' },
+                            grid: { drawOnChartArea: false },
+                          },
                         },
-                      },
-                    }}
-                  />
+                      }}
+                    />
+                  )}
                 </div>
               </GlassCard>
 
@@ -603,8 +701,17 @@ const AdvancedSimulationResults = () => {
                   <h2 className='text-xl font-semibold text-white mb-4'>
                     🌪️ Shockwave Propagation
                   </h2>
-                  <div className='h-96'>
-                    <Bar data={shockwaveData} options={chartOptions} />
+                  <div className='h-96 relative'>
+                    {chartsLoading ? (
+                      <div className='absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg'>
+                        <div className='text-center'>
+                          <ModernSpinner variant="pulse" size="medium" />
+                          <p className='text-gray-300 mt-2'>Rendering shockwave chart...</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <Bar data={shockwaveData} options={chartOptions} />
+                    )}
                   </div>
                 </GlassCard>
               )}

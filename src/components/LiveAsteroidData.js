@@ -17,7 +17,11 @@ const LiveAsteroidData = ({ onAsteroidSelect, selectedAsteroidId }) => {
   const [sortBy, setSortBy] = useState('diameter'); // diameter, velocity, distance
   const [autoUpdate, setAutoUpdate] = useState(true);
   const [dataStatus, setDataStatus] = useState({});
-  const [cacheStatus, setCacheStatus] = useState({});
+  const [cacheStatus, setCacheStatus] = useState({
+    remainingRequests: 1000,
+    resetTime: null,
+    isLimited: false
+  });
   const [isWarmingCache, setIsWarmingCache] = useState(false);
 
   // Subscribe to live data updates

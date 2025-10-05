@@ -482,7 +482,7 @@ const MeteorologicalSimulation = () => {
                   {event.event_type.charAt(0).toUpperCase() +
                     event.event_type.slice(1)}
                 </h4>
-                <span className={`intensity ${event.intensity.toLowerCase()}`}>
+                <span className={`intensity ${event.intensity?.toLowerCase()}`}>
                   {event.intensity}
                 </span>
               </div>

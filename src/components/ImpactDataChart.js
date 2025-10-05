@@ -1,7 +1,26 @@
 import React, { useEffect, useRef } from 'react';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 
 import { useSimulation } from '../context/SimulationContext';
 import '../styles/components.css';
+
+// Register Chart.js components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const ImpactDataChart = () => {
   const { simulationResults } = useSimulation();
@@ -20,6 +39,17 @@ const ImpactDataChart = () => {
 
     const ctx = chartRef.current.getContext('2d');
 
+    // Extract energy data from simulation results
+    const totalEnergy = simulationResults.energy || simulationResults.impactEnergy || 0;
+    const craterDiameter = simulationResults.craterDiameter || 0;
+    
+    // Calculate energy distribution based on total energy
+    // These are realistic proportions for meteor impacts
+    const kineticEnergy = totalEnergy * 0.4; // 40% kinetic
+    const thermalEnergy = totalEnergy * 0.3; // 30% thermal
+    const blastEnergy = totalEnergy * 0.2;   // 20% blast wave
+    const seismicEnergy = totalEnergy * 0.1; // 10% seismic
+
     // Create data for chart based on simulation results
     const energyData = {
       labels: [
@@ -30,12 +60,12 @@ const ImpactDataChart = () => {
       ],
       datasets: [
         {
-          label: 'Energy Distribution (Megatons)',
+          label: 'Energy Distribution (Megatons TNT)',
           data: [
-            simulationResults.kineticEnergy || 0,
-            simulationResults.thermalEnergy || 0,
-            simulationResults.blastEnergy || 0,
-            simulationResults.seismicEnergy || 0,
+            kineticEnergy,
+            thermalEnergy,
+            blastEnergy,
+            seismicEnergy,
           ],
           backgroundColor: [
             'rgba(54, 162, 235, 0.7)',
@@ -55,7 +85,7 @@ const ImpactDataChart = () => {
     };
 
     // Create chart
-    chartInstance.current = new Chart(ctx, {
+    chartInstance.current = new ChartJS(ctx, {
       type: 'bar',
       data: energyData,
       options: {

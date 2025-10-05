@@ -7,22 +7,27 @@ class WebSocketService {
     this.socket = null;
     this.isConnected = false;
     this.reconnectAttempts = 0;
-    this.maxReconnectAttempts = 10; // Increased for better persistence
-    this.reconnectDelay = 1000;
+    
+    // Environment-based configuration with fallbacks
+    this.maxReconnectAttempts = this.getEnvNumber('WEBSOCKET_MAX_RECONNECT_ATTEMPTS', 50);
+    this.reconnectDelay = this.getEnvNumber('WEBSOCKET_RECONNECT_DELAY', 2000);
+    this.maxReconnectDelay = this.getEnvNumber('WEBSOCKET_MAX_RECONNECT_DELAY', 15000);
+    this.autoReconnect = this.getEnvBoolean('WEBSOCKET_AUTO_RECONNECT', true);
+    this.connectionTimeout = this.getEnvNumber('WEBSOCKET_CONNECTION_TIMEOUT', 60000);
+    this.healthCheckInterval = this.getEnvNumber('WEBSOCKET_HEALTH_CHECK_INTERVAL', 30000);
+    this.socketTimeout = this.getEnvNumber('WEBSOCKET_TIMEOUT', 20000);
+    
+    this.reconnectTimer = null;
     this.eventListeners = new Map();
     this.dataCache = new Map();
 
-    // Backend URL - adjust based on your backend configuration
-    this.backendUrl =
-      process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+    // Enhanced backend URL configuration for deployment flexibility
+    this.backendUrl = this.determineBackendUrl();
 
-    // Auto-reconnection settings
-    this.autoReconnect = true;
-    this.reconnectTimer = null;
-    this.connectionHealthTimer = null;
+    this.healthCheckTimer = null;
+    this.pingTimeout = null;
     this.lastPingTime = null;
-    this.pingInterval = 30000; // Ping every 30 seconds
-    this.connectionTimeout = 60000; // Consider connection dead after 60 seconds
+    this.isNetworkOnline = true;
 
     // Statistics tracking
     this.stats = {
@@ -36,6 +41,124 @@ class WebSocketService {
 
     // Start connection health monitoring
     this.startConnectionHealthMonitoring();
+  }
+
+  // Helper method to get environment variables as numbers
+  getEnvNumber(key, defaultValue) {
+    if (typeof process !== 'undefined' && process.env && process.env[key]) {
+      const value = parseInt(process.env[key], 10);
+      return isNaN(value) ? defaultValue : value;
+    }
+    return defaultValue;
+  }
+
+  // Helper method to get environment variables as booleans
+  getEnvBoolean(key, defaultValue) {
+    if (typeof process !== 'undefined' && process.env && process.env[key]) {
+      const value = process.env[key]?.toLowerCase();
+      return value === 'true' || value === '1' || value === 'yes';
+    }
+    return defaultValue;
+  }
+
+  // Determine the backend URL intelligently for deployment flexibility
+  determineBackendUrl() {
+    // Priority order for URL determination:
+    // 1. Explicit WebSocket URL from environment
+    // 2. Backend URL from environment (add WebSocket port)
+    // 3. Current host (for production deployments)
+    // 4. Localhost fallback (for development)
+    
+    if (process.env.REACT_APP_WEBSOCKET_URL) {
+      console.log('🔧 Using explicit WebSocket URL from environment:', process.env.REACT_APP_WEBSOCKET_URL);
+      return process.env.REACT_APP_WEBSOCKET_URL;
+    }
+    
+    if (process.env.REACT_APP_BACKEND_URL) {
+      // If backend URL is provided, try to derive WebSocket URL
+      const backendUrl = process.env.REACT_APP_BACKEND_URL;
+      console.log('🔧 Deriving WebSocket URL from backend URL:', backendUrl);
+      
+      if (backendUrl.includes(':3001') || backendUrl.includes('websocket')) {
+        return backendUrl;
+      }
+      // Try to modify port for WebSocket
+      return backendUrl.replace(/:\d+/, ':3001');
+    }
+    
+    // For production deployments, try to use current host
+    if (typeof window !== 'undefined' && window.location) {
+      const { protocol, hostname, port } = window.location;
+      const wsProtocol = protocol === 'https:' ? 'wss:' : 'ws:';
+      
+      // Detect common deployment scenarios
+      const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+      const isProduction = !isLocalhost && (protocol === 'https:' || !port || port === '80' || port === '443');
+      
+      if (isProduction) {
+        // Production deployment - try same host with WebSocket path or port
+        console.log('🌐 Production deployment detected, using current host for WebSocket');
+        
+        // Try WebSocket path first (common in production with reverse proxy)
+        const wsPathUrl = `${wsProtocol}//${hostname}${port ? `:${port}` : ''}/ws`;
+        
+        // Try dedicated WebSocket port as fallback
+        const wsPortUrl = `${wsProtocol}//${hostname}:3001`;
+        
+        // Return path-based URL first (more common in production)
+        return wsPathUrl;
+      } else {
+        // Development or staging - use port-based approach
+        console.log('🛠️ Development environment detected, using port-based WebSocket URL');
+        return `${wsProtocol}//${hostname}:3001`;
+      }
+    }
+    
+    // Development fallback
+    console.log('🛠️ Using development fallback WebSocket URL');
+    return 'http://localhost:3001';
+  }
+
+  // Get alternative URLs for progressive fallback
+  getAlternativeUrls() {
+    const alternatives = [];
+    
+    if (typeof window !== 'undefined' && window.location) {
+      const { protocol, hostname, port } = window.location;
+      const wsProtocol = protocol === 'https:' ? 'wss:' : 'ws:';
+      const httpProtocol = protocol === 'https:' ? 'https:' : 'http:';
+      
+      // Add various possible URLs
+      alternatives.push(
+        // WebSocket path-based (common in production)
+        `${wsProtocol}//${hostname}${port ? `:${port}` : ''}/ws`,
+        `${wsProtocol}//${hostname}${port ? `:${port}` : ''}/websocket`,
+        
+        // Different ports
+        `${wsProtocol}//${hostname}:3001`,
+        `${wsProtocol}//${hostname}:8080`,
+        `${wsProtocol}//${hostname}:5000`,
+        `${httpProtocol}//${hostname}:3001`,
+        `${httpProtocol}//${hostname}:8080`,
+        `${httpProtocol}//${hostname}:5000`,
+        
+        // Same port as current page
+        ...(port ? [`${wsProtocol}//${hostname}:${port}`, `${httpProtocol}//${hostname}:${port}`] : [])
+      );
+    }
+    
+    // Add localhost fallbacks
+    alternatives.push(
+      'ws://localhost:3001',
+      'http://localhost:3001',
+      'ws://localhost:8080',
+      'http://localhost:8080',
+      'ws://localhost:5000',
+      'http://localhost:5000'
+    );
+    
+    // Remove duplicates and return
+    return [...new Set(alternatives)];
   }
 
   // Initialize WebSocket connection
@@ -147,26 +270,26 @@ class WebSocketService {
     });
   }
 
-  // Create the actual Socket.IO connection
+  // Create the actual Socket.IO connection with enhanced robustness
   createConnection() {
     try {
       console.log('🚀 Creating Socket.IO connection to:', this.backendUrl);
       
-      // Enhanced connection options with better timeout handling
-      this.socket = window.io(this.backendUrl, {
-        transports: ['polling', 'websocket'], // Try polling first, then websocket
-        timeout: 30000, // Increased timeout to 30 seconds
-        forceNew: true,
-        reconnection: true,
-        reconnectionAttempts: 5,
-        reconnectionDelay: 2000,
-        reconnectionDelayMax: 10000,
+      // Simplified connection options to avoid conflicts
+      const connectionOptions = {
+        transports: ['polling', 'websocket'],
+        timeout: this.socketTimeout,
+        forceNew: false, // Allow connection reuse
+        reconnection: false, // Disable built-in reconnection, use our custom logic
         maxHttpBufferSize: 1e6,
-        pingTimeout: 60000,
-        pingInterval: 25000,
+        pingTimeout: 30000,
+        pingInterval: 15000,
         upgrade: true,
-        rememberUpgrade: false
-      });
+        autoConnect: true,
+        withCredentials: false
+      };
+
+      this.socket = window.io(this.backendUrl, connectionOptions);
 
       console.log('✅ Socket.IO connection created, setting up event handlers');
       this.setupEventHandlers();
@@ -174,35 +297,218 @@ class WebSocketService {
       console.error('❌ Error creating Socket.IO connection:', error);
       this.notifyListeners('connection_error', {
         error: `Failed to create Socket.IO connection: ${error.message}`,
+        timestamp: new Date().toISOString()
       });
       
-      // Attempt fallback connection after a delay
-      setTimeout(() => {
-        this.attemptFallbackConnection();
-      }, 5000);
+      // Progressive fallback strategy
+      this.attemptProgressiveFallback();
     }
   }
 
-  // Fallback connection method for when primary connection fails
-  attemptFallbackConnection() {
-    try {
-      console.log('🔄 Attempting fallback connection...');
-      
-      // Try with minimal configuration
-      this.socket = window.io(this.backendUrl, {
-        transports: ['polling'], // Only use polling as fallback
-        timeout: 15000,
-        forceNew: true,
-        reconnection: false // Disable auto-reconnection for fallback
-      });
+  // Enhanced progressive fallback strategy for robust connection handling
+  attemptProgressiveFallback() {
+    const alternativeUrls = this.getAlternativeUrls();
+    
+    const strategies = [
+      {
+        name: 'Polling Only (Current URL)',
+        delay: 1000,
+        url: this.backendUrl,
+        options: {
+          transports: ['polling'],
+          upgrade: false,
+          timeout: 8000,
+        }
+      },
+      {
+        name: 'WebSocket + Polling (Current URL)',
+        delay: 2000,
+        url: this.backendUrl,
+        options: {
+          transports: ['websocket', 'polling'],
+          timeout: 6000,
+          upgrade: true,
+        }
+      },
+      ...alternativeUrls.slice(0, 5).map((url, index) => ({
+        name: `Alternative URL ${index + 1}`,
+        delay: 2000 + (index * 1000),
+        url: url,
+        options: {
+          transports: ['websocket', 'polling'],
+          timeout: 8000,
+          upgrade: true,
+        }
+      })),
+      {
+        name: 'Minimal Configuration (Localhost)',
+        delay: 8000,
+        url: 'http://localhost:3001',
+        options: {
+          transports: ['polling'],
+          upgrade: false,
+          timeout: 10000,
+          forceNew: true,
+        }
+      }
+    ];
 
-      this.setupEventHandlers();
-    } catch (error) {
-      console.error('❌ Fallback connection also failed:', error);
-      this.notifyListeners('connection_error', {
-        error: `All connection attempts failed: ${error.message}`,
+    let currentStrategy = 0;
+    let totalStrategies = strategies.length;
+
+    const tryNextStrategy = () => {
+      if (currentStrategy >= totalStrategies) {
+        console.error('❌ All fallback strategies exhausted, implementing exponential backoff...');
+        this.notifyListeners('connection_status', {
+          status: 'all_fallbacks_failed',
+          message: 'All connection strategies failed, implementing exponential backoff...',
+          nextRetryIn: 60000,
+        });
+        
+        // Exponential backoff with maximum delay
+        const backoffDelay = Math.min(60000 * Math.pow(2, Math.floor(this.reconnectAttempts / totalStrategies)), 300000); // Max 5 minutes
+        
+        setTimeout(() => {
+          console.log('🔄 Retrying connection after exponential backoff...');
+          this.attemptProgressiveFallback();
+        }, backoffDelay);
+        return;
+      }
+
+      const strategy = strategies[currentStrategy];
+      console.log(`🔄 Trying fallback strategy ${currentStrategy + 1}/${totalStrategies}: ${strategy.name}`);
+      console.log(`🔗 URL: ${strategy.url}`);
+      
+      this.notifyListeners('connection_status', {
+        status: 'trying_fallback',
+        strategy: strategy.name,
+        attempt: currentStrategy + 1,
+        total: totalStrategies,
+        url: strategy.url,
       });
+      
+      setTimeout(() => {
+        if (!strategy.url) {
+          console.warn(`⚠️ No URL available for ${strategy.name}, skipping...`);
+          currentStrategy++;
+          tryNextStrategy();
+          return;
+        }
+
+        try {
+          const fallbackSocket = io(strategy.url, {
+            ...strategy.options,
+            autoConnect: false,
+          });
+
+          const connectionTimeout = setTimeout(() => {
+            console.warn(`⏰ ${strategy.name} strategy timed out after ${strategy.options.timeout}ms`);
+            fallbackSocket.disconnect();
+            currentStrategy++;
+            tryNextStrategy();
+          }, strategy.options.timeout || 10000);
+
+          fallbackSocket.on('connect', () => {
+            console.log(`✅ ${strategy.name} strategy succeeded!`);
+            clearTimeout(connectionTimeout);
+            
+            // Replace the main socket with this successful connection
+            if (this.socket) {
+              this.socket.disconnect();
+            }
+            this.socket = fallbackSocket;
+            this.backendUrl = strategy.url;
+            this.setupEventHandlers();
+            this.isConnected = true;
+            this.reconnectAttempts = 0;
+            
+            this.notifyListeners('connection_status', {
+              status: 'connected',
+              strategy: strategy.name,
+              url: strategy.url,
+              transport: fallbackSocket.io.engine.transport.name,
+            });
+
+            // Start health monitoring
+            this.startConnectionHealthMonitoring();
+          });
+
+          fallbackSocket.on('connect_error', (error) => {
+            console.warn(`❌ ${strategy.name} strategy failed:`, error.message || error);
+            clearTimeout(connectionTimeout);
+            fallbackSocket.disconnect();
+            currentStrategy++;
+            tryNextStrategy();
+          });
+
+          fallbackSocket.connect();
+          
+        } catch (error) {
+          console.error(`❌ Error setting up ${strategy.name} strategy:`, error);
+          currentStrategy++;
+          tryNextStrategy();
+        }
+      }, strategy.delay);
+    };
+
+    tryNextStrategy();
+  }
+
+  // Get alternative URL for fallback attempts
+  getAlternativeUrl() {
+    const alternatives = this.getAlternativeUrls();
+    
+    // Return the first alternative that's different from current backend URL
+    for (const url of alternatives) {
+      if (url !== this.backendUrl) {
+        return url;
+      }
     }
+    
+    return this.backendUrl; // Fallback to original URL
+  }
+
+  // Try fallback strategies sequentially
+  tryFallbackStrategy(strategies, index) {
+    if (index >= strategies.length) {
+      console.error('❌ All fallback strategies exhausted');
+      this.notifyListeners('connection_error', {
+        error: 'All connection strategies failed',
+        timestamp: new Date().toISOString(),
+        fallbacksAttempted: strategies.length
+      });
+      
+      // Schedule a retry after a longer delay
+      setTimeout(() => {
+        console.log('🔄 Retrying connection after extended delay...');
+        this.connect();
+      }, 30000);
+      return;
+    }
+
+    const strategy = strategies[index];
+    console.log(`🔄 Attempting fallback strategy: ${strategy.name}`);
+
+    setTimeout(() => {
+      try {
+        const url = strategy.url || this.backendUrl;
+        this.socket = window.io(url, strategy.options);
+        this.setupEventHandlers();
+        
+        // Set a timeout to check if this strategy worked
+        setTimeout(() => {
+          if (!this.isConnected) {
+            console.log(`❌ Strategy "${strategy.name}" failed, trying next...`);
+            this.socket?.disconnect();
+            this.tryFallbackStrategy(strategies, index + 1);
+          }
+        }, strategy.options.timeout + 2000);
+        
+      } catch (error) {
+        console.error(`❌ Strategy "${strategy.name}" error:`, error);
+        this.tryFallbackStrategy(strategies, index + 1);
+      }
+    }, strategy.delay);
   }
 
   // Setup all WebSocket event handlers
@@ -263,23 +569,47 @@ class WebSocketService {
     });
 
     this.socket.on('connect_error', error => {
-      // Reduce console spam by limiting error logging
-      if (this.reconnectAttempts < 3) {
-        console.error('❌ WebSocket connection error:', error);
-        console.error(
-          'Error details:',
-          error.message || 'Unknown error',
-          error.type || 'Unknown type',
-          error.description || 'No description'
-        );
+      // Enhanced error logging with more context
+      const errorInfo = {
+        message: error.message || 'Unknown error',
+        type: error.type || 'Unknown type',
+        description: error.description || 'No description',
+        code: error.code || 'No code',
+        context: error.context || 'No context',
+        timestamp: new Date().toISOString(),
+        url: this.backendUrl,
+        attempt: this.reconnectAttempts + 1
+      };
+
+      // Reduce console spam but provide detailed info when needed
+      if (this.reconnectAttempts < 3 || this.reconnectAttempts % 5 === 0) {
+        console.error('❌ WebSocket connection error:', errorInfo);
       }
       
-      // Only notify listeners if this is a new error or significant attempt
+      // Analyze error type for better handling
+      const isNetworkError = error.message?.includes('ECONNREFUSED') || 
+                            error.message?.includes('ENOTFOUND') ||
+                            error.message?.includes('timeout') ||
+                            error.type === 'TransportError';
+      
+      const isCorsError = error.message?.includes('CORS') || 
+                         error.message?.includes('Access-Control');
+      
+      // Provide helpful suggestions based on error type
+      let suggestion = 'Check if the WebSocket server is running';
+      if (isNetworkError) {
+        suggestion = 'Network connectivity issue - server may be down or unreachable';
+      } else if (isCorsError) {
+        suggestion = 'CORS configuration issue - check server CORS settings';
+      }
+      
+      // Only notify listeners periodically to avoid spam
       if (this.reconnectAttempts === 0 || this.reconnectAttempts % 3 === 0) {
         this.notifyListeners('connection_error', { 
-          error: error.message || 'Connection failed',
-          attempt: this.reconnectAttempts + 1,
-          timestamp: new Date().toISOString()
+          ...errorInfo,
+          suggestion,
+          isNetworkError,
+          isCorsError
         });
       }
     });
@@ -409,6 +739,30 @@ class WebSocketService {
     this.socket.on('space_weather', data => {
       this.cacheAndNotify('space_weather', data);
     });
+
+    // API status updates
+    this.socket.on('api_status_update', data => {
+      console.log(`📡 API Status Update: ${data.api} is ${data.status}`, data);
+      
+      // Store API status for monitoring
+      if (!this.apiStatus) {
+        this.apiStatus = {};
+      }
+      this.apiStatus[data.api] = {
+        status: data.status,
+        message: data.message,
+        timestamp: data.timestamp,
+        fallbackActive: data.fallbackActive
+      };
+      
+      // Notify listeners about API status changes
+      this.cacheAndNotify('api_status_update', data);
+      
+      // Show user-friendly notification for critical API failures
+      if (data.status === 'degraded' && data.api === 'nasa') {
+        console.warn(`⚠️ NASA API Issue: ${data.message}. Using cached/fallback data.`);
+      }
+    });
   }
 
   // Cache data and notify listeners
@@ -494,16 +848,71 @@ class WebSocketService {
     return result;
   }
 
-  // Connection health monitoring
+  // Enhanced connection health monitoring
   startConnectionHealthMonitoring() {
     // Check connection health every 30 seconds
     this.connectionHealthTimer = setInterval(() => {
       this.checkConnectionHealth();
     }, this.pingInterval);
+
+    // Monitor network status if available
+    this.setupNetworkMonitoring();
+    
+    // Monitor page visibility for better resource management
+    this.setupVisibilityMonitoring();
+  }
+
+  setupNetworkMonitoring() {
+    if (typeof window !== 'undefined' && 'navigator' in window && 'onLine' in navigator) {
+      // Monitor online/offline status
+      window.addEventListener('online', () => {
+        console.log('🌐 Network connection restored');
+        this.notifyListeners('network_status', { online: true });
+        
+        // Attempt immediate reconnection if we were disconnected
+        if (!this.isConnected && this.autoReconnect) {
+          console.log('Attempting immediate reconnection due to network restoration...');
+          setTimeout(() => this.connect(), 1000); // Small delay to ensure network is stable
+        }
+      });
+
+      window.addEventListener('offline', () => {
+        console.log('📵 Network connection lost');
+        this.notifyListeners('network_status', { online: false });
+        
+        // Don't attempt reconnections while offline
+        if (this.reconnectTimer) {
+          clearTimeout(this.reconnectTimer);
+          this.reconnectTimer = null;
+        }
+      });
+
+      // Check initial network status
+      this.isOnline = navigator.onLine;
+    }
+  }
+
+  setupVisibilityMonitoring() {
+    if (typeof document !== 'undefined') {
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          // Page became visible - check connection health
+          console.log('👁️ Page became visible, checking connection health...');
+          setTimeout(() => this.checkConnectionHealth(), 500);
+        } else {
+          // Page became hidden - reduce activity
+          console.log('🙈 Page became hidden, reducing connection activity...');
+        }
+      });
+    }
   }
 
   checkConnectionHealth() {
     if (!this.isConnected || !this.socket) {
+      // If not connected but should be, attempt reconnection
+      if (this.autoReconnect && this.isNetworkAvailable()) {
+        this.handleReconnection();
+      }
       return;
     }
 
@@ -514,7 +923,7 @@ class WebSocketService {
       this.stats.lastMessageTime &&
       now - this.stats.lastMessageTime > this.connectionTimeout
     ) {
-      console.warn('Connection appears stale, forcing reconnection...');
+      console.warn('⚠️ Connection appears stale, forcing reconnection...');
       this.forceReconnect();
       return;
     }
@@ -523,10 +932,28 @@ class WebSocketService {
     try {
       this.socket.emit('ping', { timestamp: now });
       this.lastPingTime = now;
+      
+      // Set up ping timeout to detect unresponsive connections
+      if (this.pingTimeoutTimer) {
+        clearTimeout(this.pingTimeoutTimer);
+      }
+      
+      this.pingTimeoutTimer = setTimeout(() => {
+        console.warn('⏰ Ping timeout - connection may be unresponsive');
+        this.forceReconnect();
+      }, 10000); // 10 second ping timeout
+      
     } catch (error) {
-      console.error('Failed to send ping:', error);
+      console.error('❌ Failed to send ping:', error);
       this.forceReconnect();
     }
+  }
+
+  isNetworkAvailable() {
+    if (typeof window !== 'undefined' && 'navigator' in window && 'onLine' in navigator) {
+      return navigator.onLine;
+    }
+    return true; // Assume network is available if we can't detect it
   }
 
   forceReconnect() {
@@ -540,7 +967,7 @@ class WebSocketService {
     }
   }
 
-  // Handle reconnection logic
+  // Enhanced reconnection logic with network awareness
   handleReconnection() {
     if (!this.autoReconnect) {
       console.log('Auto-reconnection is disabled');
@@ -548,42 +975,31 @@ class WebSocketService {
     }
 
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.error(
-        'Max reconnection attempts reached, will retry in 30 seconds...'
-      );
+      console.error('🔄 Max reconnection attempts reached, stopping reconnection...');
       this.notifyListeners('connection_status', {
         status: 'failed',
-        message: 'Max reconnection attempts reached, retrying in 30 seconds...',
+        message: 'Max reconnection attempts reached',
       });
-
-      // Reset attempts after a longer delay and try again
-      this.reconnectTimer = setTimeout(() => {
-        this.reconnectAttempts = 0;
-        this.handleReconnection();
-      }, 30000);
       return;
     }
 
     this.reconnectAttempts++;
-    const delay = Math.min(
-      this.reconnectDelay * Math.pow(2, this.reconnectAttempts - 1),
-      30000
-    ); // Cap at 30 seconds
+    
+    // Simple exponential backoff with reasonable delays
+    const delay = Math.min(this.reconnectDelay * Math.pow(1.5, this.reconnectAttempts - 1), this.maxReconnectDelay);
 
-    console.log(
-      `Attempting to reconnect in ${delay}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`
-    );
+    console.log(`🔄 Reconnecting in ${Math.round(delay)}ms (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`);
 
     this.notifyListeners('connection_status', {
       status: 'reconnecting',
       attempt: this.reconnectAttempts,
       maxAttempts: this.maxReconnectAttempts,
-      delay: delay,
+      delay: Math.round(delay),
     });
 
     this.reconnectTimer = setTimeout(() => {
       if (!this.isConnected && this.autoReconnect) {
-        console.log(`Reconnection attempt ${this.reconnectAttempts}...`);
+        console.log(`🔄 Reconnection attempt ${this.reconnectAttempts}...`);
         this.connect();
       }
     }, delay);
@@ -661,7 +1077,7 @@ class WebSocketService {
     this.dataCache.clear();
   }
 
-  // Get statistics about the service
+  // Get comprehensive statistics and status about the service
   getStats() {
     const now = Date.now();
 
@@ -687,12 +1103,23 @@ class WebSocketService {
     // Get last update time
     const lastUpdate = this.stats.lastMessageTime || now;
 
+    // Determine connection quality
+    const connectionQuality = this.getConnectionQuality();
+
+    // Get network status
+    const networkStatus = this.getNetworkStatus();
+
     return {
       // Connection info
       isConnected: this.isConnected,
+      connectionQuality: connectionQuality,
       uptime: uptime,
       reconnects: this.stats.reconnectCount,
       autoReconnect: this.autoReconnect,
+      backendUrl: this.backendUrl,
+
+      // Network status
+      networkStatus: networkStatus,
 
       // Data streams
       activeStreams: activeStreams,
@@ -704,6 +1131,10 @@ class WebSocketService {
       dataRate: dataRate,
       lastUpdate: lastUpdate,
 
+      // Offline capabilities
+      offlineMode: !this.isConnected && cacheSize > 0,
+      cachedDataAge: this.getCachedDataAge(),
+
       // Legacy stats for compatibility
       reconnectAttempts: this.reconnectAttempts,
       cachedDataTypes: Array.from(this.dataCache.keys()),
@@ -712,6 +1143,110 @@ class WebSocketService {
         listenerCount: this.eventListeners.get(key).length,
       })),
     };
+  }
+
+  // Determine connection quality based on various factors
+  getConnectionQuality() {
+    if (!this.isConnected) {
+      return 'disconnected';
+    }
+
+    const now = Date.now();
+    const timeSinceLastMessage = this.stats.lastMessageTime ? now - this.stats.lastMessageTime : Infinity;
+    const uptime = this.stats.connectionTime ? Math.floor((now - this.stats.connectionTime) / 1000) : 0;
+    const reconnectRate = this.stats.reconnectCount / Math.max(uptime / 3600, 1); // reconnects per hour
+
+    if (timeSinceLastMessage > 60000) { // No data for over 1 minute
+      return 'poor';
+    } else if (timeSinceLastMessage > 30000 || reconnectRate > 2) { // No data for 30s or frequent reconnects
+      return 'fair';
+    } else if (this.stats.messageHistory.length > 10) { // Good data flow
+      return 'excellent';
+    } else {
+      return 'good';
+    }
+  }
+
+  // Get network status information
+  getNetworkStatus() {
+    const isOnline = this.isNetworkAvailable();
+    
+    return {
+      online: isOnline,
+      type: this.getNetworkType(),
+      effectiveType: this.getEffectiveNetworkType(),
+    };
+  }
+
+  // Get network type if available
+  getNetworkType() {
+    if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+      return navigator.connection.type || 'unknown';
+    }
+    return 'unknown';
+  }
+
+  // Get effective network type if available
+  getEffectiveNetworkType() {
+    if (typeof navigator !== 'undefined' && 'connection' in navigator) {
+      return navigator.connection.effectiveType || 'unknown';
+    }
+    return 'unknown';
+  }
+
+  // Get the age of cached data
+  getCachedDataAge() {
+    if (this.dataCache.size === 0) {
+      return null;
+    }
+
+    const now = Date.now();
+    let oldestTimestamp = now;
+
+    this.dataCache.forEach(({ timestamp }) => {
+      const dataTime = new Date(timestamp).getTime();
+      if (dataTime < oldestTimestamp) {
+        oldestTimestamp = dataTime;
+      }
+    });
+
+    return now - oldestTimestamp;
+  }
+
+  // Enhanced offline mode support
+  enableOfflineMode() {
+    console.log('📴 Enabling offline mode - using cached data');
+    this.notifyListeners('connection_status', {
+      status: 'offline_mode',
+      message: 'Operating in offline mode with cached data',
+      cachedDataTypes: Array.from(this.dataCache.keys()),
+      cacheAge: this.getCachedDataAge(),
+    });
+  }
+
+  // Check if we have sufficient cached data for offline operation
+  hasOfflineCapability() {
+    return this.dataCache.size > 0;
+  }
+
+  // Get user-friendly status message
+  getStatusMessage() {
+    if (this.isConnected) {
+      const quality = this.getConnectionQuality();
+      const qualityMessages = {
+        excellent: 'Connected - Excellent signal',
+        good: 'Connected - Good signal',
+        fair: 'Connected - Fair signal',
+        poor: 'Connected - Poor signal',
+      };
+      return qualityMessages[quality] || 'Connected';
+    } else if (!this.isNetworkAvailable()) {
+      return 'No network connection';
+    } else if (this.hasOfflineCapability()) {
+      return 'Offline - Using cached data';
+    } else {
+      return 'Disconnected - Attempting to reconnect';
+    }
   }
 }
 

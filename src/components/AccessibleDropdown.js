@@ -116,7 +116,7 @@ const AccessibleDropdown = ({
           {label}
           {tooltip && (
             <Tooltip text={tooltip} position='right'>
-              <span className='info-icon' aria-hidden='true'>
+              <span className='info-icon' aria-hidden={true}>
                 ℹ️
               </span>
             </Tooltip>
@@ -138,7 +138,7 @@ const AccessibleDropdown = ({
         {...props}
       >
         <span className='dropdown-value'>{displayValue}</span>
-        <span className='dropdown-arrow' aria-hidden='true'>
+        <span className='dropdown-arrow' aria-hidden={true}>
           {isOpen ? '▲' : '▼'}
         </span>
       </button>
@@ -162,7 +162,7 @@ const AccessibleDropdown = ({
             >
               {option.label}
               {option.value === value && (
-                <span className='dropdown-checkmark' aria-hidden='true'>
+                <span className='dropdown-checkmark' aria-hidden={true}>
                   ✓
                 </span>
               )}
