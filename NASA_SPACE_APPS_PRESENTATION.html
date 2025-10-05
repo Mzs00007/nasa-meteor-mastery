@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheris Exploratores - NASA Space Apps Challenge 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c1445 0%, #1a237e 50%, #000051 100%);
+            color: white;
+            overflow: hidden;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        .slide h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #64b5f6, #42a5f5, #2196f3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(33, 150, 243, 0.5);
+        }
+
+        .slide h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #64b5f6;
+            text-shadow: 0 0 20px rgba(100, 181, 246, 0.3);
+        }
+
+        .slide h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #90caf9;
+        }
+
+        .slide p, .slide li {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            max-width: 800px;
+        }
+
+        .slide ul {
+            text-align: left;
+            max-width: 600px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+            max-width: 800px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card h4 {
+            color: #64b5f6;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: linear-gradient(45deg, #1976d2, #2196f3);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 1000;
+        }
+
+        .nav-btn {
+            background: rgba(33, 150, 243, 0.8);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(33, 150, 243, 1);
+            transform: translateY(-2px);
+        }
+
+        .slide-counter {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .impact-demo {
+            width: 300px;
+            height: 200px;
+            background: radial-gradient(circle, #ff5722 0%, #d32f2f 30%, transparent 70%);
+            border-radius: 50%;
+            margin: 1rem auto;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="presentation-container">
+        <div class="slide-counter">
+            <span id="current-slide">1</span> / <span id="total-slides">7</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active">
+            <div class="logo">🌍☄️</div>
+            <h1>Aetheris Exploratores</h1>
+            <h3>Advanced Meteor Impact Simulation Platform</h3>
+            <p>NASA Space Apps Challenge 2025</p>
+            <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.8;">
+                Transforming planetary defense through real-time visualization and scientific modeling
+            </p>
+        </div>
+
+        <!-- Slide 2: Problem & Solution -->
+        <div class="slide">
+            <h2>The Challenge</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🎯 Problem</h4>
+                    <p>Complex asteroid impact data is difficult to understand and visualize for education and emergency planning</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💡 Solution</h4>
+                    <p>Interactive 3D platform that makes NASA data accessible through real-time simulation and analysis</p>
+                </div>
+            </div>
+            <div class="impact-demo"></div>
+        </div>
+
+        <!-- Slide 3: Key Features -->
+        <div class="slide">
+            <h2>Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🌍 3D Earth Visualization</h4>
+                    <p>Interactive Cesium-powered globe with real-time meteor trajectories</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔬 Physics Engine</h4>
+                    <p>Advanced impact calculations with atmospheric entry simulation</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 Real-time Data</h4>
+                    <p>Live NASA API integration for current space conditions</p>
+                </div>
+                <div class="feature-card">
+                    <h4>⚠️ Risk Assessment</h4>
+                    <p>Comprehensive damage analysis and emergency planning tools</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: NASA Data Integration -->
+        <div class="slide">
+            <h2>NASA Data Sources</h2>
+            <ul>
+                <li><strong>NeoWs API:</strong> Real-time asteroid tracking and orbital data</li>
+                <li><strong>DONKI:</strong> Space weather events and solar activity</li>
+                <li><strong>EONET:</strong> Natural disaster tracking for impact correlation</li>
+                <li><strong>Exoplanet Archive:</strong> Comparative planetary impact modeling</li>
+                <li><strong>Mars Weather:</strong> Atmospheric modeling reference data</li>
+                <li><strong>Cesium Ion:</strong> High-resolution 3D terrain and imagery</li>
+            </ul>
+            <p style="margin-top: 2rem; font-style: italic;">
+                All data integrated in real-time for accurate, up-to-date simulations
+            </p>
+        </div>
+
+        <!-- Slide 5: Technology Stack -->
+        <div class="slide">
+            <h2>Technology & Innovation</h2>
+            <div class="tech-stack">
+                <div class="tech-badge">React.js</div>
+                <div class="tech-badge">Cesium.js</div>
+                <div class="tech-badge">D3.js</div>
+                <div class="tech-badge">Node.js</div>
+                <div class="tech-badge">WebSocket</div>
+                <div class="tech-badge">Chart.js</div>
+                <div class="tech-badge">Three.js</div>
+                <div class="tech-badge">Python</div>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h3>Innovation Highlights:</h3>
+                <ul style="margin-top: 1rem;">
+                    <li>Real-time atmospheric entry simulation with heat effects</li>
+                    <li>Multi-scale impact analysis from local to global effects</li>
+                    <li>Uncertainty quantification with statistical modeling</li>
+                    <li>Accessibility-first design with WCAG compliance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 6: Impact & Benefits -->
+        <div class="slide">
+            <h2>Impact & Benefits</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>🎓 Education</h4>
+                    <p>Makes complex astronomy accessible to students and educators worldwide</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🚨 Emergency Planning</h4>
+                    <p>Provides tools for disaster preparedness and risk assessment</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔬 Research Support</h4>
+                    <p>Validated tools for scientific impact scenario modeling</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌍 Public Awareness</h4>
+                    <p>Increases understanding of NEO threats and planetary defense</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Demo & Links -->
+        <div class="slide">
+            <h2>Experience Aetheris Exploratores</h2>
+            <div style="margin: 2rem 0;">
+                <h3>🔗 Project Links</h3>
+                <p><strong>GitHub Repository:</strong><br>
+                https://github.com/Mzs00007/nasa-meteor-mastery.git</p>
+                <p style="margin-top: 1rem;"><strong>Live Demo:</strong><br>
+                http://localhost:3000 (Development)</p>
+            </div>
+            <div style="margin-top: 2rem;">
+                <h3>🚀 Ready for Deployment</h3>
+                <p>Fully functional platform ready for public access</p>
+                <p>Complete with testing suite and documentation</p>
+            </div>
+            <div style="margin-top: 2rem; font-size: 2rem;">
+                🌟 Thank you! 🌟
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            }
+        });
+
+        // Create animated stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        // Auto-advance slides every 10 seconds (optional)
+        // setInterval(nextSlide, 10000);
+    </script>
+</body>
+</html>
