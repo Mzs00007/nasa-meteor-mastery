@@ -3,6 +3,16 @@
 /* Import responsive utilities */
 @import './styles/responsive-utilities.css';
 
+/* Notification progress bar animation */
+@keyframes shrink {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
+.notification-progress {
+  animation: shrink linear forwards;
+}
+
 /* CSS Custom Properties for consistent spacing and viewport management */
 :root {
   /* Viewport heights with safe areas */

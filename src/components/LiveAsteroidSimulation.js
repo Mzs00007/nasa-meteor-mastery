@@ -5,6 +5,7 @@ import { useSimulation } from '../context/SimulationContext';
 
 import LiveAsteroidData from './LiveAsteroidData';
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
+import NavigationGuide from './NavigationGuide';
 
 
 const LiveAsteroidSimulation = () => {
@@ -17,6 +18,7 @@ const LiveAsteroidSimulation = () => {
     showAdvanced: false,
   });
   const [isRunningSimulation, setIsRunningSimulation] = useState(false);
+  const [showNavigationGuide, setShowNavigationGuide] = useState(false);
 
   const { setAsteroidParams, runSimulation, simulationResults, loading } =
     useSimulation();
@@ -89,8 +91,8 @@ const LiveAsteroidSimulation = () => {
 
       await runSimulation(simulationData);
 
-      // Navigate to results page
-      navigate('/simulation/results');
+      // Show navigation guide instead of automatically navigating
+      setShowNavigationGuide(true);
     } catch (error) {
       console.error('Simulation failed:', error);
       alert('Simulation failed. Please try again.');
@@ -648,6 +650,13 @@ const LiveAsteroidSimulation = () => {
           </div>
         </div>
       </div>
+      
+      {/* Navigation Guide Popup */}
+      <NavigationGuide
+        isOpen={showNavigationGuide}
+        onClose={() => setShowNavigationGuide(false)}
+        simulationType="live"
+      />
     </div>
   );
 };

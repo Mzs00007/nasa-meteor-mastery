@@ -24,7 +24,7 @@ const NavLink = ({ onClick, icon, text, title, isActive = false }) => (
 );
 
 const Navbar = ({ onThemeChange, currentTheme }) => {
-  const { setView, view } = useSimulation();
+  const { setView, view, preventNavigation, setPreventNavigation } = useSimulation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('both');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -173,6 +173,23 @@ const Navbar = ({ onThemeChange, currentTheme }) => {
               />
             </div>
 
+            {/* Navigation Lock/Unlock Button */}
+            {preventNavigation && (
+              <div className='ml-4 flex items-center space-x-3'>
+                <div className='text-yellow-400 text-sm font-medium flex items-center space-x-2'>
+                  <span>🔒</span>
+                  <span className='hidden lg:block'>Navigation Locked</span>
+                </div>
+                <button
+                  onClick={() => setPreventNavigation(false)}
+                  className='bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25 animate-pulse'
+                  title='Unlock navigation to move between pages'
+                >
+                  🔓 Unlock
+                </button>
+              </div>
+            )}
+
             {/* Enhanced Theme Selector */}
             <div className='ml-4 relative group'>
               <select
@@ -239,6 +256,36 @@ const Navbar = ({ onThemeChange, currentTheme }) => {
                 />
               </div>
             </div>
+
+            {/* Mobile Navigation Lock/Unlock Button */}
+            {preventNavigation && (
+              <div className='px-3 space-y-3'>
+                <h3 className='text-sm font-semibold text-gray-400 uppercase tracking-wider flex items-center space-x-2'>
+                  <span>🔒</span>
+                  <span>Navigation Status</span>
+                </h3>
+                <div className='bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4'>
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-center space-x-3'>
+                      <span className='text-yellow-400 text-lg'>🔒</span>
+                      <div>
+                        <div className='text-yellow-400 font-medium text-sm'>Navigation Locked</div>
+                        <div className='text-yellow-300/70 text-xs'>Simulation in progress</div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setPreventNavigation(false);
+                        setIsMenuOpen(false);
+                      }}
+                      className='bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 animate-pulse'
+                    >
+                      🔓 Unlock
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Enhanced Mobile Theme Selector */}
             <div className='px-3 space-y-3'>

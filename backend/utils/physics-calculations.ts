@@ -19,8 +19,8 @@ export interface TrajectoryPoint {
 }
 
 export interface ImpactLocation {
-  lat: number; // latitude
-  lng: number; // longitude
+  latitude: number;
+  longitude: number;
 }
 
 export interface SimulationResult {
@@ -137,8 +137,8 @@ export function calculateCraterDiameter(impactEnergyMegatons: number): number {
  */
 export function generateImpactLocation(): ImpactLocation {
   return {
-    lat: parseFloat((Math.random() * 140 - 70).toFixed(4)), // -70 to +70 latitude
-    lng: parseFloat((Math.random() * 340 - 170).toFixed(4)) // -170 to +170 longitude
+    latitude: parseFloat((Math.random() * 140 - 70).toFixed(4)), // -70 to +70 latitude
+    longitude: parseFloat((Math.random() * 340 - 170).toFixed(4)) // -170 to +170 longitude
   };
 }
 

@@ -23,6 +23,7 @@ import SatelliteConstellationTracker from './components/mission-control/Satellit
 import UniverseVisualization from './components/mission-control/UniverseVisualization';
 import NASAIntegrationPanel from './components/NASAIntegrationPanel';
 import ComprehensiveAPIDashboard from './components/Dashboard/ComprehensiveAPIDashboard';
+import AdvancedAnalyticsDashboard from './components/Dashboard/AdvancedAnalyticsDashboard';
 import SolarSystemPage from './components/SolarSystemPage';
 import Navbar from './components/Navbar';
 import Orbit3DView from './components/Orbit3DView';
@@ -185,6 +186,10 @@ function App() {
                     <Route
                       path='/comprehensive-apis'
                       element={<ComprehensiveAPIDashboard />}
+                    />
+                    <Route
+                      path='/analytics-dashboard'
+                      element={<AdvancedAnalyticsDashboard />}
                     />
                     <Route
                       path='/simulation/advanced-results'
@@ -354,27 +359,20 @@ const NotificationContainer = () => {
           {notification.duration > 0 && (
             <div className='mt-2 w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1'>
               <div 
-                className={`h-1 rounded-full transition-all ease-linear
+                className={`h-1 rounded-full transition-all ease-linear notification-progress
                            ${notification.type === 'error' ? 'bg-red-500' : ''}
                            ${notification.type === 'success' ? 'bg-green-500' : ''}
                            ${notification.type === 'warning' ? 'bg-yellow-500' : ''}
                            ${notification.type === 'info' ? 'bg-blue-500' : ''}`}
                 style={{
                   width: '100%',
-                  animation: `shrink ${notification.duration}ms linear forwards`
+                  animationDuration: `${notification.duration}ms`
                 }}
               />
             </div>
           )}
         </div>
       ))}
-      
-      <style jsx>{`
-        @keyframes shrink {
-          from { width: 100%; }
-          to { width: 0%; }
-        }
-      `}</style>
     </div>
   );
 };

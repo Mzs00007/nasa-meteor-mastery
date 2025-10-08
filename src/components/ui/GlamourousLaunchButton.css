@@ -1,0 +1,325 @@
+/* Glamorous Launch Button Styles */
+
+.glamorous-launch-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  min-height: 64px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 280px;
+  background: linear-gradient(135deg, 
+    #667eea 0%, 
+    #764ba2 50%, 
+    #4facfe 100%
+  );
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 4px 16px rgba(102, 126, 234, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: gradientShift 8s ease-in-out infinite;
+  transform: translateY(0) scale(1);
+  z-index: 1;
+}
+
+.glamorous-launch-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 24px rgba(102, 126, 234, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  animation-duration: 4s;
+}
+
+.glamorous-launch-btn:active,
+.glamorous-launch-btn.clicked {
+  transform: translateY(-1px) scale(1.01);
+  transition: all 0.1s ease;
+}
+
+.glamorous-launch-btn.loading {
+  cursor: wait;
+  animation: loadingPulse 2s ease-in-out infinite;
+}
+
+.glamorous-launch-btn.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: translateY(0) scale(1);
+  animation: none;
+}
+
+/* Simplified Glow Layers */
+.btn-glow-layer-1 {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #667eea, #4facfe);
+  border-radius: 14px;
+  opacity: 0.4;
+  filter: blur(4px);
+  animation: rotateGlow 12s linear infinite;
+  z-index: -1;
+}
+
+.btn-glow-layer-2 {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 16px;
+  opacity: 0.2;
+  filter: blur(8px);
+  animation: rotateGlow 16s linear infinite reverse;
+  z-index: -2;
+}
+
+/* Remove the third glow layer */
+.btn-glow-layer-3 {
+  display: none;
+}
+
+/* Simplified Animated Border */
+.btn-animated-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #667eea, #4facfe) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: borderFlow 6s linear infinite;
+}
+
+/* Content Container */
+.btn-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.btn-icon {
+  font-size: 28px;
+  animation: rocketLaunch 6s ease-in-out infinite;
+  filter: drop-shadow(0 1px 4px rgba(255, 255, 255, 0.3));
+  transform-origin: center;
+}
+
+.btn-text {
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+/* Loading Spinner */
+.btn-loading-spinner {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.spinner-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-ring:nth-child(2) {
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+  animation-duration: 1.5s;
+  animation-direction: reverse;
+}
+
+.spinner-ring:nth-child(3) {
+  width: 60%;
+  height: 60%;
+  top: 20%;
+  left: 20%;
+  animation-duration: 2s;
+}
+
+/* Ripple Effect */
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+  pointer-events: none;
+}
+
+/* Particles */
+.btn-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 50%;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+.particle-1 { top: 15%; left: 15%; animation-delay: 0s; }
+.particle-2 { top: 25%; left: 75%; animation-delay: 1s; }
+.particle-3 { top: 65%; left: 20%; animation-delay: 2s; }
+.particle-4 { top: 75%; left: 65%; animation-delay: 3s; }
+
+/* Hide remaining particles */
+.particle-5, .particle-6, .particle-7, .particle-8, 
+.particle-9, .particle-10, .particle-11, .particle-12 {
+  display: none;
+}
+
+/* Simplified Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes borderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes rocketLaunch {
+  0%, 100% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+  }
+  25% { 
+    transform: translateY(-1px) rotate(-2deg) scale(1.02); 
+  }
+  50% { 
+    transform: translateY(-2px) rotate(1deg) scale(1.04); 
+  }
+  75% { 
+    transform: translateY(-1px) rotate(-1deg) scale(1.01); 
+  }
+}
+
+@keyframes sparkleFloat {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50% { opacity: 0.6; transform: translateY(-8px) scale(1); }
+}
+
+@keyframes particleFloat {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
+  50% { opacity: 0.5; transform: translateY(-15px) scale(1); }
+}
+
+@keyframes rippleEffect {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes loadingPulse {
+  0%, 100% { 
+    box-shadow: 
+      0 8px 32px rgba(102, 126, 234, 0.4),
+      0 4px 16px rgba(245, 87, 108, 0.3);
+  }
+  50% { 
+    box-shadow: 
+      0 16px 48px rgba(102, 126, 234, 0.8),
+      0 8px 24px rgba(245, 87, 108, 0.6);
+  }
+}
+
+/* Responsive Design */
+@media (min-width: 1200px) {
+  .glamorous-launch-btn {
+    max-width: 500px;
+    padding: 20px 40px;
+    min-height: 72px;
+    font-size: 20px;
+  }
+  
+  .btn-icon {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .glamorous-launch-btn {
+    padding: 12px 24px;
+    min-height: 56px;
+    font-size: 16px;
+    max-width: 350px;
+    min-width: 250px;
+  }
+  
+  .btn-icon {
+    font-size: 24px;
+  }
+  
+  .btn-glow-layer-1,
+  .btn-glow-layer-2,
+  .btn-glow-layer-3 {
+    filter: blur(4px);
+  }
+}
+
+@media (max-width: 480px) {
+  .glamorous-launch-btn {
+    padding: 10px 20px;
+    min-height: 48px;
+    font-size: 14px;
+    max-width: 300px;
+    min-width: 220px;
+  }
+  
+  .btn-icon {
+    font-size: 20px;
+  }
+  
+  .btn-content {
+    gap: 8px;
+  }
+}

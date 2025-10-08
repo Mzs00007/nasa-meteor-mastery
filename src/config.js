@@ -101,8 +101,8 @@ const getEnv = () => ({
     ('ontouchstart' in window || navigator.maxTouchPoints > 0),
 });
 
-// API URL Configuration
-export const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+// API URL Configuration - Set to null to disable backend and use fallback data
+export const API_URL = process.env.REACT_APP_API_URL || null;
 
 // Export configuration
 export default CONFIG;

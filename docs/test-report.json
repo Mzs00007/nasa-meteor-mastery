@@ -1,0 +1,3297 @@
+{
+  "timestamp": "2025-10-05T16:40:15.015Z",
+  "summary": {
+    "totalTests": 7,
+    "passed": 0,
+    "failed": 7,
+    "totalErrors": 638
+  },
+  "testResults": [
+    {
+      "component": "Home Page",
+      "path": "/",
+      "duration": 20299,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Solar System Panel",
+      "path": "/solar-system",
+      "duration": 12130,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Asteroid Impact Simulation",
+      "path": "/asteroid-impact",
+      "duration": 2886,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Mission Control Dashboard",
+      "path": "/mission-control",
+      "duration": 3245,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Space Weather Dashboard",
+      "path": "/space-weather",
+      "duration": 1970,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Natural Events Tracker",
+      "path": "/natural-events",
+      "duration": 2845,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    },
+    {
+      "component": "Partner APIs Explorer",
+      "path": "/partner-apis",
+      "duration": 2179,
+      "errors": [
+        {
+          "type": "test_error",
+          "message": "this.page.waitForTimeout is not a function"
+        }
+      ],
+      "status": "FAIL"
+    }
+  ],
+  "errors": [
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.323Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.407Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.409Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.411Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.424Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.427Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.428Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.430Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.435Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.436Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.437Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.438Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.438Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.444Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.456Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.457Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.459Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.461Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.466Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.471Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.534Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.544Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.548Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.550Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.553Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.561Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.565Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.595Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.629Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.640Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.648Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.655Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.657Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.658Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.659Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.660Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.661Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.662Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.662Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.663Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.665Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.670Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.671Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.671Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.672Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.674Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.675Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.676Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.677Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.678Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.679Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.680Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.685Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.687Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.696Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.702Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.703Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.703Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.704Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.737Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.751Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:39.757Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Warning: Received `%s` for a non-boolean attribute `%s`.\n\nIf you want to write it to the DOM, pass a string instead: %s=\"%s\" or %s={value.toString()}.%s true jsx jsx true jsx \n    at style\n    at section\n    at EnhancedHeroSection (http://localhost:3000/static/js/bundle.js:237559:82)\n    at div\n    at div\n    at GlamorousLandingPage (http://localhost:3000/static/js/bundle.js:192697:82)\n    at RenderedRoute (http://localhost:3000/static/js/bundle.js:127814:3)\n    at Routes (http://localhost:3000/static/js/bundle.js:128593:3)\n    at div\n    at div\n    at Router (http://localhost:3000/static/js/bundle.js:128540:13)\n    at BrowserRouter (http://localhost:3000/static/js/bundle.js:131600:3)\n    at SimulationProvider (http://localhost:3000/static/js/bundle.js:245028:3)\n    at AppControllerProvider (http://localhost:3000/static/js/bundle.js:178523:3)\n    at App (http://localhost:3000/static/js/bundle.js:178559:88)",
+      "timestamp": "2025-10-05T16:39:39.758Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:41.547Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.101Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.111Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.116Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.131Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.137Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.148Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.165Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.240Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.251Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.258Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.284Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.286Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.289Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.291Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.294Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.302Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.305Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.319Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.328Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.332Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.336Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.347Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.352Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.375Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.383Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.397Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.399Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.403Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.422Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.430Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.431Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.437Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.439Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.442Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.446Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.452Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.464Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.468Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.471Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.477Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.483Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.485Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.487Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.527Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.539Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.554Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.561Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.563Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.565Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.567Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.572Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.576Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.580Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.582Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.583Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.585Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.594Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.596Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.597Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.599Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.609Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.610Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.610Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.611Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.613Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.615Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.615Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.616Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.617Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.620Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.622Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.624Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.673Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.675Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.681Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.683Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.684Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.685Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.687Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.690Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.702Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.714Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:42.736Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.138Z"
+    },
+    {
+      "type": "request_failed",
+      "url": "http://localhost:5000/api/neo/feed?api_key=DEMO_KEY",
+      "failure": "net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:43.145Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:43.147Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.154Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.159Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.161Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.168Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.171Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.244Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.291Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.309Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.319Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.327Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.330Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.331Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.332Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.337Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.338Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.341Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.482Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.483Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.485Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.489Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.492Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.523Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.534Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.542Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.634Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.691Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.804Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.844Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:39:43.966Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Failed to load resource: the server responded with a status of 429 ()",
+      "timestamp": "2025-10-05T16:39:46.535Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Warning: Each child in a list should have a unique \"key\" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s \n\nCheck the render method of `EnhancedNewsTicker`.  \n    at div\n    at EnhancedNewsTicker (http://localhost:3000/static/js/bundle.js:191939:74)\n    at div\n    at section\n    at div\n    at GlamorousLandingPage (http://localhost:3000/static/js/bundle.js:192697:82)\n    at RenderedRoute (http://localhost:3000/static/js/bundle.js:127814:3)\n    at Routes (http://localhost:3000/static/js/bundle.js:128593:3)\n    at div\n    at div\n    at Router (http://localhost:3000/static/js/bundle.js:128540:13)\n    at BrowserRouter (http://localhost:3000/static/js/bundle.js:131600:3)\n    at SimulationProvider (http://localhost:3000/static/js/bundle.js:245028:3)\n    at AppControllerProvider (http://localhost:3000/static/js/bundle.js:178523:3)\n    at App (http://localhost:3000/static/js/bundle.js:178559:88)",
+      "timestamp": "2025-10-05T16:39:46.928Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Home Page",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:39:49.711Z"
+    },
+    {
+      "type": "request_failed",
+      "url": "http://localhost:5000/api/neo/feed?api_key=DEMO_KEY",
+      "failure": "net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:51.622Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:51.634Z"
+    },
+    {
+      "type": "request_failed",
+      "url": "http://localhost:5000/api/neo/feed?api_key=DEMO_KEY",
+      "failure": "net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:53.715Z"
+    },
+    {
+      "type": "console_error",
+      "message": "Failed to load resource: net::ERR_CONNECTION_REFUSED",
+      "timestamp": "2025-10-05T16:39:53.715Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.334Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.334Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.334Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.335Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.342Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.345Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.350Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.359Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.360Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.364Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.376Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.384Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.392Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.398Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.409Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.412Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.427Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.442Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.460Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.476Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.477Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.494Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.494Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.505Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.509Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.522Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.523Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.527Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.527Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.535Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.536Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.542Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.543Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.552Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.552Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.559Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.559Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.567Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.572Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.576Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.582Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.592Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.597Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.615Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.616Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.626Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.643Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.662Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.663Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.676Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.677Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.694Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.698Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.705Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.709Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.724Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.751Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.752Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.752Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.753Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.758Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.767Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.767Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.775Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.775Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.782Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.791Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.798Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.808Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.814Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.826Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.830Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.841Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.846Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Solar System Panel",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:01.861Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.872Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.880Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.912Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.913Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.913Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.913Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:01.914Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.437Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.440Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.443Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.444Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.446Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.447Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.462Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.464Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.472Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.494Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.498Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.503Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.508Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.520Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.525Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.529Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.532Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.533Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.537Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.539Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.540Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.547Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.548Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.554Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.562Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.571Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.579Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.587Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.588Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.593Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.602Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.608Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.620Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.636Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.646Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.648Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.649Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.653Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.670Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.687Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.687Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.705Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.706Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.710Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.717Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.734Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.739Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.742Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.743Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Asteroid Impact Simulation",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:04.750Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.754Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.787Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.826Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.851Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.860Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.863Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.870Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.898Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.920Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.948Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.954Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.957Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.959Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.961Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.964Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.965Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.965Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.966Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.967Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.968Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.968Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.968Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.969Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.970Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.970Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.971Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.971Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.978Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.992Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.993Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.994Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.995Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.995Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.998Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:04.999Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.001Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.002Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.026Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.044Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.049Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.050Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.051Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.053Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.054Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.061Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.065Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.075Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.095Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.097Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.098Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.099Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.100Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.100Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.100Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.109Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.125Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.152Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.159Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.171Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.184Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.191Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.197Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.199Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:05.202Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.634Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.635Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.651Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.652Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.666Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.669Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.681Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.685Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.687Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.696Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.700Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.725Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.747Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.748Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.749Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.775Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.776Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.778Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.779Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.779Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.801Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.801Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.801Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.802Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.823Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.824Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.825Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.856Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.856Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.857Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.857Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.879Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.880Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.898Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.899Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.901Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.918Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.918Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.923Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.932Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.939Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.947Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.956Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.963Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:07.973Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Mission Control Dashboard",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:07.997Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.000Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.001Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.001Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.005Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.012Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.019Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.053Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.053Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.054Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.054Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.055Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.062Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.063Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.076Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.091Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.093Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:08.095Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.702Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.718Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.733Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.751Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.753Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.773Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.775Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.780Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.781Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.784Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.794Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.805Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.811Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.817Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.826Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.827Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.833Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.843Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.844Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.851Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.855Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.871Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.874Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.884Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.906Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.919Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.940Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.946Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.950Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Space Weather Dashboard",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:09.968Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.974Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.975Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:09.976Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.018Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.027Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.044Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.049Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.051Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.052Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.053Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:10.058Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.929Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.929Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.940Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.940Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.944Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.944Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.949Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.967Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.968Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.983Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:11.991Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.001Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.002Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.030Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.034Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.047Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.050Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.059Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.439Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.440Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.440Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.441Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.442Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.442Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.450Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.451Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.452Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.452Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.454Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.457Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.464Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.472Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.481Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.487Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.493Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.494Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.500Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.564Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.612Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.615Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.616Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.617Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.618Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.618Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.619Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.620Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.620Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.620Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.621Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.622Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.623Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.624Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.624Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.624Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.625Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.649Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.649Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.650Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.650Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.651Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.678Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.678Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.679Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.679Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.702Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.703Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.703Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.726Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.727Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.758Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.760Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.762Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.782Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.783Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.785Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.788Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.799Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.806Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Natural Events Tracker",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:12.816Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.920Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.927Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.929Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.931Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.937Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.940Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.943Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.945Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.954Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.957Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.962Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.982Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.991Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.992Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:12.999Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.003Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.007Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.007Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.008Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.009Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.009Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.011Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.014Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.017Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.018Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.021Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.024Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.032Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.038Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.040Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.041Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:13.042Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.734Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.750Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.765Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.781Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.800Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.805Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.805Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.812Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.815Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.829Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.833Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.847Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.855Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.859Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.860Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.868Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.869Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.878Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.879Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.883Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.883Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.891Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.900Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.908Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.908Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.916Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.925Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.932Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.938Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.951Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.955Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.966Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.984Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.985Z"
+    },
+    {
+      "type": "console_error",
+      "message": "🔄 Max reconnection attempts reached, stopping reconnection...",
+      "timestamp": "2025-10-05T16:40:14.998Z"
+    },
+    {
+      "type": "test_error",
+      "component": "Partner APIs Explorer",
+      "message": "this.page.waitForTimeout is not a function",
+      "timestamp": "2025-10-05T16:40:15.013Z"
+    }
+  ]
+}

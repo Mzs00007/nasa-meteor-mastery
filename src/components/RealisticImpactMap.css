@@ -1,0 +1,395 @@
+.realistic-impact-map {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  color: #00d4ff;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Impact marker styles */
+.impact-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.impact-point {
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.impact-point.large {
+  width: 40px;
+  height: 40px;
+}
+
+.impact-point.medium {
+  width: 30px;
+  height: 30px;
+}
+
+.impact-point.small {
+  width: 20px;
+  height: 20px;
+}
+
+.impact-core {
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, #ff0000 0%, #ff4500 50%, #ff8c00 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  animation: pulse-core 2s ease-in-out infinite;
+}
+
+.impact-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ff0000;
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+@keyframes pulse-core {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+/* Energy text markers */
+.energy-text-marker {
+  background: rgba(0, 0, 0, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 8px !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.energy-label {
+  padding: 8px 12px;
+  text-align: center;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.energy-type {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 2px;
+  color: #00d4ff;
+}
+
+.energy-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+}
+
+.energy-effects {
+  font-size: 9px;
+  color: #cccccc;
+  line-height: 1.2;
+}
+
+/* Energy zones */
+.energy-zone {
+  pointer-events: none;
+}
+
+.energy-gradient-overlay {
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.energy-wave-line {
+  pointer-events: none;
+  animation: wave-pulse 3s ease-in-out infinite;
+}
+
+@keyframes wave-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.energy-direction-line {
+  pointer-events: none;
+  animation: direction-flow 4s linear infinite;
+}
+
+@keyframes direction-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 20; }
+}
+
+/* Impact popup */
+.impact-popup {
+  min-width: 200px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.impact-popup h3 {
+  margin: 0 0 10px 0;
+  color: #ff4500;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.impact-popup p {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #333;
+}
+
+.impact-summary {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+}
+
+.impact-summary p {
+  margin: 3px 0;
+  font-size: 11px;
+}
+
+/* Impact statistics panel */
+.impact-statistics {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 1000;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.stats-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.classification-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.classification-badge.minimal { background: #90EE90; color: #000; }
+.classification-badge.local { background: #FFD700; color: #000; }
+.classification-badge.regional { background: #FFA500; color: #000; }
+.classification-badge.continental { background: #FF4500; color: #fff; }
+.classification-badge.global { background: #FF0000; color: #fff; }
+.classification-badge.extinction { background: #8B0000; color: #fff; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+/* Energy legend */
+.energy-legend {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.energy-legend h4 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.legend-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.legend-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+}
+
+.legend-name {
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.legend-radius {
+  font-size: 10px;
+  color: #cccccc;
+  font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .impact-statistics {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .realistic-impact-map {
+    height: 400px;
+  }
+}
+
+/* Map controls styling */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(0, 0, 0, 0.8) !important;
+  color: #00d4ff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(0, 212, 255, 0.2) !important;
+  color: #ffffff !important;
+}
+
+/* Attribution styling */
+.leaflet-control-attribution {
+  background: rgba(0, 0, 0, 0.7) !important;
+  color: #cccccc !important;
+  font-size: 10px !important;
+  backdrop-filter: blur(10px);
+}
+
+.leaflet-control-attribution a {
+  color: #00d4ff !important;
+}

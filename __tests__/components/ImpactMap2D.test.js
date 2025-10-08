@@ -114,7 +114,7 @@ describe('ImpactMap2D Component', () => {
     renderWithProvider(<ImpactMap2D />, {
       providerProps: {
         currentSimulation: {
-          impactLocation: { lat: 40.7128, lng: -74.006 },
+          impactLocation: { latitude: 40.7128, longitude: -74.006 },
           craterDiameter: 1000,
           impactEnergy: 1e9, // 1 GT
         },

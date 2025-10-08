@@ -1,0 +1,114 @@
+{
+  "browsers": {
+    "Chromium": {
+      "loadTime": 4617,
+      "consoleErrors": 0,
+      "elements": 68,
+      "buttons": 0,
+      "inputs": 0,
+      "selects": 0,
+      "interactions": {
+        "clickableElements": 0,
+        "workingButtons": 0,
+        "workingSelects": 0,
+        "formValidation": false,
+        "keyboardNavigation": false
+      },
+      "accessibility": {
+        "imagesWithoutAlt": 0,
+        "buttonsWithoutLabels": 0,
+        "inputsWithoutLabels": 0,
+        "headingStructure": [
+          {
+            "level": "H1",
+            "text": "Meteor Madness"
+          }
+        ],
+        "ariaElements": 0,
+        "focusableElements": 0
+      },
+      "visual": {
+        "colorContrast": "unknown",
+        "responsiveImages": 0,
+        "animations": 0,
+        "loadingStates": 5,
+        "errorStates": 0
+      }
+    },
+    "Firefox": {
+      "loadTime": 2514,
+      "consoleErrors": 0,
+      "elements": 75,
+      "buttons": 0,
+      "inputs": 0,
+      "selects": 0,
+      "interactions": {
+        "clickableElements": 0,
+        "workingButtons": 0,
+        "workingSelects": 0,
+        "formValidation": false,
+        "keyboardNavigation": false
+      },
+      "accessibility": {
+        "imagesWithoutAlt": 0,
+        "buttonsWithoutLabels": 0,
+        "inputsWithoutLabels": 0,
+        "headingStructure": [
+          {
+            "level": "H1",
+            "text": "Meteor Madness"
+          }
+        ],
+        "ariaElements": 0,
+        "focusableElements": 0
+      },
+      "visual": {
+        "colorContrast": "unknown",
+        "responsiveImages": 0,
+        "animations": 0,
+        "loadingStates": 5,
+        "errorStates": 0
+      }
+    },
+    "WebKit": {
+      "loadTime": 2828,
+      "consoleErrors": 0,
+      "elements": 75,
+      "buttons": 0,
+      "inputs": 0,
+      "selects": 0,
+      "interactions": {
+        "clickableElements": 0,
+        "workingButtons": 0,
+        "workingSelects": 0,
+        "formValidation": false,
+        "keyboardNavigation": false
+      },
+      "accessibility": {
+        "imagesWithoutAlt": 0,
+        "buttonsWithoutLabels": 0,
+        "inputsWithoutLabels": 0,
+        "headingStructure": [
+          {
+            "level": "H1",
+            "text": "Meteor Madness"
+          }
+        ],
+        "ariaElements": 0,
+        "focusableElements": 0
+      },
+      "visual": {
+        "colorContrast": "unknown",
+        "responsiveImages": 0,
+        "animations": 0,
+        "loadingStates": 5,
+        "errorStates": 0
+      }
+    }
+  },
+  "accessibility": {},
+  "performance": {},
+  "interactions": {},
+  "visual": {},
+  "errors": []
+}

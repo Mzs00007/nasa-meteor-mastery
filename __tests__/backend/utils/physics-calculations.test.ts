@@ -509,7 +509,7 @@ describe('Physics Calculations', () => {
       }
       
       // Check that not all locations are identical
-      const uniqueLocations = new Set(locations.map(loc => `${loc.lat},${loc.lng}`));
+      const uniqueLocations = new Set(locations.map(loc => `${loc.latitude},${loc.longitude}`));
       expect(uniqueLocations.size).toBeGreaterThan(1);
     });
 
@@ -517,8 +517,8 @@ describe('Physics Calculations', () => {
       const location = generateImpactLocation();
       
       // Should have at most 4 decimal places
-      expect(location.lat.toString().split('.')[1]?.length || 0).toBeLessThanOrEqual(4);
-      expect(location.lng.toString().split('.')[1]?.length || 0).toBeLessThanOrEqual(4);
+      expect(location.latitude.toString().split('.')[1]?.length || 0).toBeLessThanOrEqual(4);
+      expect(location.longitude.toString().split('.')[1]?.length || 0).toBeLessThanOrEqual(4);
     });
   });
 
@@ -556,10 +556,10 @@ describe('Physics Calculations', () => {
     it('should generate valid impact location', () => {
       const result = runImpactSimulation(validParams);
       
-      expect(result.impactLocation.lat).toBeGreaterThanOrEqual(-70);
-      expect(result.impactLocation.lat).toBeLessThanOrEqual(70);
-      expect(result.impactLocation.lng).toBeGreaterThanOrEqual(-170);
-      expect(result.impactLocation.lng).toBeLessThanOrEqual(170);
+      expect(result.impactLocation.latitude).toBeGreaterThanOrEqual(-70);
+      expect(result.impactLocation.latitude).toBeLessThanOrEqual(70);
+      expect(result.impactLocation.longitude).toBeGreaterThanOrEqual(-170);
+      expect(result.impactLocation.longitude).toBeLessThanOrEqual(170);
     });
 
     it('should calculate positive energy and crater diameter', () => {

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useAnimations, useEntranceAnimation } from '../../hooks/useAnimations';
+import * as animations from '../../utils/animations';
 import './ModernLoadingComponents.css';
 
 // Enhanced Loading Spinner with multiple variants
@@ -155,6 +157,10 @@ export const ProgressBar = ({
   className = '',
   animated = true 
 }) => {
+  const progressRef = useRef(null);
+  const fillRef = useRef(null);
+  const { animateProgressBar, animateCountUp } = useAnimations();
+
   const sizeClasses = {
     small: 'h-2',
     medium: 'h-3',
@@ -168,17 +174,42 @@ export const ProgressBar = ({
     glow: 'progress-bar-glow'
   };
 
+  useEffect(() => {
+    if (animated && fillRef.current) {
+      // Animate progress bar fill
+      animateProgressBar(fillRef.current, {
+        width: `${Math.min(100, Math.max(0, progress))}%`,
+        duration: 800,
+        easing: 'easeOutCubic'
+      });
+
+      // Animate percentage counter if visible
+      if (showPercentage && progressRef.current) {
+        const percentageElement = progressRef.current.querySelector('.progress-percentage');
+        if (percentageElement) {
+          animateCountUp(percentageElement, {
+            from: 0,
+            to: Math.round(progress),
+            duration: 800,
+            suffix: '%'
+          });
+        }
+      }
+    }
+  }, [progress, animated, animateProgressBar, animateCountUp, showPercentage]);
+
   return (
-    <div className={`progress-container ${className}`}>
+    <div ref={progressRef} className={`progress-container ${className}`}>
       <div className={`progress-bar ${sizeClasses[size]} ${variants[variant]} ${animated ? 'animated' : ''}`}>
         <div 
+          ref={fillRef}
           className="progress-fill"
-          style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+          style={{ width: animated ? '0%' : `${Math.min(100, Math.max(0, progress))}%` }}
         />
       </div>
       {showPercentage && (
         <span className="progress-percentage">
-          {Math.round(progress)}%
+          {animated ? '0%' : `${Math.round(progress)}%`}
         </span>
       )}
     </div>
@@ -247,11 +278,38 @@ export const LoadingOverlay = ({
   backdrop = true,
   className = '' 
 }) => {
+  const overlayRef = useRef(null);
+  const contentRef = useRef(null);
+  const { animateFadeIn, animateScaleIn, animatePulse } = useAnimations();
+
+  useEffect(() => {
+    if (isVisible && overlayRef.current && contentRef.current) {
+      // Animate overlay entrance
+      animateFadeIn(overlayRef.current, { duration: 300 });
+      
+      // Animate content entrance with scale
+      animateScaleIn(contentRef.current, { 
+        duration: 400, 
+        delay: 100,
+        scale: [0.8, 1]
+      });
+
+      // Add pulse animation to spinner
+      const spinner = contentRef.current.querySelector('.modern-spinner-default, .modern-spinner-pulse, .modern-spinner-dots-container, .modern-spinner-orbit, .modern-spinner-wave-container');
+      if (spinner) {
+        animatePulse(spinner, { duration: 2000, loop: true });
+      }
+    }
+  }, [isVisible, animateFadeIn, animateScaleIn, animatePulse]);
+
   if (!isVisible) return null;
 
   return (
-    <div className={`loading-overlay ${backdrop ? 'with-backdrop' : ''} ${className}`}>
-      <div className="loading-overlay-content">
+    <div 
+      ref={overlayRef}
+      className={`loading-overlay ${backdrop ? 'with-backdrop' : ''} ${className}`}
+    >
+      <div ref={contentRef} className="loading-overlay-content">
         <ModernSpinner variant={spinner} size="large" color="white" />
         {message && <p className="loading-overlay-message">{message}</p>}
       </div>
@@ -266,6 +324,9 @@ export const PulseLoader = ({
   color = 'primary',
   className = '' 
 }) => {
+  const loaderRef = useRef(null);
+  const { animateStaggerFadeIn, animatePulse } = useAnimations();
+
   const sizeClasses = {
     small: 'w-2 h-2',
     medium: 'w-3 h-3',
@@ -281,13 +342,35 @@ export const PulseLoader = ({
     white: 'bg-white'
   };
 
+  useEffect(() => {
+    if (loaderRef.current) {
+      const dots = loaderRef.current.querySelectorAll('.pulse-dot');
+      
+      // Animate dots entrance with stagger
+      animateStaggerFadeIn(dots, {
+        duration: 600,
+        delay: 200,
+        stagger: 100
+      });
+
+      // Add continuous pulse animation
+      dots.forEach((dot, index) => {
+        animatePulse(dot, {
+          duration: 1400,
+          delay: index * 200,
+          loop: true,
+          scale: [0.8, 1.2, 0.8]
+        });
+      });
+    }
+  }, [count, animateStaggerFadeIn, animatePulse]);
+
   return (
-    <div className={`pulse-loader ${className}`}>
+    <div ref={loaderRef} className={`pulse-loader ${className}`}>
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
           className={`pulse-dot ${sizeClasses[size]} ${colorClasses[color]}`}
-          style={{ animationDelay: `${index * 0.2}s` }}
         />
       ))}
     </div>

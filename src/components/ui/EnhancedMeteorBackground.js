@@ -449,7 +449,7 @@ const EnhancedMeteorBackground = ({
       className={`fixed inset-0 pointer-events-none transition-opacity duration-1000 ${
         isLoaded ? 'opacity-100' : 'opacity-0'
       } ${className}`}
-      style={{ zIndex: -1 }}
+      style={{ zIndex: -10 }}
     />
   );
 };

@@ -352,10 +352,10 @@ const InteractiveSimulationResults = () => {
   };
 
   const getImpactSeverity = () => {
-    if (!simulationResults?.impactEnergy) {
+    const energy = simulationResults?.energy || simulationResults?.impactEnergy;
+    if (!energy) {
       return 'Unknown';
     }
-    const energy = simulationResults.impactEnergy;
 
     if (energy < 1e12) {
       return 'Minimal';
@@ -1053,7 +1053,7 @@ const InteractiveSimulationResults = () => {
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-purple-400 mb-2">
-                {(impactData.crater.tntEquivalent / 1e9).toFixed(0)}x
+                {(impactData.crater.tntEquivalent / 15000).toFixed(0)}x
               </div>
               <div className="text-gray-300">Hiroshima Bomb Equivalent</div>
             </div>

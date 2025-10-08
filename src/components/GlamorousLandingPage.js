@@ -2,21 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
+import AdvancedParticleSystem from './ui/AdvancedParticleSystem';
+import EnhancedHeroSection from './ui/EnhancedHeroSection';
+import EnhancedNewsTicker from './EnhancedNewsTicker';
 import '../styles/glassmorphic.css';
+import '../styles/enhanced-animations.css';
 
 const GlamorousLandingPage = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentNewsIndex, setCurrentNewsIndex] = useState(0);
   const [showAbout, setShowAbout] = useState(false);
   const heroRef = useRef(null);
-
-  // Mock NASA news headlines (in production, this would come from NASA API)
-  const newsHeadlines = [
-    "NASA's DART Mission Successfully Deflects Asteroid",
-    'New Near-Earth Object Detection System Online',
-    'Planetary Defense Coordination Office Updates',
-    'Advanced Asteroid Tracking Technology Deployed',
-  ];
 
   useEffect(() => {
     // Stagger loading animations
@@ -24,14 +19,8 @@ const GlamorousLandingPage = () => {
       setIsLoaded(true);
     }, 500);
 
-    // Auto-rotate news headlines
-    const newsTimer = setInterval(() => {
-      setCurrentNewsIndex(prev => (prev + 1) % newsHeadlines.length);
-    }, 4000);
-
     return () => {
       clearTimeout(timer);
-      clearInterval(newsTimer);
     };
   }, []);
 
@@ -64,6 +53,9 @@ const GlamorousLandingPage = () => {
         starCount={800}
         intensity={1.2}
       />
+      
+      {/* Advanced Particle System */}
+      <AdvancedParticleSystem />
 
       {/* Glass Navigation */}
       <nav 
@@ -215,191 +207,118 @@ const GlamorousLandingPage = () => {
           >
             Mission Control
           </Link>
+          <Link
+            to='/analytics-dashboard'
+            className='glass-nav-item'
+            style={{
+              padding: '8px 16px',
+              color: 'rgba(255, 255, 255, 0.9)',
+              textDecoration: 'none',
+              borderRadius: '8px',
+              transition: 'all 0.3s ease',
+              fontSize: '14px',
+              fontWeight: '500'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = 'rgba(255, 255, 255, 0.1)';
+              e.target.style.color = 'white';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = 'transparent';
+              e.target.style.color = 'rgba(255, 255, 255, 0.9)';
+            }}
+            title='Advanced analytics center with real-time monitoring, threat assessment, and mission statistics'
+          >
+            Analytics
+          </Link>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className='relative min-h-screen flex items-center justify-center px-4'>
-        <div className='text-center max-w-6xl mx-auto relative z-10'>
-          {/* Enhanced Title with Better Typography */}
-          <div className='mb-8'>
-            <h1 
-              className='font-orbitron font-bold text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight'
-              style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                color: 'transparent',
-                textShadow: '0 0 30px rgba(102, 126, 234, 0.5)',
-                animation: 'glow 2s ease-in-out infinite alternate'
-              }}
-            >
-              METEOR MADNESS
-            </h1>
-            <div className='h-1 w-48 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 mx-auto rounded-full mb-6 animate-pulse' />
-            <p className='text-xl md:text-2xl text-white/90 font-medium max-w-3xl mx-auto leading-relaxed'>
-              Experience cutting-edge asteroid impact simulation with real NASA data. 
-              Explore planetary defense strategies and visualize cosmic threats in stunning detail.
-            </p>
+      {/* Enhanced Hero Section */}
+      <div className="pt-20 pb-16">
+        <EnhancedHeroSection />
+      </div>
+
+      {/* Features Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-orbitron font-bold text-4xl md:text-5xl text-white mb-6">
+              Advanced Simulation Features
+            </h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
           </div>
 
-          {/* Enhanced Action Buttons with Better Spacing */}
-          <div className='flex flex-col sm:flex-row gap-6 justify-center items-center mb-16'>
-            <Link 
-              to='/simulation'
-              className='group relative overflow-hidden'
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '18px 36px',
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                backdropFilter: 'blur(10px)',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '16px',
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: '700',
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: '0 8px 32px rgba(102, 126, 234, 0.3)',
-                minWidth: '280px'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-4px) scale(1.02)';
-                e.target.style.boxShadow = '0 12px 40px rgba(102, 126, 234, 0.5)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0) scale(1)';
-                e.target.style.boxShadow = '0 8px 32px rgba(102, 126, 234, 0.3)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-              }}
-              title='Launch comprehensive asteroid impact simulations with real-time physics modeling and NASA data integration'
-            >
-              <span className='mr-3 text-2xl'>🚀</span>
-              Start Simulation
-              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000' />
-            </Link>
-            
-            <button
-              onClick={() => setShowAbout(!showAbout)}
-              className='group relative overflow-hidden'
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '18px 36px',
-                background: 'rgba(255, 255, 255, 0.1)',
-                backdropFilter: 'blur(10px)',
-                border: '2px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '16px',
-                color: 'white',
-                fontSize: '18px',
-                fontWeight: '700',
-                minWidth: '280px',
-                cursor: 'pointer',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = 'translateY(-4px) scale(1.02)';
-                e.target.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.3)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.15)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = 'translateY(0) scale(1)';
-                e.target.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.2)';
-                e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-              }}
-              title='Explore the scientific foundation, technology stack, and planetary defense capabilities of our asteroid impact simulation platform'
-            >
-              <span className='mr-3 text-2xl'>🌌</span>
-              Discover More
-              <div className='absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000' />
-            </button>
-          </div>
-
-          {/* Enhanced Live Stats with Better Cards */}
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto'>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { value: '2,000+', label: 'Known NEOs Tracked', icon: '🛰️', delay: '0s' },
-              { value: '99.9%', label: 'Detection Accuracy', icon: '🎯', delay: '0.2s' },
-              { value: '24/7', label: 'Real-time Monitoring', icon: '⚡', delay: '0.4s' }
-            ].map((stat, index) => (
+              {
+                icon: "🌍",
+                title: "Real-Time Earth Visualization",
+                description: "Interactive 3D Earth model with live satellite data and impact zone visualization"
+              },
+              {
+                icon: "🛰️",
+                title: "NASA Data Integration",
+                description: "Direct access to NASA's Near-Earth Object database with real-time tracking"
+              },
+              {
+                icon: "💥",
+                title: "Impact Physics Engine",
+                description: "Advanced physics calculations for atmospheric entry and impact dynamics"
+              },
+              {
+                icon: "📊",
+                title: "Threat Assessment",
+                description: "Comprehensive risk analysis with damage estimation and evacuation planning"
+              },
+              {
+                icon: "🚀",
+                title: "Deflection Strategies",
+                description: "Simulate various planetary defense missions and intervention scenarios"
+              },
+              {
+                icon: "🌌",
+                title: "Cosmic Environment",
+                description: "Immersive space environment with realistic asteroid fields and trajectories"
+              }
+            ].map((feature, index) => (
               <div
                 key={index}
-                className='group relative overflow-hidden'
+                className="group p-6 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.08)',
-                  backdropFilter: 'blur(20px)',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '20px',
-                  padding: '32px 24px',
-                  textAlign: 'center',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  animationDelay: stat.delay
-                }}
-                className='animate-float hover:scale-105'
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px) scale(1.05)';
-                  e.currentTarget.style.boxShadow = '0 16px 48px rgba(0, 0, 0, 0.2)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.12)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0) scale(1)';
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.1)';
-                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
                 }}
               >
-                <div className='text-4xl mb-4 group-hover:scale-110 transition-transform duration-300'>
-                  {stat.icon}
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
                 </div>
-                <div className='text-4xl font-bold text-white mb-3 font-orbitron'>
-                  {stat.value}
-                </div>
-                <div className='text-lg font-semibold text-white/90'>
-                  {stat.label}
-                </div>
-                <div className='absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-20' />
+                <h3 className="font-orbitron font-bold text-xl text-white mb-3">
+                  {feature.title}
+                </h3>
+                <p className="text-white/80 leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* News Ticker */}
-      <div 
-        className='fixed bottom-4 left-4 right-4 z-50 p-4'
-        style={{
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
-          borderRadius: '12px',
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)'
-        }}
-      >
-        <div className='flex items-center space-x-3'>
-          <div className='w-2 h-2 bg-red-500 rounded-full animate-pulse' />
-          <div className='flex-1 overflow-hidden'>
-            <p className='text-sm text-white/90 font-medium whitespace-nowrap animate-marquee'>
-              🚀 {newsHeadlines[currentNewsIndex]}
-            </p>
-          </div>
+      {/* Enhanced Live Space News */}
+      <section className="relative z-10 py-16 px-4">
+        <div className="max-w-6xl mx-auto">
+          <EnhancedNewsTicker />
         </div>
-      </div>
+      </section>
 
       {/* About Section */}
       {showAbout && (
         <section
           id='about-section'
-          className='min-h-screen flex items-center justify-center px-4 py-20'
+          className='relative z-10 min-h-screen flex items-center justify-center px-4 py-16 mt-8 mb-8'
         >
           <div className='max-w-6xl mx-auto'>
             <div className='text-center mb-16'>
@@ -409,7 +328,7 @@ const GlamorousLandingPage = () => {
               <div className='h-1 w-32 bg-gradient-to-r from-orange-500 to-red-500 mx-auto rounded-full' />
             </div>
 
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16'>
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24'>
               <div 
                 className='p-8'
                 style={{
@@ -531,8 +450,61 @@ const GlamorousLandingPage = () => {
         </section>
       )}
 
+      {/* Call to Action Section */}
+      <section className="relative z-10 py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div 
+            className="p-12 rounded-3xl"
+            style={{
+              background: 'linear-gradient(135deg, rgba(252, 61, 33, 0.1) 0%, rgba(11, 61, 145, 0.1) 100%)',
+              backdropFilter: 'blur(20px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <h2 className="font-orbitron font-bold text-4xl md:text-5xl text-white mb-6">
+              Ready to Defend Earth?
+            </h2>
+            <p className="text-xl text-white/90 mb-8 leading-relaxed">
+              Join the planetary defense mission and experience the most advanced asteroid impact simulation ever created. 
+              Test your skills against cosmic threats and help protect our planet.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+              <Link
+                to="/simulation"
+                className="group relative px-8 py-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25 overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(252, 61, 33, 0.9), rgba(255, 69, 0, 0.9))',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)'
+                }}
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <span className="text-2xl">🚀</span>
+                  Launch Simulation
+                </span>
+              </Link>
+              <Link
+                to="/education"
+                className="group relative px-8 py-4 rounded-2xl text-white font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 overflow-hidden"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)'
+                }}
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <span className="text-2xl">📚</span>
+                  Learn More
+                </span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
-      <footer className='relative z-10 py-12 px-4'>
+      <footer className='relative z-10 py-12 px-4 mt-16'>
         <div className='max-w-6xl mx-auto'>
           <div 
             className='p-8'

@@ -5,6 +5,16 @@ import { useSimulation } from '../context/SimulationContext';
 
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
 import Advanced2DImpactMap from './Advanced2DImpactMap';
+import EnhancedInteractiveMap from './EnhancedInteractiveMap';
+import RealisticImpactMap from './RealisticImpactMap';
+import EnhancedSimulationResultsMap from './EnhancedSimulationResultsMap';
+import Enhanced2DLocationSelector from './Enhanced2DLocationSelector';
+
+import NavigationGuide from './NavigationGuide';
+import GlamourousLaunchButton from './ui/GlamourousLaunchButton';
+import SimulationProcessVisualization from './ui/SimulationProcessVisualization';
+import SimulationDataView from './SimulationDataView';
+import SimulationComparisonView from './SimulationComparisonView';
 import {
   GlassButton,
   GlassPanel,
@@ -78,6 +88,11 @@ const SimulationSetup = () => {
   const [viewMode, setViewMode] = useState('2d-map'); // '2d-map', 'data', 'comparison'
   const [simulationRunning, setSimulationRunning] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [showNavigationGuide, setShowNavigationGuide] = useState(false);
+  const [simulationCompleted, setSimulationCompleted] = useState(false);
+  const [userNotes, setUserNotes] = useState('');
+  const [visualizationComplete, setVisualizationComplete] = useState(false);
+  const [showProcessVisualization, setShowProcessVisualization] = useState(false);
 
   const {
     nasaAsteroidData,
@@ -88,7 +103,11 @@ const SimulationSetup = () => {
     runSimulation,
     simulationResults,
     impactLocation,
+    setImpactLocation,
     loading,
+    fetchNasaAsteroidData,
+    preventNavigation,
+    setPreventNavigation,
   } = useSimulation();
 
   // Preset configurations
@@ -167,6 +186,41 @@ const SimulationSetup = () => {
     }
   }, [selectedAsteroid, nasaAsteroidData]);
 
+  // Prevent navigation during simulation runs
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (preventNavigation) {
+        e.preventDefault();
+        e.returnValue = 'Simulation is in progress. Are you sure you want to leave?';
+        return e.returnValue;
+      }
+    };
+
+    const handlePopState = (e) => {
+      if (preventNavigation) {
+        const confirmLeave = window.confirm(
+          'Simulation visualization is in progress. Are you sure you want to leave? Your progress will be lost.'
+        );
+        if (!confirmLeave) {
+          e.preventDefault();
+          window.history.pushState(null, '', window.location.pathname);
+        }
+      }
+    };
+
+    if (preventNavigation) {
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      window.addEventListener('popstate', handlePopState);
+      // Push current state to prevent back navigation
+      window.history.pushState(null, '', window.location.pathname);
+    }
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [preventNavigation]);
+
   const handlePresetSelect = preset => {
     setActivePreset(preset.id);
     setAsteroidParams({
@@ -187,6 +241,12 @@ const SimulationSetup = () => {
 
   const handleRunSimulation = async () => {
     setSimulationRunning(true);
+    setPreventNavigation(true);
+    setSimulationCompleted(false);
+    setVisualizationComplete(false);
+    setUserNotes('');
+    setShowProcessVisualization(true);
+    
     try {
       // Validate parameters before running simulation
       if (!asteroidParams?.diameter || asteroidParams.diameter <= 0) {
@@ -200,15 +260,48 @@ const SimulationSetup = () => {
       }
 
       await runSimulation(asteroidParams);
-      // Navigate to results page after successful simulation
-      navigate('/simulation/results');
+      setSimulationCompleted(true);
+      // Don't show navigation guide until user completes visualization
     } catch (error) {
       console.error('Simulation failed:', error);
       // Show user-friendly error message
       alert(`Simulation failed: ${error.message || 'Unknown error occurred'}`);
+      setPreventNavigation(false);
+      setShowProcessVisualization(false);
     } finally {
       setSimulationRunning(false);
     }
+  };
+
+  const handleProcessVisualizationComplete = (processResults) => {
+    setShowProcessVisualization(false);
+    
+    // Process and store the actual simulation results
+    if (processResults) {
+      console.log('Simulation completed with results:', processResults);
+      
+      // Update simulation data with the comprehensive results
+      const comprehensiveResults = {
+        ...simulationResults,
+        detailedResults: processResults,
+        timestamp: new Date().toISOString(),
+        impactLocation: impactLocation,
+        asteroidParams: asteroidParams
+      };
+      
+      // Store results for display in results page
+      localStorage.setItem('lastSimulationResults', JSON.stringify(comprehensiveResults));
+      
+      // Note: simulationResults is managed by SimulationContext, no need to set it here
+      console.log('Comprehensive results stored:', comprehensiveResults);
+    }
+  };
+
+  const handleVisualizationComplete = (notes) => {
+    setUserNotes(notes);
+    setVisualizationComplete(true);
+    setPreventNavigation(false);
+    setShowNavigationGuide(true);
   };
 
   return (
@@ -226,43 +319,122 @@ const SimulationSetup = () => {
             🌌 Meteor Madness
           </Link>
           <div className='flex items-center space-x-4'>
-            <Link to='/simulation/results'>
+            {preventNavigation && (
+              <div className='flex items-center space-x-3'>
+                <div className='text-yellow-400 text-sm font-medium'>
+                  🔒 Navigation locked during simulation
+                </div>
+                <GlassButton
+                  variant='warning'
+                  size='sm'
+                  onClick={() => {
+                    setPreventNavigation(false);
+                    setShowProcessVisualization(false);
+                  }}
+                  title='Unlock navigation to move between pages'
+                  className='animate-pulse'
+                >
+                  🔓 Unlock Navigation
+                </GlassButton>
+              </div>
+            )}
+            {preventNavigation ? (
               <GlassButton
-                variant='primary'
+                variant='secondary'
                 size='sm'
-                title='View detailed simulation results and analysis'
+                disabled
+                title='Navigation disabled during simulation visualization'
+                onClick={() => alert('Please complete the simulation visualization before navigating away.')}
               >
                 📊 View Results
               </GlassButton>
-            </Link>
-            <Link to='/impact'>
+            ) : (
+              <Link to='/simulation/results'>
+                <GlassButton
+                  variant='primary'
+                  size='sm'
+                  title='View detailed simulation results and analysis'
+                >
+                  📊 View Results
+                </GlassButton>
+              </Link>
+            )}
+            {preventNavigation ? (
               <GlassButton
                 variant='secondary'
                 size='sm'
-                title='Navigate to impact map visualization'
+                disabled
+                title='Navigation disabled during simulation visualization'
+                onClick={() => alert('Please complete the simulation visualization before navigating away.')}
               >
                 🗺️ Impact Map
               </GlassButton>
-            </Link>
-            <Link to='/history'>
+            ) : (
+              <Link to='/impact'>
+                <GlassButton
+                  variant='secondary'
+                  size='sm'
+                  title='Navigate to impact map visualization'
+                >
+                  🗺️ Impact Map
+                </GlassButton>
+              </Link>
+            )}
+            {preventNavigation ? (
               <GlassButton
                 variant='secondary'
                 size='sm'
-                title='View simulation history and past results'
+                disabled
+                title='Navigation disabled during simulation visualization'
+                onClick={() => alert('Please complete the simulation visualization before navigating away.')}
               >
                 📊 History
               </GlassButton>
-            </Link>
-            <Link to='/nasa-integrations'>
-              <GlassButton variant='secondary' size='sm'>
+            ) : (
+              <Link to='/history'>
+                <GlassButton
+                  variant='secondary'
+                  size='sm'
+                  title='View simulation history and past results'
+                >
+                  📊 History
+                </GlassButton>
+              </Link>
+            )}
+            {preventNavigation ? (
+              <GlassButton
+                variant='secondary'
+                size='sm'
+                disabled
+                title='Navigation disabled during simulation visualization'
+                onClick={() => alert('Please complete the simulation visualization before navigating away.')}
+              >
                 🛰️ NASA Data
               </GlassButton>
-            </Link>
-            <Link to='/solar-system'>
-              <GlassButton variant='secondary' size='sm'>
+            ) : (
+              <Link to='/nasa-integrations'>
+                <GlassButton variant='secondary' size='sm'>
+                  🛰️ NASA Data
+                </GlassButton>
+              </Link>
+            )}
+            {preventNavigation ? (
+              <GlassButton
+                variant='secondary'
+                size='sm'
+                disabled
+                title='Navigation disabled during simulation visualization'
+                onClick={() => alert('Please complete the simulation visualization before navigating away.')}
+              >
                 🌌 Solar System
               </GlassButton>
-            </Link>
+            ) : (
+              <Link to='/solar-system'>
+                <GlassButton variant='secondary' size='sm'>
+                  🌌 Solar System
+                </GlassButton>
+              </Link>
+            )}
           </div>
         </div>
       </GlassNav>
@@ -492,9 +664,20 @@ const SimulationSetup = () => {
 
           {/* NASA Real-time Data */}
           <GlassCard className='p-4'>
-            <h3 className='text-lg font-semibold text-white mb-4'>
-              🛰️ NASA Real-time Data
-            </h3>
+            <div className="flex items-center justify-between mb-4">
+              <h3 className='text-lg font-semibold text-white'>
+                🛰️ NASA Real-time Data
+              </h3>
+              <GlassButton
+                variant="secondary"
+                size="sm"
+                onClick={fetchNasaAsteroidData}
+                disabled={nasaDataLoading}
+                className="text-xs"
+              >
+                {nasaDataLoading ? '🔄' : '🔄'} Refresh
+              </GlassButton>
+            </div>
             {nasaDataLoading ? (
               <div className='space-y-4'>
                 <div className='flex items-center justify-center py-2'>
@@ -515,12 +698,14 @@ const SimulationSetup = () => {
                   <span className="text-red-500 mr-2">⚠️</span>
                   {nasaDataError}
                 </div>
-                <button 
-                  className="mt-2 text-xs text-red-300 hover:text-red-200 underline"
-                  onClick={() => window.location.reload()}
+                <GlassButton 
+                  variant="secondary"
+                  size="sm"
+                  className="mt-2 text-xs"
+                  onClick={fetchNasaAsteroidData}
                 >
-                  Try refreshing the page
-                </button>
+                  🔄 Retry Loading NASA Data
+                </GlassButton>
               </div>
             ) : (
               <div className='space-y-3'>
@@ -570,19 +755,24 @@ const SimulationSetup = () => {
             )}
           </GlassCard>
 
+          {/* Impact Location Selector */}
+          <GlassCard className='p-4'>
+            <h3 className='text-lg font-semibold text-white mb-4 flex items-center'>
+              <span className="mr-2">🎯</span>
+              Impact Location
+            </h3>
+            <Enhanced2DLocationSelector />
+          </GlassCard>
+
           {/* Run Simulation Button */}
-          <LoadingButton
-            variant='primary'
-            size='lg'
-            className='w-full glass-button'
-            onClick={handleRunSimulation}
-            loading={simulationRunning || loading}
-            disabled={simulationRunning || loading}
-            title='Start asteroid impact simulation with current parameters'
-            loadingText="Running Simulation..."
-          >
-            🚀 Launch Simulation
-          </LoadingButton>
+          <div className="flex justify-center w-full">
+            <GlamourousLaunchButton
+              onClick={handleRunSimulation}
+              isLoading={simulationRunning || loading}
+              disabled={simulationRunning || loading}
+              title='Start asteroid impact simulation with current parameters'
+            />
+          </div>
         </div>
 
         {/* Main Display Area */}
@@ -624,24 +814,26 @@ const SimulationSetup = () => {
 
           {/* Results Display */}
           <GlassCard className='p-6 min-h-[500px]'>
-            {simulationResults ? (
-              <div className='space-y-6'>
-                {/* Results Header */}
-                <div className='text-center'>
-                  <h3 className='text-2xl font-bold text-white mb-2'>
-                    🎯 Simulation Results
-                  </h3>
-                  <p className='text-gray-300'>
-                    Impact analysis for {asteroidParams.diameter}m{' '}
-                    {asteroidParams.composition} asteroid
-                  </p>
-                </div>
+            <div className='space-y-6'>
+              {/* Results Header */}
+              <div className='text-center'>
+                <h3 className='text-2xl font-bold text-white mb-2'>
+                  {simulationResults ? '🎯 Simulation Results' : '🌠 Impact Simulation Preview'}
+                </h3>
+                <p className='text-gray-300'>
+                  {simulationResults 
+                    ? `Impact analysis for ${asteroidParams.diameter}m ${asteroidParams.composition} asteroid`
+                    : `Preview for ${asteroidParams.diameter}m ${asteroidParams.composition} asteroid - Run simulation to see actual impact`
+                  }
+                </p>
+              </div>
 
-                {/* Key Statistics */}
+              {/* Key Statistics */}
+              {simulationResults && (
                 <div className='grid grid-cols-2 lg:grid-cols-4 gap-4'>
                   <GlassStat
                     label='Impact Energy'
-                    value={simulationResults?.impactEnergy ? `${(simulationResults.impactEnergy / 1e15).toFixed(2)} MT` : 'Calculating...'}
+                    value={simulationResults?.energy || simulationResults?.impactEnergy ? `${((simulationResults.energy || simulationResults.impactEnergy) / 4.184e15).toFixed(2)} MT` : 'Calculating...'}
                     icon='💥'
                   />
                   <GlassStat
@@ -660,51 +852,77 @@ const SimulationSetup = () => {
                     icon='🆔'
                   />
                 </div>
+              )}
 
-                {/* Visualization Area */}
-                {viewMode === '2d-map' ? (
-                  <Advanced2DImpactMap
-                    simulationResults={simulationResults}
-                    impactLocation={impactLocation}
-                    asteroidParams={asteroidParams}
-                    onError={(error) => console.error('2D Impact Map Error:', error)}
-                  />
-                ) : (
-                  <div className='bg-black/20 rounded-lg p-6 min-h-[300px] flex items-center justify-center border border-white/10'>
-                    <div className='text-center text-gray-300'>
-                      <div className='text-4xl mb-4'>
-                        {viewMode === 'data' ? '📊' : '⚖️'}
-                      </div>
-                      <div className='text-lg font-medium mb-2'>
-                        {viewMode === 'data' ? 'Data Analysis' : 'Comparison View'}
-                      </div>
-                      <p className='text-sm'>
-                        {viewMode === 'data' &&
-                          'Detailed numerical analysis and charts'}
-                        {viewMode === 'comparison' &&
-                          'Compare simulation results with historical events'}
-                      </p>
-                    </div>
+              {/* Visualization Area */}
+              {viewMode === '2d-map' ? (
+                <EnhancedSimulationResultsMap
+                  simulationResults={simulationResults}
+                  impactLocation={impactLocation}
+                  asteroidParams={asteroidParams}
+                  onLocationSelect={(coords) => setImpactLocation({ latitude: coords[0], longitude: coords[1] })}
+                  showSimulation={simulationCompleted}
+                />
+              ) : viewMode === 'data' ? (
+                <SimulationDataView 
+                  simulationResults={simulationResults}
+                  asteroidParams={asteroidParams}
+                  impactLocation={impactLocation}
+                />
+              ) : viewMode === 'comparison' ? (
+                <SimulationComparisonView 
+                  simulationResults={simulationResults}
+                  asteroidParams={asteroidParams}
+                />
+              ) : simulationResults ? (
+                <div className='bg-black/20 rounded-lg p-6 min-h-[300px] flex items-center justify-center border border-white/10'>
+                  <div className='text-center text-gray-300'>
+                    <div className='text-4xl mb-4'>🌠</div>
+                    <div className='text-lg font-medium mb-2'>Select a View</div>
+                    <p className='text-sm'>Choose a display mode above to view simulation results</p>
                   </div>
-                )}
-              </div>
-            ) : (
-              <div className='flex items-center justify-center h-full min-h-[400px]'>
-                <div className='text-center text-gray-400'>
-                  <div className='text-6xl mb-4'>🌠</div>
-                  <div className='text-xl font-medium mb-2'>
-                    Ready for Simulation
-                  </div>
-                  <p className='text-sm max-w-md'>
-                    Configure your asteroid parameters and click "Launch
-                    Simulation" to see the impact analysis
-                  </p>
                 </div>
-              </div>
-            )}
+              ) : (
+                <div className='flex items-center justify-center h-full min-h-[400px]'>
+                  <div className='text-center text-gray-400'>
+                    <div className='text-6xl mb-4'>🌠</div>
+                    <div className='text-xl font-medium mb-2'>
+                      Ready for Simulation
+                    </div>
+                    <p className='text-sm max-w-md'>
+                      Configure your asteroid parameters and click "Launch
+                      Simulation" to see the impact analysis
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+
+            </div>
           </GlassCard>
         </div>
       </div>
+      
+      {/* Navigation Guide Popup */}
+      <NavigationGuide
+        isOpen={showNavigationGuide}
+        onClose={() => setShowNavigationGuide(false)}
+        simulationType="basic"
+      />
+
+      {/* Simulation Process Visualization */}
+      <SimulationProcessVisualization
+        isVisible={showProcessVisualization}
+        onComplete={handleProcessVisualizationComplete}
+        simulationData={simulationResults}
+        asteroidParams={{
+          diameter: asteroidParams.diameter,
+          velocity: asteroidParams.velocity,
+          composition: asteroidParams.composition,
+          angle: asteroidParams.angle
+        }}
+        impactLocation={impactLocation}
+      />
     </div>
   );
 };

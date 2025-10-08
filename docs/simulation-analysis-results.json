@@ -1,0 +1,38 @@
+{
+  "issues": [
+    "Missing semantic header element",
+    "Missing semantic main element",
+    "Select no-id missing label",
+    "Select no-id missing label",
+    "Mobile: Touch targets too small (< 44px)",
+    "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+    "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+    "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+    "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+    "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection..."
+  ],
+  "improvements": [
+    "Add loading states for all interactive elements",
+    "Implement better visual feedback for button clicks",
+    "Add tooltips for complex controls",
+    "Improve spacing and alignment consistency"
+  ],
+  "enhancements": [
+    "Add keyboard navigation support",
+    "Implement undo/redo functionality",
+    "Add simulation result comparison feature",
+    "Implement real-time parameter validation",
+    "Add export/import simulation configurations"
+  ],
+  "performance": {
+    "loadTime": 2855,
+    "domContentLoaded": 0.30000001192092896,
+    "loadComplete": 0.2999999523162842,
+    "firstPaint": 2148,
+    "firstContentfulPaint": 2148
+  },
+  "accessibility": {
+    "3 form inputs missing labels": true
+  },
+  "usability": {}
+}

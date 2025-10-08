@@ -1,0 +1,2642 @@
+
+🧪 COMPREHENSIVE COMPONENT TEST REPORT
+=====================================
+Generated: 2025-10-05T16:40:15.015Z
+
+📊 SUMMARY:
+- Total Tests: 7
+- Passed: 0
+- Failed: 7
+- Total Errors: 638
+
+📋 TEST RESULTS:
+
+❌ Home Page
+   Path: /
+   Duration: 20299ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Solar System Panel
+   Path: /solar-system
+   Duration: 12130ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Asteroid Impact Simulation
+   Path: /asteroid-impact
+   Duration: 2886ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Mission Control Dashboard
+   Path: /mission-control
+   Duration: 3245ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Space Weather Dashboard
+   Path: /space-weather
+   Duration: 1970ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Natural Events Tracker
+   Path: /natural-events
+   Duration: 2845ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+❌ Partner APIs Explorer
+   Path: /partner-apis
+   Duration: 2179ms
+   Errors: 1
+     - test_error: this.page.waitForTimeout is not a function
+
+🚨 DETAILED ERRORS:
+
+1. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.323Z
+
+2. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.407Z
+
+3. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.409Z
+
+4. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.411Z
+
+5. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.424Z
+
+6. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.427Z
+
+7. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.428Z
+
+8. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.430Z
+
+9. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.435Z
+
+10. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.436Z
+
+11. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.437Z
+
+12. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.438Z
+
+13. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.438Z
+
+14. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.444Z
+
+15. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.456Z
+
+16. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.457Z
+
+17. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.459Z
+
+18. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.461Z
+
+19. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.466Z
+
+20. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.471Z
+
+21. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.534Z
+
+22. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.544Z
+
+23. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.548Z
+
+24. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.550Z
+
+25. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.553Z
+
+26. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.561Z
+
+27. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.565Z
+
+28. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.595Z
+
+29. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.629Z
+
+30. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.640Z
+
+31. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.648Z
+
+32. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.655Z
+
+33. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.657Z
+
+34. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.658Z
+
+35. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.659Z
+
+36. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.660Z
+
+37. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.661Z
+
+38. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.662Z
+
+39. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.662Z
+
+40. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.663Z
+
+41. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.665Z
+
+42. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.670Z
+
+43. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.671Z
+
+44. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.671Z
+
+45. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.672Z
+
+46. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.674Z
+
+47. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.675Z
+
+48. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.676Z
+
+49. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.677Z
+
+50. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.678Z
+
+51. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.679Z
+
+52. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.680Z
+
+53. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.685Z
+
+54. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.687Z
+
+55. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.696Z
+
+56. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.702Z
+
+57. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.703Z
+
+58. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.703Z
+
+59. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.704Z
+
+60. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.737Z
+
+61. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.751Z
+
+62. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:39.757Z
+
+63. CONSOLE_ERROR
+   Message: Warning: Received `%s` for a non-boolean attribute `%s`.
+
+If you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}.%s true jsx jsx true jsx 
+    at style
+    at section
+    at EnhancedHeroSection (http://localhost:3000/static/js/bundle.js:237559:82)
+    at div
+    at div
+    at GlamorousLandingPage (http://localhost:3000/static/js/bundle.js:192697:82)
+    at RenderedRoute (http://localhost:3000/static/js/bundle.js:127814:3)
+    at Routes (http://localhost:3000/static/js/bundle.js:128593:3)
+    at div
+    at div
+    at Router (http://localhost:3000/static/js/bundle.js:128540:13)
+    at BrowserRouter (http://localhost:3000/static/js/bundle.js:131600:3)
+    at SimulationProvider (http://localhost:3000/static/js/bundle.js:245028:3)
+    at AppControllerProvider (http://localhost:3000/static/js/bundle.js:178523:3)
+    at App (http://localhost:3000/static/js/bundle.js:178559:88)
+   Time: 2025-10-05T16:39:39.758Z
+
+64. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:41.547Z
+
+65. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.101Z
+
+66. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.111Z
+
+67. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.116Z
+
+68. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.131Z
+
+69. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.137Z
+
+70. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.148Z
+
+71. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.165Z
+
+72. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.240Z
+
+73. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.251Z
+
+74. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.258Z
+
+75. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.284Z
+
+76. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.286Z
+
+77. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.289Z
+
+78. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.291Z
+
+79. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.294Z
+
+80. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.302Z
+
+81. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.305Z
+
+82. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.319Z
+
+83. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.328Z
+
+84. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.332Z
+
+85. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.336Z
+
+86. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.347Z
+
+87. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.352Z
+
+88. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.375Z
+
+89. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.383Z
+
+90. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.397Z
+
+91. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.399Z
+
+92. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.403Z
+
+93. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.422Z
+
+94. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.430Z
+
+95. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.431Z
+
+96. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.437Z
+
+97. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.439Z
+
+98. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.442Z
+
+99. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.446Z
+
+100. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.452Z
+
+101. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.464Z
+
+102. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.468Z
+
+103. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.471Z
+
+104. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.477Z
+
+105. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.483Z
+
+106. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.485Z
+
+107. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.487Z
+
+108. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.527Z
+
+109. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.539Z
+
+110. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.554Z
+
+111. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.561Z
+
+112. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.563Z
+
+113. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.565Z
+
+114. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.567Z
+
+115. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.572Z
+
+116. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.576Z
+
+117. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.580Z
+
+118. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.582Z
+
+119. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.583Z
+
+120. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.585Z
+
+121. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.594Z
+
+122. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.596Z
+
+123. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.597Z
+
+124. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.599Z
+
+125. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.609Z
+
+126. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.610Z
+
+127. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.610Z
+
+128. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.611Z
+
+129. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.613Z
+
+130. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.615Z
+
+131. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.615Z
+
+132. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.616Z
+
+133. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.617Z
+
+134. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.620Z
+
+135. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.622Z
+
+136. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.624Z
+
+137. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.673Z
+
+138. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.675Z
+
+139. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.681Z
+
+140. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.683Z
+
+141. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.684Z
+
+142. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.685Z
+
+143. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.687Z
+
+144. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.690Z
+
+145. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.702Z
+
+146. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.714Z
+
+147. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:42.736Z
+
+148. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.138Z
+
+149. REQUEST_FAILED
+   Message: undefined
+   Time: 2025-10-05T16:39:43.145Z
+
+150. CONSOLE_ERROR
+   Message: Failed to load resource: net::ERR_CONNECTION_REFUSED
+   Time: 2025-10-05T16:39:43.147Z
+
+151. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.154Z
+
+152. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.159Z
+
+153. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.161Z
+
+154. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.168Z
+
+155. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.171Z
+
+156. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.244Z
+
+157. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.291Z
+
+158. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.309Z
+
+159. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.319Z
+
+160. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.327Z
+
+161. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.330Z
+
+162. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.331Z
+
+163. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.332Z
+
+164. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.337Z
+
+165. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.338Z
+
+166. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.341Z
+
+167. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.482Z
+
+168. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.483Z
+
+169. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.485Z
+
+170. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.489Z
+
+171. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.492Z
+
+172. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.523Z
+
+173. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.534Z
+
+174. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.542Z
+
+175. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.634Z
+
+176. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.691Z
+
+177. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.804Z
+
+178. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.844Z
+
+179. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:39:43.966Z
+
+180. CONSOLE_ERROR
+   Message: Failed to load resource: the server responded with a status of 429 ()
+   Time: 2025-10-05T16:39:46.535Z
+
+181. CONSOLE_ERROR
+   Message: Warning: Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.%s 
+
+Check the render method of `EnhancedNewsTicker`.  
+    at div
+    at EnhancedNewsTicker (http://localhost:3000/static/js/bundle.js:191939:74)
+    at div
+    at section
+    at div
+    at GlamorousLandingPage (http://localhost:3000/static/js/bundle.js:192697:82)
+    at RenderedRoute (http://localhost:3000/static/js/bundle.js:127814:3)
+    at Routes (http://localhost:3000/static/js/bundle.js:128593:3)
+    at div
+    at div
+    at Router (http://localhost:3000/static/js/bundle.js:128540:13)
+    at BrowserRouter (http://localhost:3000/static/js/bundle.js:131600:3)
+    at SimulationProvider (http://localhost:3000/static/js/bundle.js:245028:3)
+    at AppControllerProvider (http://localhost:3000/static/js/bundle.js:178523:3)
+    at App (http://localhost:3000/static/js/bundle.js:178559:88)
+   Time: 2025-10-05T16:39:46.928Z
+
+182. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:39:49.711Z
+
+183. REQUEST_FAILED
+   Message: undefined
+   Time: 2025-10-05T16:39:51.622Z
+
+184. CONSOLE_ERROR
+   Message: Failed to load resource: net::ERR_CONNECTION_REFUSED
+   Time: 2025-10-05T16:39:51.634Z
+
+185. REQUEST_FAILED
+   Message: undefined
+   Time: 2025-10-05T16:39:53.715Z
+
+186. CONSOLE_ERROR
+   Message: Failed to load resource: net::ERR_CONNECTION_REFUSED
+   Time: 2025-10-05T16:39:53.715Z
+
+187. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.334Z
+
+188. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.334Z
+
+189. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.334Z
+
+190. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.335Z
+
+191. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.342Z
+
+192. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.345Z
+
+193. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.350Z
+
+194. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.359Z
+
+195. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.360Z
+
+196. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.364Z
+
+197. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.376Z
+
+198. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.384Z
+
+199. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.392Z
+
+200. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.398Z
+
+201. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.409Z
+
+202. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.412Z
+
+203. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.427Z
+
+204. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.442Z
+
+205. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.460Z
+
+206. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.476Z
+
+207. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.477Z
+
+208. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.494Z
+
+209. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.494Z
+
+210. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.505Z
+
+211. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.509Z
+
+212. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.522Z
+
+213. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.523Z
+
+214. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.527Z
+
+215. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.527Z
+
+216. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.535Z
+
+217. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.536Z
+
+218. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.542Z
+
+219. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.543Z
+
+220. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.552Z
+
+221. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.552Z
+
+222. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.559Z
+
+223. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.559Z
+
+224. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.567Z
+
+225. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.572Z
+
+226. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.576Z
+
+227. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.582Z
+
+228. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.592Z
+
+229. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.597Z
+
+230. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.615Z
+
+231. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.616Z
+
+232. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.626Z
+
+233. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.643Z
+
+234. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.662Z
+
+235. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.663Z
+
+236. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.676Z
+
+237. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.677Z
+
+238. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.694Z
+
+239. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.698Z
+
+240. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.705Z
+
+241. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.709Z
+
+242. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.724Z
+
+243. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.726Z
+
+244. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.751Z
+
+245. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.752Z
+
+246. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.752Z
+
+247. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.753Z
+
+248. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.758Z
+
+249. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.767Z
+
+250. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.767Z
+
+251. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.775Z
+
+252. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.775Z
+
+253. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.782Z
+
+254. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.791Z
+
+255. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.798Z
+
+256. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.808Z
+
+257. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.814Z
+
+258. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.826Z
+
+259. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.830Z
+
+260. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.841Z
+
+261. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.846Z
+
+262. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:01.861Z
+
+263. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.872Z
+
+264. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.880Z
+
+265. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.912Z
+
+266. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.913Z
+
+267. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.913Z
+
+268. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.913Z
+
+269. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:01.914Z
+
+270. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.437Z
+
+271. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.440Z
+
+272. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.443Z
+
+273. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.444Z
+
+274. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.446Z
+
+275. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.447Z
+
+276. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.462Z
+
+277. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.464Z
+
+278. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.472Z
+
+279. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.494Z
+
+280. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.498Z
+
+281. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.503Z
+
+282. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.508Z
+
+283. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.520Z
+
+284. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.525Z
+
+285. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.529Z
+
+286. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.532Z
+
+287. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.533Z
+
+288. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.537Z
+
+289. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.539Z
+
+290. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.540Z
+
+291. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.547Z
+
+292. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.548Z
+
+293. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.554Z
+
+294. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.562Z
+
+295. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.571Z
+
+296. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.579Z
+
+297. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.587Z
+
+298. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.588Z
+
+299. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.593Z
+
+300. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.602Z
+
+301. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.608Z
+
+302. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.620Z
+
+303. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.636Z
+
+304. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.646Z
+
+305. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.648Z
+
+306. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.649Z
+
+307. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.653Z
+
+308. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.670Z
+
+309. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.687Z
+
+310. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.687Z
+
+311. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.705Z
+
+312. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.706Z
+
+313. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.710Z
+
+314. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.717Z
+
+315. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.734Z
+
+316. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.739Z
+
+317. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.742Z
+
+318. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.743Z
+
+319. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:04.750Z
+
+320. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.754Z
+
+321. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.787Z
+
+322. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.826Z
+
+323. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.851Z
+
+324. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.860Z
+
+325. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.863Z
+
+326. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.870Z
+
+327. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.898Z
+
+328. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.920Z
+
+329. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.948Z
+
+330. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.954Z
+
+331. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.957Z
+
+332. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.959Z
+
+333. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.961Z
+
+334. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.964Z
+
+335. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.965Z
+
+336. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.965Z
+
+337. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.966Z
+
+338. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.967Z
+
+339. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.968Z
+
+340. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.968Z
+
+341. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.968Z
+
+342. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.969Z
+
+343. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.970Z
+
+344. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.970Z
+
+345. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.971Z
+
+346. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.971Z
+
+347. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.978Z
+
+348. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.992Z
+
+349. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.993Z
+
+350. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.994Z
+
+351. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.995Z
+
+352. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.995Z
+
+353. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.998Z
+
+354. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:04.999Z
+
+355. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.001Z
+
+356. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.002Z
+
+357. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.026Z
+
+358. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.044Z
+
+359. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.049Z
+
+360. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.050Z
+
+361. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.051Z
+
+362. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.053Z
+
+363. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.054Z
+
+364. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.061Z
+
+365. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.065Z
+
+366. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.075Z
+
+367. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.095Z
+
+368. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.097Z
+
+369. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.098Z
+
+370. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.099Z
+
+371. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.100Z
+
+372. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.100Z
+
+373. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.100Z
+
+374. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.109Z
+
+375. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.125Z
+
+376. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.152Z
+
+377. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.159Z
+
+378. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.171Z
+
+379. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.184Z
+
+380. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.191Z
+
+381. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.197Z
+
+382. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.199Z
+
+383. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:05.202Z
+
+384. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.634Z
+
+385. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.635Z
+
+386. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.651Z
+
+387. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.652Z
+
+388. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.666Z
+
+389. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.669Z
+
+390. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.681Z
+
+391. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.685Z
+
+392. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.687Z
+
+393. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.696Z
+
+394. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.700Z
+
+395. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.725Z
+
+396. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.726Z
+
+397. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.726Z
+
+398. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.726Z
+
+399. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.747Z
+
+400. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.748Z
+
+401. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.749Z
+
+402. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.775Z
+
+403. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.776Z
+
+404. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.778Z
+
+405. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.779Z
+
+406. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.779Z
+
+407. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.801Z
+
+408. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.801Z
+
+409. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.801Z
+
+410. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.802Z
+
+411. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.823Z
+
+412. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.824Z
+
+413. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.825Z
+
+414. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.856Z
+
+415. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.856Z
+
+416. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.857Z
+
+417. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.857Z
+
+418. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.879Z
+
+419. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.880Z
+
+420. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.898Z
+
+421. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.899Z
+
+422. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.901Z
+
+423. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.918Z
+
+424. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.918Z
+
+425. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.923Z
+
+426. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.932Z
+
+427. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.939Z
+
+428. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.947Z
+
+429. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.956Z
+
+430. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.963Z
+
+431. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:07.973Z
+
+432. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:07.997Z
+
+433. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.000Z
+
+434. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.001Z
+
+435. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.001Z
+
+436. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.005Z
+
+437. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.012Z
+
+438. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.019Z
+
+439. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.053Z
+
+440. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.053Z
+
+441. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.054Z
+
+442. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.054Z
+
+443. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.055Z
+
+444. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.062Z
+
+445. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.063Z
+
+446. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.076Z
+
+447. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.091Z
+
+448. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.093Z
+
+449. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:08.095Z
+
+450. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.702Z
+
+451. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.718Z
+
+452. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.733Z
+
+453. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.751Z
+
+454. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.753Z
+
+455. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.773Z
+
+456. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.775Z
+
+457. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.780Z
+
+458. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.781Z
+
+459. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.784Z
+
+460. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.794Z
+
+461. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.805Z
+
+462. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.811Z
+
+463. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.817Z
+
+464. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.826Z
+
+465. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.827Z
+
+466. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.833Z
+
+467. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.843Z
+
+468. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.844Z
+
+469. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.851Z
+
+470. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.855Z
+
+471. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.871Z
+
+472. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.874Z
+
+473. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.884Z
+
+474. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.906Z
+
+475. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.919Z
+
+476. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.940Z
+
+477. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.946Z
+
+478. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.950Z
+
+479. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:09.968Z
+
+480. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.974Z
+
+481. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.975Z
+
+482. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:09.976Z
+
+483. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.018Z
+
+484. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.027Z
+
+485. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.044Z
+
+486. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.049Z
+
+487. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.051Z
+
+488. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.052Z
+
+489. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.053Z
+
+490. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:10.058Z
+
+491. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.929Z
+
+492. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.929Z
+
+493. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.940Z
+
+494. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.940Z
+
+495. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.944Z
+
+496. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.944Z
+
+497. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.949Z
+
+498. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.967Z
+
+499. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.968Z
+
+500. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.983Z
+
+501. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:11.991Z
+
+502. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.001Z
+
+503. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.002Z
+
+504. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.030Z
+
+505. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.034Z
+
+506. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.047Z
+
+507. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.050Z
+
+508. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.059Z
+
+509. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.439Z
+
+510. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.440Z
+
+511. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.440Z
+
+512. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.441Z
+
+513. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.442Z
+
+514. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.442Z
+
+515. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.450Z
+
+516. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.451Z
+
+517. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.452Z
+
+518. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.452Z
+
+519. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.454Z
+
+520. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.457Z
+
+521. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.464Z
+
+522. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.472Z
+
+523. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.481Z
+
+524. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.487Z
+
+525. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.493Z
+
+526. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.494Z
+
+527. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.500Z
+
+528. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.564Z
+
+529. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.612Z
+
+530. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.615Z
+
+531. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.616Z
+
+532. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.617Z
+
+533. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.618Z
+
+534. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.618Z
+
+535. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.619Z
+
+536. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.620Z
+
+537. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.620Z
+
+538. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.620Z
+
+539. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.621Z
+
+540. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.622Z
+
+541. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.623Z
+
+542. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.624Z
+
+543. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.624Z
+
+544. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.624Z
+
+545. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.625Z
+
+546. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.649Z
+
+547. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.649Z
+
+548. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.650Z
+
+549. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.650Z
+
+550. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.651Z
+
+551. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.678Z
+
+552. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.678Z
+
+553. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.679Z
+
+554. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.679Z
+
+555. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.702Z
+
+556. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.703Z
+
+557. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.703Z
+
+558. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.726Z
+
+559. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.726Z
+
+560. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.727Z
+
+561. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.758Z
+
+562. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.760Z
+
+563. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.762Z
+
+564. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.782Z
+
+565. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.783Z
+
+566. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.785Z
+
+567. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.788Z
+
+568. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.799Z
+
+569. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.806Z
+
+570. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:12.816Z
+
+571. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.920Z
+
+572. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.927Z
+
+573. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.929Z
+
+574. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.931Z
+
+575. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.937Z
+
+576. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.940Z
+
+577. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.943Z
+
+578. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.945Z
+
+579. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.954Z
+
+580. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.957Z
+
+581. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.962Z
+
+582. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.982Z
+
+583. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.991Z
+
+584. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.992Z
+
+585. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:12.999Z
+
+586. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.003Z
+
+587. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.007Z
+
+588. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.007Z
+
+589. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.008Z
+
+590. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.009Z
+
+591. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.009Z
+
+592. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.011Z
+
+593. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.014Z
+
+594. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.017Z
+
+595. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.018Z
+
+596. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.021Z
+
+597. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.024Z
+
+598. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.032Z
+
+599. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.038Z
+
+600. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.040Z
+
+601. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.041Z
+
+602. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:13.042Z
+
+603. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.734Z
+
+604. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.750Z
+
+605. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.765Z
+
+606. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.781Z
+
+607. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.800Z
+
+608. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.805Z
+
+609. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.805Z
+
+610. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.812Z
+
+611. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.815Z
+
+612. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.829Z
+
+613. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.833Z
+
+614. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.847Z
+
+615. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.855Z
+
+616. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.859Z
+
+617. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.860Z
+
+618. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.868Z
+
+619. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.869Z
+
+620. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.878Z
+
+621. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.879Z
+
+622. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.883Z
+
+623. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.883Z
+
+624. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.891Z
+
+625. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.900Z
+
+626. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.908Z
+
+627. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.908Z
+
+628. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.916Z
+
+629. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.925Z
+
+630. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.932Z
+
+631. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.938Z
+
+632. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.951Z
+
+633. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.955Z
+
+634. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.966Z
+
+635. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.984Z
+
+636. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.985Z
+
+637. CONSOLE_ERROR
+   Message: 🔄 Max reconnection attempts reached, stopping reconnection...
+   Time: 2025-10-05T16:40:14.998Z
+
+638. TEST_ERROR
+   Message: this.page.waitForTimeout is not a function
+   Time: 2025-10-05T16:40:15.013Z

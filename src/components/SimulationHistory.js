@@ -188,8 +188,8 @@ const SimulationHistory = () => {
       angle: sim.params.angle,
       energy: sim.results.energy,
       craterDiameter: sim.results.craterDiameter,
-      latitude: sim.results.impactLocation.lat,
-      longitude: sim.results.impactLocation.lng,
+      latitude: sim.results.impactLocation.latitude,
+      longitude: sim.results.impactLocation.longitude,
       impactLevel: getImpactLevel(sim.results.energy).level,
       riskLevel: getRiskLevel(sim).level
     }));
@@ -433,7 +433,7 @@ const SimulationHistory = () => {
 
                   {/* Location */}
                   <div className="text-gray-400 text-sm mb-4">
-                    📍 {simulation.results.impactLocation.lat.toFixed(2)}°, {simulation.results.impactLocation.lng.toFixed(2)}°
+                    📍 {simulation.results.impactLocation.latitude.toFixed(2)}°, {simulation.results.impactLocation.longitude.toFixed(2)}°
                   </div>
 
                   {/* Actions */}

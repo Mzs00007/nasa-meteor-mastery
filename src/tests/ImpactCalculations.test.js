@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import EnhancedPhysicsEngine from '../components/impact-map/EnhancedPhysicsEngine';
+import { AdvancedPhysicsEngine } from '../utils/AdvancedPhysicsEngine';
 import DataAnalysisPanel from '../components/impact-map/DataAnalysisPanel';
 import RealTimeDataFeed from '../components/impact-map/RealTimeDataFeed';
 import ImpactVisualizationDashboard from '../components/impact-map/ImpactVisualizationDashboard';
@@ -33,20 +33,20 @@ describe('Enhanced Physics Engine Tests', () => {
   let physicsEngine;
   
   beforeEach(() => {
-    physicsEngine = new EnhancedPhysicsEngine();
+    physicsEngine = new AdvancedPhysicsEngine();
   });
 
   describe('Basic Impact Calculations', () => {
     test('calculates kinetic energy correctly', () => {
       const meteorParams = {
         diameter: 100, // meters
-        velocity: 20000, // m/s
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
       
       // Expected kinetic energy: 0.5 * mass * velocity^2
       // Mass = (4/3) * π * r^3 * density
@@ -63,13 +63,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates TNT equivalent correctly', () => {
       const meteorParams = {
         diameter: 50,
-        velocity: 15000,
+        velocity: 15, // km/s
         composition: 'iron',
         angle: 60,
         altitude: 80000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
       
       // TNT equivalent should be kinetic energy / 4.184e9 (J per ton TNT)
       const expectedTNT = results.kineticEnergy / 4.184e9;
@@ -81,41 +81,41 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates crater diameter using scaling laws', () => {
       const meteorParams = {
         diameter: 200,
-        velocity: 25000,
+        velocity: 25, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 120000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
-      
-      // Crater diameter should scale with energy^0.25 approximately
-      expect(results.craterDiameter).toBeGreaterThan(meteorParams.diameter);
-      expect(results.craterDiameter).toBeLessThan(meteorParams.diameter * 50); // Reasonable upper bound
-    });
-
-    test('handles different compositions correctly', () => {
-      const baseParams = {
-        diameter: 100,
-        velocity: 20000,
-        angle: 45,
-        altitude: 100000
-      };
-
-      const stoneResults = physicsEngine.calculateImpact({
-        ...baseParams,
-        composition: 'stone'
-      });
-
-      const ironResults = physicsEngine.calculateImpact({
-        ...baseParams,
-        composition: 'iron'
-      });
-
-      const stonyIronResults = physicsEngine.calculateImpact({
-        ...baseParams,
-        composition: 'stony-iron'
-      });
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
+       
+       // Crater diameter should scale with energy^0.25 approximately
+       expect(results.craterDiameter).toBeGreaterThan(meteorParams.diameter);
+       expect(results.craterDiameter).toBeLessThan(meteorParams.diameter * 50); // Reasonable upper bound
+     });
+ 
+     test('handles different compositions correctly', () => {
+       const baseParams = {
+         diameter: 100,
+         velocity: 20, // km/s
+         angle: 45,
+         altitude: 100000
+       };
+ 
+       const stoneResults = physicsEngine.calculateComprehensiveImpact({
+         ...baseParams,
+         composition: 'stone'
+       });
+ 
+       const ironResults = physicsEngine.calculateComprehensiveImpact({
+         ...baseParams,
+         composition: 'iron'
+       });
+ 
+       const stonyIronResults = physicsEngine.calculateComprehensiveImpact({
+         ...baseParams,
+         composition: 'stony-iron'
+       });
 
       // Iron should have higher kinetic energy due to higher density
       expect(ironResults.kineticEnergy).toBeGreaterThan(stoneResults.kineticEnergy);
@@ -143,7 +143,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates drag force correctly', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone'
       };
 
@@ -168,7 +168,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('simulates atmospheric entry correctly', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
@@ -194,13 +194,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates blast radius correctly', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
 
       // Blast radius should scale with energy^(1/3) approximately
       expect(results.blastRadius).toBeGreaterThan(0);
@@ -210,13 +210,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates seismic magnitude correctly', () => {
       const meteorParams = {
         diameter: 1000, // Large meteor
-        velocity: 30000,
+        velocity: 30, // km/s
         composition: 'iron',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
 
       expect(results.seismicMagnitude).toBeGreaterThan(0);
       expect(results.seismicMagnitude).toBeLessThan(15); // Reasonable upper bound
@@ -225,13 +225,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('estimates casualties based on population density', () => {
       const meteorParams = {
         diameter: 500,
-        velocity: 25000,
+        velocity: 25, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
 
       expect(results.estimatedCasualties).toBeGreaterThanOrEqual(0);
       expect(typeof results.estimatedCasualties).toBe('number');
@@ -242,13 +242,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculates environmental effects correctly', () => {
       const meteorParams = {
         diameter: 1000,
-        velocity: 30000,
+        velocity: 30, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
 
       expect(results.environmentalEffects).toHaveProperty('dustCloudRadius');
       expect(results.environmentalEffects).toHaveProperty('temperatureChange');
@@ -263,13 +263,13 @@ describe('Enhanced Physics Engine Tests', () => {
     test('estimates economic damage correctly', () => {
       const meteorParams = {
         diameter: 200,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'iron',
         angle: 45,
         altitude: 100000
       };
 
-      const results = physicsEngine.calculateImpact(meteorParams);
+      const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
 
       expect(results.economicImpact).toHaveProperty('infrastructureDamage');
       expect(results.economicImpact).toHaveProperty('agriculturalLoss');
@@ -284,7 +284,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('handles zero diameter', () => {
       const meteorParams = {
         diameter: 0,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
@@ -315,7 +315,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('handles extreme values', () => {
       const meteorParams = {
         diameter: 10000, // 10km diameter
-        velocity: 70000, // Very high velocity
+        velocity: 70, // Very high velocity
         composition: 'iron',
         angle: 90, // Vertical impact
         altitude: 200000
@@ -332,7 +332,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('handles invalid composition', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'invalid',
         angle: 45,
         altitude: 100000
@@ -349,7 +349,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('calculation performance is acceptable', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
@@ -371,7 +371,7 @@ describe('Enhanced Physics Engine Tests', () => {
     test('caching works correctly', () => {
       const meteorParams = {
         diameter: 100,
-        velocity: 20000,
+        velocity: 20, // km/s
         composition: 'stone',
         angle: 45,
         altitude: 100000
@@ -630,7 +630,7 @@ describe('Integration Tests', () => {
     
     const meteorParams = {
       diameter: 100,
-      velocity: 20000,
+      velocity: 20, // km/s
       composition: 'stone',
       angle: 45,
       altitude: 100000
@@ -651,17 +651,17 @@ describe('Integration Tests', () => {
   });
 
   test('all components work together correctly', () => {
-    const physicsEngine = new EnhancedPhysicsEngine();
+    const physicsEngine = new AdvancedPhysicsEngine();
     
     const meteorParams = {
       diameter: 200,
-      velocity: 25000,
+      velocity: 25, // km/s
       composition: 'iron',
       angle: 60,
       altitude: 120000
     };
 
-    const results = physicsEngine.calculateImpact(meteorParams);
+    const results = physicsEngine.calculateComprehensiveImpact(meteorParams);
     const simulationHistory = [{ timestamp: Date.now(), results }];
 
     const { container } = render(
@@ -690,18 +690,18 @@ describe('Integration Tests', () => {
 
 describe('Accuracy Validation Tests', () => {
   test('validates against known impact events', () => {
-    const physicsEngine = new EnhancedPhysicsEngine();
+    const physicsEngine = new AdvancedPhysicsEngine();
 
     // Tunguska Event (1908) - estimated parameters
     const tunguskaParams = {
       diameter: 60, // estimated
-      velocity: 27000, // estimated
+      velocity: 27, // estimated (km/s)
       composition: 'stone',
       angle: 30, // estimated
       altitude: 8000 // estimated airburst altitude
     };
 
-    const tunguskaResults = physicsEngine.calculateImpact(tunguskaParams);
+    const tunguskaResults = physicsEngine.calculateComprehensiveImpact(tunguskaParams);
 
     // Tunguska was estimated at 10-15 megatons
     expect(tunguskaResults.tntEquivalent).toBeGreaterThan(5);
@@ -710,13 +710,13 @@ describe('Accuracy Validation Tests', () => {
     // Chelyabinsk Event (2013) - known parameters
     const chelyabinskParams = {
       diameter: 20, // estimated
-      velocity: 19000, // estimated
+      velocity: 19, // estimated
       composition: 'stone',
       angle: 18, // estimated
       altitude: 23000 // estimated airburst altitude
     };
 
-    const chelyabinskResults = physicsEngine.calculateImpact(chelyabinskParams);
+    const chelyabinskResults = physicsEngine.calculateComprehensiveImpact(chelyabinskParams);
 
     // Chelyabinsk was estimated at 0.4-0.5 megatons
     expect(chelyabinskResults.tntEquivalent).toBeGreaterThan(0.1);
@@ -724,19 +724,19 @@ describe('Accuracy Validation Tests', () => {
   });
 
   test('validates scaling relationships', () => {
-    const physicsEngine = new EnhancedPhysicsEngine();
+    const physicsEngine = new AdvancedPhysicsEngine();
 
     const baseParams = {
       diameter: 100,
-      velocity: 20000,
+      velocity: 20, // km/s
       composition: 'stone',
       angle: 45,
       altitude: 100000
     };
 
     // Test diameter scaling
-    const results1 = physicsEngine.calculateImpact(baseParams);
-    const results2 = physicsEngine.calculateImpact({
+    const results1 = physicsEngine.calculateComprehensiveImpact(baseParams);
+    const results2 = physicsEngine.calculateComprehensiveImpact({
       ...baseParams,
       diameter: baseParams.diameter * 2
     });
@@ -746,7 +746,7 @@ describe('Accuracy Validation Tests', () => {
     expect(energyRatio).toBeCloseTo(8, 0); // 2^3 = 8
 
     // Test velocity scaling
-    const results3 = physicsEngine.calculateImpact({
+    const results3 = physicsEngine.calculateComprehensiveImpact({
       ...baseParams,
       velocity: baseParams.velocity * 2
     });

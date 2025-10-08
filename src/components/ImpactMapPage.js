@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// Context
+import { useSimulation } from '../context/SimulationContext';
+
 // Enhanced Components
+import LocationSelector from './LocationSelector';
 import CesiumEarthMap from './impact-map/CesiumEarthMap';
 import EnhancedPhysicsEngine from './impact-map/EnhancedPhysicsEngine';
 import DataAnalysisPanel from './impact-map/DataAnalysisPanel';
@@ -25,6 +29,9 @@ import '../styles/glassmorphic.css';
 import '../styles/impact-map-enhanced.css';
 
 const ImpactMapPage = () => {
+  // Universal Location Context
+  const { impactLocation, setImpactLocation } = useSimulation();
+
   // Enhanced State Management
   const [meteorParams, setMeteorParams] = useState({
     diameter: 100, // meters
@@ -143,6 +150,27 @@ const ImpactMapPage = () => {
 
   const [activePanel, setActivePanel] = useState('controls'); // controls, analysis, visualization, data
   const [simulationHistory, setSimulationHistory] = useState([]);
+
+  // Sync universal location with local meteorParams
+  useEffect(() => {
+    if (impactLocation?.latitude && impactLocation?.longitude) {
+      setMeteorParams(prev => ({
+        ...prev,
+        latitude: impactLocation.latitude,
+        longitude: impactLocation.longitude
+      }));
+    }
+  }, [impactLocation]);
+
+  // Update universal location when meteorParams location changes
+  const handleLocationChange = useCallback((lat, lng) => {
+    setMeteorParams(prev => ({
+      ...prev,
+      latitude: lat,
+      longitude: lng
+    }));
+    setImpactLocation({ latitude: lat, longitude: lng });
+  }, [setImpactLocation]);
 
   // Refs for component communication
   const cesiumMapRef = useRef(null);
@@ -397,6 +425,17 @@ const ImpactMapPage = () => {
                     onRunSimulation={handleRunSimulation}
                     onResetSimulation={handleResetSimulation}
                   />
+                  
+                  {/* Universal Location Selector */}
+                  <CleanCard className="location-selector-card">
+                    <h3>🎯 Impact Location</h3>
+                    <LocationSelector
+                      value={impactLocation}
+                      onChange={setImpactLocation}
+                      mode="compact"
+                      placeholder="Select impact location..."
+                    />
+                  </CleanCard>
                 </motion.div>
               )}
 

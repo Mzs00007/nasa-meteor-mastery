@@ -1,0 +1,115 @@
+{
+  "timestamp": "2025-10-06T06:27:34.166Z",
+  "pageInfo": {
+    "title": "Meteor Madness",
+    "url": "http://localhost:3000/",
+    "loadTime": 3019
+  },
+  "elementCounts": {
+    "totalElements": 336,
+    "buttons": 13,
+    "inputs": 0,
+    "selects": 3,
+    "sliders": 0,
+    "forms": 0,
+    "images": 0,
+    "links": 11,
+    "divs": 141,
+    "headers": 16
+  },
+  "simulationElements": {
+    "presetButtons": [],
+    "parameterControls": [],
+    "simulationDisplay": null,
+    "nasaDataSection": {
+      "count": 11,
+      "types": [
+        "div",
+        "div",
+        "span",
+        "div",
+        "div",
+        "select",
+        "div",
+        "div",
+        "div",
+        "select",
+        "button"
+      ]
+    },
+    "errorMessages": [],
+    "loadingIndicators": []
+  },
+  "accessibility": {
+    "missingAltImages": 0,
+    "missingLabels": 3,
+    "missingHeadings": false,
+    "focusableElements": 27,
+    "ariaElements": 13
+  },
+  "console": {
+    "errors": 326,
+    "warnings": 0,
+    "info": 75,
+    "recentErrors": [
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.677Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.680Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.684Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.688Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.692Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.697Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.701Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.705Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.708Z"
+      },
+      {
+        "type": "error",
+        "text": "🔄 Max reconnection attempts reached, stopping reconnection...",
+        "timestamp": "2025-10-06T06:27:30.713Z"
+      }
+    ]
+  },
+  "jsErrors": 0,
+  "status": {
+    "pageLoaded": true,
+    "hasInteractiveElements": true,
+    "hasSimulationFeatures": false,
+    "hasAccessibilityIssues": true,
+    "hasErrors": true
+  }
+}

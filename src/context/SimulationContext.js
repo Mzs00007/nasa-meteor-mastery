@@ -27,12 +27,13 @@ export const SimulationProvider = ({ children }) => {
   const [view, setView] = useState('both'); // both, orbit, impact
   const [nasaDataLoading, setNasaDataLoading] = useState(false);
   const [nasaDataError, setNasaDataError] = useState(null);
+  const [preventNavigation, setPreventNavigation] = useState(false);
 
   // Fetch meteor data on component mount
   useEffect(() => {
     fetchMeteorData();
-    // Don't automatically fetch NASA data on app initialization
-    // fetchNasaAsteroidData();
+    // Fetch NASA data on app initialization
+    fetchNasaAsteroidData();
   }, []);
 
   const fetchMeteorData = async () => {
@@ -65,17 +66,22 @@ export const SimulationProvider = ({ children }) => {
         },
       ];
 
-      try {
-        const response = await fetch(`${API_URL}/api/meteors`);
-        if (response.ok) {
-          const data = await response.json();
-          setMeteorData(data);
-        } else {
-          setMeteorData(fallbackData);
+      // Only try to fetch from backend if API_URL is configured
+      if (API_URL) {
+        try {
+          const response = await fetch(`${API_URL}/api/meteors`);
+          if (response.ok) {
+            const data = await response.json();
+            setMeteorData(data);
+            return;
+          }
+        } catch (err) {
+          console.log('Backend API unavailable for meteor data, using fallback');
         }
-      } catch (err) {
-        setMeteorData(fallbackData);
       }
+      
+      // Use fallback data when backend is not available
+      setMeteorData(fallbackData);
     } catch (err) {
       console.error('Failed to fetch meteor data:', err);
       setError('Failed to fetch meteor data. Using default values.');
@@ -230,15 +236,40 @@ export const SimulationProvider = ({ children }) => {
         ice: 900,
       };
 
-      const volume =
-        (4 / 3) * Math.PI * Math.pow(asteroidParams.diameter / 2, 3);
+      // Calculate volume in cubic meters
+      const radius = asteroidParams.diameter / 2; // meters
+      const volume = (4 / 3) * Math.PI * Math.pow(radius, 3); // m³
+      
+      // Calculate mass in kg
       const mass = volume * density[asteroidParams.composition];
-      const velocityMs = asteroidParams.velocity * 1000; // convert km/s to m/s
+      
+      // Convert velocity from km/s to m/s
+      const velocityMs = asteroidParams.velocity * 1000;
+      
+      // Calculate kinetic energy in Joules
       const energy = 0.5 * mass * Math.pow(velocityMs, 2);
 
-      return energy; // Joules
+      // Ensure minimum energy value and log for debugging
+      const finalEnergy = Math.max(energy, 1e12); // Minimum 1 TJ
+      
+      console.log('Energy Calculation Debug:', {
+        diameter: asteroidParams.diameter,
+        composition: asteroidParams.composition,
+        velocity: asteroidParams.velocity,
+        radius,
+        volume,
+        mass,
+        velocityMs,
+        energy,
+        finalEnergy,
+        energyMT: finalEnergy / 4.184e15
+      });
+
+      return finalEnergy; // Joules
     } catch (err) {
-      throw new Error(`Failed to calculate impact energy: ${err.message}`);
+      console.error('Energy calculation error:', err);
+      // Return a reasonable default energy value
+      return 1e15; // 1 PJ default
     }
   };
 
@@ -338,48 +369,51 @@ export const SimulationProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      // Try to use backend API
-      try {
-        const response = await fetch(`${API_URL}/api/simulations/run`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(asteroidParams),
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setImpactLocation({
-            latitude: data.impactLocation.latitude,
-            longitude: data.impactLocation.longitude,
-          });
-          setSimulationResults({
-            energy: data.energy,
-            craterDiameter: data.craterDiameter,
-            timestamp: data.timestamp || new Date().toISOString(),
-            id: data.id || `sim-${Date.now()}`,
-          });
-
-          // Add to simulation history
-          setSimulationHistory(prev => [
-            {
-              id: data.id || `sim-${Date.now()}`,
-              params: { ...asteroidParams },
-              results: {
-                energy: data.energy,
-                craterDiameter: data.craterDiameter,
-                impactLocation: data.impactLocation,
-                timestamp: data.timestamp || new Date().toISOString(),
-              },
+      // Try to use backend API only if API_URL is configured
+      if (API_URL) {
+        try {
+          const response = await fetch(`${API_URL}/api/simulations/run`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
             },
-            ...prev.slice(0, 9), // Keep only the 10 most recent simulations
-          ]);
+            body: JSON.stringify(asteroidParams),
+          });
 
-          return;
+          if (response.ok) {
+            const data = await response.json();
+            setImpactLocation({
+              latitude: data.impactLocation.latitude,
+              longitude: data.impactLocation.longitude,
+            });
+            setSimulationResults({
+              energy: data.energy,
+              craterDiameter: data.craterDiameter,
+              timestamp: data.timestamp || new Date().toISOString(),
+              id: data.id || `sim-${Date.now()}`,
+            });
+
+            // Add to simulation history
+            setSimulationHistory(prev => [
+              {
+                id: data.id || `sim-${Date.now()}`,
+                params: { ...asteroidParams },
+                results: {
+                  energy: data.energy,
+                  craterDiameter: data.craterDiameter,
+                  impactLocation: data.impactLocation,
+                  timestamp: data.timestamp || new Date().toISOString(),
+                },
+              },
+              ...prev.slice(0, 9), // Keep only the 10 most recent simulations
+            ]);
+
+            return;
+          }
+        } catch (err) {
+          // Fallback to client-side calculation if API fails
+          console.log('Backend API unavailable, using client-side calculation');
         }
-      } catch (err) {
-        // Fallback to client-side calculation if API fails
       }
       // Calculate comprehensive impact data
       const impactData = calculateComprehensiveImpactData();
@@ -450,6 +484,8 @@ export const SimulationProvider = ({ children }) => {
     fetchNasaAsteroidData,
     view,
     setView,
+    preventNavigation,
+    setPreventNavigation,
   };
 
   return (

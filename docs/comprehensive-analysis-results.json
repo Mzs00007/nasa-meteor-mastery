@@ -1,0 +1,357 @@
+{
+  "analysis": {
+    "criticalIssues": [
+      "Select no-id missing label",
+      "Select no-id missing label",
+      "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "Chromium: No interactive elements detected",
+      "Firefox: No interactive elements detected",
+      "WebKit: No interactive elements detected"
+    ],
+    "majorIssues": [
+      "Missing semantic header element",
+      "Missing semantic main element",
+      "Mobile: Touch targets too small (< 44px)",
+      "Chromium: No focusable elements for keyboard navigation",
+      "Firefox: No focusable elements for keyboard navigation",
+      "WebKit: No focusable elements for keyboard navigation"
+    ],
+    "minorIssues": [],
+    "improvements": [
+      "Add loading states for all interactive elements",
+      "Implement better visual feedback for button clicks",
+      "Add tooltips for complex controls",
+      "Improve spacing and alignment consistency"
+    ],
+    "enhancements": [
+      "Add keyboard navigation support",
+      "Implement undo/redo functionality",
+      "Add simulation result comparison feature",
+      "Implement real-time parameter validation",
+      "Add export/import simulation configurations"
+    ],
+    "performance": {
+      "loadTime": 2855,
+      "domContentLoaded": 0.30000001192092896,
+      "loadComplete": 0.2999999523162842,
+      "firstPaint": 2148,
+      "firstContentfulPaint": 2148
+    },
+    "accessibility": {},
+    "usability": {},
+    "crossBrowser": {
+      "testedBrowsers": [
+        "Chromium",
+        "Firefox",
+        "WebKit"
+      ],
+      "loadTimes": {
+        "Chromium": 4617,
+        "Firefox": 2514,
+        "WebKit": 2828
+      },
+      "compatibility": {}
+    }
+  },
+  "todoList": [
+    {
+      "id": "critical-1",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Add form labels",
+      "description": "Select no-id missing label",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-2",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Add form labels",
+      "description": "Select no-id missing label",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-3",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Fix JavaScript errors",
+      "description": "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-4",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Fix JavaScript errors",
+      "description": "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-5",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Fix JavaScript errors",
+      "description": "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-6",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Fix JavaScript errors",
+      "description": "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-7",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Fix JavaScript errors",
+      "description": "JavaScript Error: 🔄 Max reconnection attempts reached, stopping reconnection...",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-8",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Implement interactive elements",
+      "description": "Chromium: No interactive elements detected",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-9",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Implement interactive elements",
+      "description": "Firefox: No interactive elements detected",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "critical-10",
+      "priority": "high",
+      "category": "Critical Fix",
+      "title": "Implement interactive elements",
+      "description": "WebKit: No interactive elements detected",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-1",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Add semantic header",
+      "description": "Missing semantic header element",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-2",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Add semantic main element",
+      "description": "Missing semantic main element",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-3",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Fix mobile touch targets",
+      "description": "Mobile: Touch targets too small (< 44px)",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-4",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Add keyboard navigation",
+      "description": "Chromium: No focusable elements for keyboard navigation",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-5",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Add keyboard navigation",
+      "description": "Firefox: No focusable elements for keyboard navigation",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "major-6",
+      "priority": "high",
+      "category": "Major Improvement",
+      "title": "Add keyboard navigation",
+      "description": "WebKit: No focusable elements for keyboard navigation",
+      "estimatedTime": "1-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "accessibility-1",
+      "priority": "high",
+      "category": "Accessibility",
+      "title": "Fix form accessibility issues",
+      "description": "Add proper labels to all form inputs and improve keyboard navigation",
+      "estimatedTime": "2-3 hours",
+      "dependencies": []
+    },
+    {
+      "id": "ui-1",
+      "priority": "high",
+      "category": "UI Fix",
+      "title": "Fix missing interactive elements",
+      "description": "Implement missing sliders, input fields, and preset buttons for asteroid parameters",
+      "estimatedTime": "4-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "ui-2",
+      "priority": "high",
+      "category": "UI Fix",
+      "title": "Implement responsive design",
+      "description": "Fix mobile touch targets and ensure proper responsive behavior across all devices",
+      "estimatedTime": "3-4 hours",
+      "dependencies": [
+        "ui-1"
+      ]
+    },
+    {
+      "id": "functionality-1",
+      "priority": "high",
+      "category": "Functionality",
+      "title": "Implement simulation controls",
+      "description": "Add working diameter, velocity, and entry angle controls with real-time updates",
+      "estimatedTime": "6-8 hours",
+      "dependencies": [
+        "ui-1"
+      ]
+    },
+    {
+      "id": "improvement-1",
+      "priority": "medium",
+      "category": "UI/UX Improvement",
+      "title": "Add loading states for all interactive elements",
+      "description": "Implement add loading states for all interactive elements",
+      "estimatedTime": "1-2 hours",
+      "dependencies": []
+    },
+    {
+      "id": "improvement-2",
+      "priority": "medium",
+      "category": "UI/UX Improvement",
+      "title": "Implement better visual feedback for button clicks",
+      "description": "Implement implement better visual feedback for button clicks",
+      "estimatedTime": "1-2 hours",
+      "dependencies": []
+    },
+    {
+      "id": "improvement-3",
+      "priority": "medium",
+      "category": "UI/UX Improvement",
+      "title": "Add tooltips for complex controls",
+      "description": "Implement add tooltips for complex controls",
+      "estimatedTime": "1-2 hours",
+      "dependencies": []
+    },
+    {
+      "id": "improvement-4",
+      "priority": "medium",
+      "category": "UI/UX Improvement",
+      "title": "Improve spacing and alignment consistency",
+      "description": "Implement improve spacing and alignment consistency",
+      "estimatedTime": "1-2 hours",
+      "dependencies": []
+    },
+    {
+      "id": "performance-1",
+      "priority": "medium",
+      "category": "Performance",
+      "title": "Optimize page load time",
+      "description": "Current load time is 2855ms, target < 2000ms",
+      "estimatedTime": "2-4 hours",
+      "dependencies": []
+    },
+    {
+      "id": "data-1",
+      "priority": "medium",
+      "category": "Data Integration",
+      "title": "Fix NASA data integration",
+      "description": "Resolve WebSocket connection issues and implement proper NASA data fetching",
+      "estimatedTime": "4-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "visual-1",
+      "priority": "medium",
+      "category": "Visual Enhancement",
+      "title": "Improve visual feedback",
+      "description": "Add loading states, error handling, and better visual indicators for all interactions",
+      "estimatedTime": "2-3 hours",
+      "dependencies": [
+        "ui-1"
+      ]
+    },
+    {
+      "id": "enhancement-1",
+      "priority": "low",
+      "category": "Enhancement",
+      "title": "Add keyboard navigation support",
+      "description": "Add add keyboard navigation support",
+      "estimatedTime": "3-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "enhancement-2",
+      "priority": "low",
+      "category": "Enhancement",
+      "title": "Implement undo/redo functionality",
+      "description": "Add implement undo/redo functionality",
+      "estimatedTime": "3-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "enhancement-3",
+      "priority": "low",
+      "category": "Enhancement",
+      "title": "Add simulation result comparison feature",
+      "description": "Add add simulation result comparison feature",
+      "estimatedTime": "3-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "enhancement-4",
+      "priority": "low",
+      "category": "Enhancement",
+      "title": "Implement real-time parameter validation",
+      "description": "Add implement real-time parameter validation",
+      "estimatedTime": "3-6 hours",
+      "dependencies": []
+    },
+    {
+      "id": "enhancement-5",
+      "priority": "low",
+      "category": "Enhancement",
+      "title": "Add export/import simulation configurations",
+      "description": "Add add export/import simulation configurations",
+      "estimatedTime": "3-6 hours",
+      "dependencies": []
+    }
+  ],
+  "timestamp": "2025-10-06T06:21:22.418Z"
+}

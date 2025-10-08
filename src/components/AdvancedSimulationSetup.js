@@ -7,6 +7,7 @@ import { liveAsteroidService } from '../services/liveAsteroidService';
 
 // Glass UI Components
 import EnhancedMeteorBackground from './ui/EnhancedMeteorBackground';
+import NavigationGuide from './NavigationGuide';
 import { ModernSpinner, SkeletonText, SkeletonCard, LoadingButton, ProgressBar, LoadingOverlay } from './ui/ModernLoadingComponents';
 
 const AdvancedSimulationSetup = () => {
@@ -50,6 +51,7 @@ const AdvancedSimulationSetup = () => {
   const [liveAsteroidsLoading, setLiveAsteroidsLoading] = useState(true);
   const [selectedLiveAsteroid, setSelectedLiveAsteroid] = useState('');
   const [realTimePreview, setRealTimePreview] = useState(null);
+  const [showNavigationGuide, setShowNavigationGuide] = useState(false);
 
   // Material compositions with enhanced properties
   const compositions = [
@@ -220,10 +222,8 @@ const AdvancedSimulationSetup = () => {
       setSimulationStage('Simulation complete!');
       await new Promise(resolve => setTimeout(resolve, 500));
 
-      // Navigate to advanced results page
-      navigate('/simulation/advanced-results', {
-        state: { results, parameters: advancedParams },
-      });
+      // Show navigation guide instead of automatically navigating
+      setShowNavigationGuide(true);
     } catch (error) {
       console.error('Advanced simulation failed:', error);
       setSimulationStage('Simulation failed');
@@ -1105,6 +1105,13 @@ const AdvancedSimulationSetup = () => {
           </div>
         </div>
       </div>
+      
+      {/* Navigation Guide Popup */}
+      <NavigationGuide
+        isOpen={showNavigationGuide}
+        onClose={() => setShowNavigationGuide(false)}
+        simulationType="advanced"
+      />
     </div>
   );
 };

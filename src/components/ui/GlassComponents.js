@@ -327,44 +327,11 @@ export const GlassSlider = ({
           step={step}
           value={value}
           onChange={e => onChange(Number(e.target.value))}
-          className='w-full h-2 bg-transparent appearance-none cursor-pointer slider'
+          className='w-full h-2 bg-transparent appearance-none cursor-pointer glass-slider'
           style={{
             background: `linear-gradient(to right, rgba(252, 61, 33, 0.8) 0%, rgba(252, 61, 33, 0.8) ${percentage}%, rgba(255, 255, 255, 0.1) ${percentage}%, rgba(255, 255, 255, 0.1) 100%)`,
           }}
         />
-        <style jsx>
-          {`
-            .slider::-webkit-slider-thumb {
-              appearance: none;
-              height: 20px;
-              width: 20px;
-              border-radius: 50%;
-              background: linear-gradient(
-                135deg,
-                rgba(252, 61, 33, 0.9),
-                rgba(11, 61, 145, 0.9)
-              );
-              border: 2px solid rgba(255, 255, 255, 0.3);
-              cursor: pointer;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-              backdrop-filter: blur(10px);
-            }
-
-            .slider::-moz-range-thumb {
-              height: 20px;
-              width: 20px;
-              border-radius: 50%;
-              background: linear-gradient(
-                135deg,
-                rgba(252, 61, 33, 0.9),
-                rgba(11, 61, 145, 0.9)
-              );
-              border: 2px solid rgba(255, 255, 255, 0.3);
-              cursor: pointer;
-              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            }
-          `}
-        </style>
       </div>
     </div>
   );
